@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinica Odontosaurio</title>
+    <link rel="shortcut icon" href="/img/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="../Nav/style.css">
+    
+    
+  
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@96.3,710;100,300;100,400;100,700;100,800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Desabilita el clickderecho -->
+    <script src="../Bak/clickderecho.js"></script>
+
+    <!-- Botones para el fullscreen -->
+    <!-- <script src="../Bak/botones.js"></script> -->
+
+    <!-- Menu pegajoso -->
+    <script src="../Bak/menu.js"></script>
+    
+    <header>
+        <nav>
+        
+        <ul class="nav-links">
+        
+        <li>
+                <a href="#idinicio">Inicio</a>
+            </li>
+        
+            <li>
+                <a href="#idquienes-somos">¿Quiénes somos?</a>
+            </li>
+        
+            <li>
+                <a href="#idubicacion">Ubicación</a>
+            </li>
+        
+            <li>
+                <a href="#idservicios">Servicios</a>
+            </li>
+        
+            <li>
+                <a href="#iddudas-comentarios">Dudas y comentarios</a>
+            </li>
+        
+            <li>
+            <a href="loginYregister\FormPacientelogin.php">Iniciar Sesión</a>
+            </li>
+            
+            <!-- <li>
+                <button onclick="openFullscreen();">Pantalla Completa</button>
+                
+            </li>
+            <li>
+                <button onclick="closeFullscreen();">Modo Ventana</button>
+            </li> -->
+        
+            </ul>
+            <div class="burger">
+              <div class="line1"></div>
+              <div class="line2"></div>
+              <div class="line3"></div>
+            </div>
+        
+        
+        </nav>
+
+        <script src="../Nav/animation.js"></script>
+        
+        
+        <div id="idinicio"></div>
+        <section class="textos-header">
+            <h1>Clinica Familiar Odontosaurio</h1>
+            <h2>Servicios dentales 100% certificados</h2>
+        </section>
+        <div class="wave" style="height: 150px; overflow: hidden;">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color: #A6FFCB" />
+                  <stop offset="100%" style="stop-color: #12D8FA" />
+                </linearGradient>
+              </defs>
+              <path d="M-0.00,49.85 C150.00,149.60 349.20,-49.85 500.00,49.85 L500.00,149.60 L-0.00,149.60 Z" style="stroke: none; fill: url(#grad);"></path>
+            </svg>
+          </div>
+    </header>
+    <main>
+        <section id="idquienes-somos" class="contenedor quienes-somos">
+            
+            <h2 class="titulo">Nuestros Objetivos</h2>
+            <div class="contenedor-quienes-somos"> 
+                  <img src="img/dinosaur.png" alt="" class="imajen-about-us">
+                  <div class="contenido-textos">
+                  <h3><span>1</span>Los mejores servicios</h3>
+                  <p>Contamos con gran variedad de atenciones y la experiencia requerida, que nos avala como una de las mejores empresas dentales. Nuestros doctores certificados y especializados en varios campos que contamos con que proporcionaran un servicio optimo al cliente.</p>
+                  <h3><span>2</span>Experiencia y calidad</h3>
+                  <p>Damos una atencion especializada en cada tipo diferente de paciente y propocionamos seguridad en nuestro trabajo asi como la calidad de los mismos, somos una clinica segura y familiar que estara contenta de atenderte.</p>
+                  </div>
+            </div>
+            
+        </section>
+        <section id="idubicacion" class="ubicacion">
+            <div class="contenedor">
+                <h2 class="titulo">Ubicación</h2>
+                    <p>Nos encontramos ubicados en Mar Mediterraneo #227 Colonia Popotla CP11400, Delegacion Miguel Hidalgo, Cd. de Mexico D.F. </p>
+                <div class="galeria-ubi">
+                    <div class="imajen-ubi">
+                        <img src="img/ubicacion.png" alt="">
+                        <div class="hover-galeria">
+                            <img src="img/icono1.png" alt="">
+                            <P>Mapa</P>
+                        </div>
+                    </div>
+                    <div class="imajen-ubi">
+                        <img src="img/imaje8.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="img/icono1.png" alt="">
+                            <P>Atención al Cliente</P>
+                        </div>
+                    </div>
+                    <div class="imajen-ubi">
+                        <img src="img/imaje7.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="img/icono1.png" alt="">
+                            <P>Nuestra sucursal</P>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="linea-container">
+            <div class="linea"></div>
+        </div>
+        </div>
+        <section id="idservicios" class="about-service">
+            <div class="contenedor">
+                <h2 class="titulo">Servicios</h2>
+                <div class="servicio-cont"><!--servicion contenedor-->
+                    <div class="servicio-ind"><!--servico individual-->
+                        <img src="img/imaje9.jpg" alt="">
+                        <h3>Cuenta Personal</h3>
+                        <p>Puedes registrarte en nuestra plataforma para obtener todos nuestros servicios personalizados y tener una atencion medica excelente.</p>   
+                    </div>
+                    <div class="servicio-ind"><!--servico individual-->
+                        <img src="img/imaje10.jpg" alt="">
+                        <h3>Comunicación</h3>
+                        <p>Contamos con una variedad de doctores dispuestos a atenderte de forma llevadera mientras se agenda con ellos, manteniendo en todo momento la comunicacion requerida por el paciente para un mejor trato medico paciente.</p>   
+                    </div>
+                    <div class="servicio-ind"><!--servico individual-->
+                        <img src="img/imaje3.jpg" alt="">
+                        <h3>Atención al cliente</h3>
+                        <p>La atencion que recibiras sera personal y profecional en todo momento para la mayor satisfaccion, asi como tendras acceso a tu propia informacion segun lo requieras para cualquier duda.</p>   
+                    </div>
+                </div>
+                <div class="linea-container2">
+                    <div class="linea2"></div>
+                </div>
+            </div>
+        </section> 
+        
+        <section id="iddudas-comentarios" class="dudas-comentarios contenedor">
+            <h2 class="titulo">Dudas y Comentarios</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="img/imaje1.jpg" alt="">
+                    <div class="contenido-texto-card">
+                        <h4>Preguntas frecuentes</h4>
+                        <p>Puedes acccede a esta seccion si tienes dudas del uso de la pagina o de las funciones de la misma.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="img/imaje11.jpg" alt="">
+                    <div class="contenido-texto-card">
+                        <h4>Comentarios</h4>
+                        <p>Comentarios relacionados a la página y sus servicios, así como lo que puede ofrecer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+    <footer>
+       <div class="contenedor-footer">
+           <div class="content-foo">
+               <h4>Teléfono</h4>
+               <p>3337984333</p>
+           </div>
+           <div class="content-foo">
+                <h4>Correo electrónico</h4>
+                <p>odontosaurio.clinic@gmail.com</p>
+           </div>
+           <div class="content-foo">
+               <h4> Ubicación </h4>
+               <p>Mar Mediterranio#227 Col.Popotla CP11400 </p>
+           </div>
+       </div>
+       <h2 class="titulo-final">&copy; Six Gears | IngSoftware</h2>
+    </footer>
+    
+</body>
+</html>
