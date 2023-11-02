@@ -15,13 +15,12 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
             ?>
           
            
-                <input class="controls" type="number" maxlength="18" name ="curp" placeholder="ingresa tu curp">
            
             
-                <input class="controls" type="text" name="nombre" placeholder="ingresa tu nombre">
+                <input class="controls" type="text" name="curp" placeholder="ingresa tu Curp" minlength="18" required>
             
            
-                <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña">
+                <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña"  required>
             
             
                 <input  class="button" type="submit" name="registrar">
