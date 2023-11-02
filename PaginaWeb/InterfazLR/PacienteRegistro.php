@@ -28,9 +28,12 @@ if (isset($_POST['registrar'])) {
                         //Esto es importante para prevenir ataques de inyección SQL, ya que asegura que los datos del usuario se manejen de manera segura.
                             if ($stmt->execute()) {
                                 // Registro exitoso
+                                echo '<div class="alerta">!!Usuario Registrado. Ahora Inicie Secion</div>';
+                                sleep(1);
 
-                                //echo '<div class"mensaje-correcto" >!!Usuario Registrado. Ahora Inicie Secion</div>';
-                                 // sleep(1);
+                                echo '<div class"mensaje-correcto">!!Usuario Registrado. Ahora Inicie Secion</div>';
+                                 sleep(1);
+                                
 
                                 header("Location: FormPacientelogin.php");
                                 //es para cerrar la el redireccinamiento
