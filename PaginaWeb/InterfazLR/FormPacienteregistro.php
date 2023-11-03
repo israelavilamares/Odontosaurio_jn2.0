@@ -26,6 +26,7 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
                 <input  class="button" type="submit" name="registrar">
             
             <p>¿Ya tienes cuenta?<a href="FormPacientelogin.php">Ingresa Aqui</a></p>
+            <br>
             <p><a class="salir" href="../index.html">Volver a Pagina Principal</a></p>
 
         </form>

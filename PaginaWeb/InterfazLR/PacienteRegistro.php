@@ -27,6 +27,9 @@ if (isset($_POST['registrar'])) {
                         $stmt = $con->prepare($sql);
                         //Esto es importante para prevenir ataques de inyección SQL, ya que asegura que los datos del usuario se manejen de manera segura.
                             if ($stmt->execute()) {
+
+                                //mandar un mensaje
+                                
                                 // Registro exitoso                                                               
                                 header("Location: FormPacientelogin.php");
                                 //es para cerrar la el redireccinamiento

@@ -30,6 +30,8 @@ if (isset($_POST['ingresar'])) {
                             if (password_verify($pass, $row['pasw'])) {
                             // Credenciales válidas, inicia sesión
 
+                           
+
                                 $_SESSION['nombre'] = $row['curp_usuario'];
                               //  $_SESSION['pass'] = $row['pass'];
 
