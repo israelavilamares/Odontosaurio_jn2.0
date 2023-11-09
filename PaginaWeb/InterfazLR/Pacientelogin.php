@@ -6,15 +6,17 @@ require "conecta.php";
 
 if (isset($_POST['ingresar'])) {
 
+        //variables post
         $user = $_POST['curp'];
         $pass = $_POST['pass'];
                 
-         $queryadm = "SELECT * FROM administrador where nombre= ?";
+        //verifica si es el administrador
+        $queryadm = "SELECT * FROM administrador where nombre= ?";
         $stmt2 = $con->prepare($queryadm);
         $stmt2->bind_param("s", $user);
         $stmt2->execute();
         $result2 = $stmt2->get_result();
-
+        //si no lo es entonces se verifica si el usuario esta registrado
         if ($result2->num_rows == 0) {
            
            
@@ -48,7 +50,7 @@ if (isset($_POST['ingresar'])) {
                       echo '<label class="alerta">Nombre de usuario no encontrado</label>';
 
                          }
-    
+    //si es el usuario administrador entonces..
     }else{
 
                 $row = $result2->fetch_assoc();
@@ -56,17 +58,14 @@ if (isset($_POST['ingresar'])) {
                 // Credenciales válidas, inicia sesión
                       
                         $_SESSION['curp'] = $row['nombre'];
-                      //  $_SESSION['pass'] = $row['pass'];
-
-                // Redirige al panel de control del admin
-                    header("Location: interfazAdmin.php"); 
-                      //cerrar redireccionamiento
-                        exit();
-                    } else{// Contraseña incorrecta
-                    //  echo "Contraseña incorrecta";
-
-                            echo '<label class="alerta">Contraseña incorrecta administrador</label>';
-                        }
+                      
+                       // Redirige al panel de control del admin
+                      header("Location: interfazAdmin.php"); 
+                        //cerrar redireccionamiento
+                          exit();
+                   } else{// Contraseña incorrecta                      
+                              echo '<label class="alerta">Contraseña incorrecta administrador</label>';
+                          }
 
 
         }
