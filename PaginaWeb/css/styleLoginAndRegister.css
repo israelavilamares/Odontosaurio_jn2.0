@@ -14,7 +14,7 @@ body {
 {
 
   width: 400px;
-  height: 400px;
+  height: 500px;
   background: transparent;
   margin: auto;
   margin-top: 180px;
@@ -22,7 +22,7 @@ body {
   padding: 20px 30px;
   border-top: 4px solid #017bab;
   color: Gray;    
-  border-radius: 15%;
+  border-radius: 0%;
 
 }
 

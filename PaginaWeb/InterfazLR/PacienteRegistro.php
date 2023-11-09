@@ -4,7 +4,7 @@ if (isset($_POST['registrar'])) {
 
             require "conecta.php";
 
-            //verificar si ya esta registrado los usuario adminstrados y el usuario normal
+            //verificar si ya esta registrado el usuario
                 $query = "SELECT * FROM paciente where curp_usuario	= ?";
                 $query = $con->prepare($query);
                   $query->bind_param("s", $_POST["curp"]);
@@ -18,18 +18,20 @@ if (isset($_POST['registrar'])) {
                     echo '<div class="alerta">ya esta registrado ese usuario.Intentelo de Nuevo</div>';
                     }else
                     {
-                       //llamar la variable curp desde formulario
+                        //variables post
                         $curp = $_POST["curp"];
+                        $nombre = $_POST["nombre"];
+                        $tel = $_POST["telefono"];
+
                         //cifra la contraseña
                         $pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
                         //hacer la insercion
-                        $sql = "INSERT INTO PACIENTE (curp_usuario,pasw,archivo,archivo_n) VALUES('$curp','$pass','NULL','NULL')";
+                        $sql = "INSERT INTO PACIENTE (curp_usuario,pasw,archivo,archivo_n,nombre,telefono) VALUES('$curp','$pass','NULL','NULL','$nombre','$tel')";
                         $stmt = $con->prepare($sql);
                         //Esto es importante para prevenir ataques de inyección SQL, ya que asegura que los datos del usuario se manejen de manera segura.
-                            if ($stmt->execute()) {
-
-                                //mandar un mensaje
+                            if ($stmt->execute()) {                               
                                 
+                             
                                 // Registro exitoso                                                               
                                 header("Location: FormPacientelogin.php");
                                 //es para cerrar la el redireccinamiento

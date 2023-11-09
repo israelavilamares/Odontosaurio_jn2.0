@@ -16,7 +16,7 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
             require "Pacientelogin.php";
         ?>
             
-                <input class="controls" type="text" name="nombre" placeholder="ingresa tu curp" required>
+                <input class="controls" type="text" name="curp" placeholder="ingresa tu curp" required>
            
             
                 <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña" required>
@@ -27,7 +27,7 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
 
             <p>¿No tienes Cuenta?<a href="FormPacienteregistro.php">Registrate</a></p>
             <br>
-            <p><a href="../index.html">Volver a Pagina Principal</a></p>
+            <p><a href="../index.html">Volver a Pagina Principal</a></b>
 
         </form>
     </div>

@@ -6,7 +6,7 @@ require "conecta.php";
 
 if (isset($_POST['ingresar'])) {
 
-        $user = $_POST['nombre'];
+        $user = $_POST['curp'];
         $pass = $_POST['pass'];
                 
          $queryadm = "SELECT * FROM administrador where nombre= ?";
@@ -18,7 +18,7 @@ if (isset($_POST['ingresar'])) {
         if ($result2->num_rows == 0) {
            
            
-
+              //id,nombre, curp_usuario,
               $queryuser = "SELECT * FROM paciente where curp_usuario= ?";
               $stmt = $con->prepare($queryuser);
               $stmt->bind_param("s", $user);
@@ -31,9 +31,10 @@ if (isset($_POST['ingresar'])) {
                             // Credenciales válidas, inicia sesión
 
                            
-
-                                $_SESSION['nombre'] = $row['curp_usuario'];
-                              //  $_SESSION['pass'] = $row['pass'];
+                                $_SESSION['nombre'] = $row['nombre'];
+                                $_SESSION['tel'] = $row['telefono'];
+                                $_SESSION['curp'] = $row['curp_usuario'];
+                             
 
                        
                             header("Location: interfazPaciente.php"); 
@@ -54,7 +55,7 @@ if (isset($_POST['ingresar'])) {
                 if (password_verify($pass, $row['pasw'])) {
                 // Credenciales válidas, inicia sesión
                       
-                        $_SESSION['nombre'] = $row['nombre'];
+                        $_SESSION['curp'] = $row['nombre'];
                       //  $_SESSION['pass'] = $row['pass'];
 
                 // Redirige al panel de control del admin

@@ -17,17 +17,20 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
            
            
             
-                <input class="controls" type="text" name="curp" placeholder="ingresa tu Curp" minlength="18" required>
+                <input class="controls" type="text" name="curp" placeholder="ingresa tu Curp" minlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros" required> 
             
-           
-                <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña"  required>
+                <input class="controls" type="text" name="nombre" placeholder="ingresa tu Nombre completo" maxlength="50" required>
+
+                <input class="controls" type="tel" name="telefono" placeholder="ingresa tu Telefono" maxlength="10" required>
+
+                <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña" required>
             
             
                 <input  class="button" type="submit" name="registrar">
             
-            <p>¿Ya tienes cuenta?<a href="FormPacientelogin.php">Ingresa Aqui</a></p>
+            <p>¿Ya tienes cuenta?<a href="FormPacientelogin.php"><b>Ingresa Aqui</b></a></p>
             <br>
-            <p><a class="salir" href="../index.html">Volver a Pagina Principal</a></p>
+            <p><a class="salir" href="../index.html"><b>Volver a Pagina Principal</b></a></p>
 
         </form>
     </div>
