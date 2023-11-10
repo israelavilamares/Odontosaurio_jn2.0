@@ -46,7 +46,7 @@ if (isset($_POST['registrar'])) {
                         
                         echo '<div class="mensaje-correcto">Registro exitoso</div>';
                         sleep(1);
-                        
+
 
                         // Registro exitoso                                                               
                         header("Location: FormPacientelogin.php");
