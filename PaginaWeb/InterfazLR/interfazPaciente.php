@@ -27,7 +27,7 @@ session_start();
         </li>
         <li>
             <form action='sessionDestroy.php'>
-    	    <input type="submit" name="destruirsession" value="Cerrar sesion"/>
+    	    <input class="cerrar-session" type="submit" name="destruirsession" value="Cerrar sesion"/>
 		    </form>
         </li>
         
@@ -76,12 +76,15 @@ session_start();
         <h1>Información de contacto</h1>
         <h2>editar</h2>
         <ul>
-        <li>Nombre</li>
+        <li>Nombre: <h3><?php echo $_SESSION['nombre']; ?></h3> </li>
             <li>Edad</li>
-            <li>CURP
+            <li>CURP: 
                 <h3><?php echo $_SESSION['curp'];?></h3>
             </li>
-            <li>Número de celular</li>
+            <li>Número de celular: 
+                <h3><?php echo $_SESSION['tel'];?></h3> 
+            </li>
+
             <li>Nacionalidad</li>
         </ul>
     </section>
@@ -130,7 +133,7 @@ session_start();
         <h1>Expediente</h1>
         <h2>editar</h2>
         <ul>
-            <li>Nombre:</li>
+            <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span></li>
             <li>CURP: <span><?php echo $_SESSION['curp']; ?></span></li>
             <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
             </li>

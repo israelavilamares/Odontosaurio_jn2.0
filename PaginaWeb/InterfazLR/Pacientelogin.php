@@ -6,9 +6,7 @@ require "verificar.php";
 
 
 if (isset($_POST['ingresar'])) {
-
-
-
+      
   //variables de post
   $user = $_POST['curp'];
   $pass = $_POST['pass'];
