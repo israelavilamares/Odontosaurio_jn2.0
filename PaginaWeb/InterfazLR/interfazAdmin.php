@@ -27,7 +27,7 @@ session_start();
         </li>
         <li>
             <form action='sessionDestroy.php'>
-    	    <input type="submit" name="destruirsession" value="Cerrar sesion"/>
+    	    <input class="cerrar-session" type="submit" name="destruirsession" value="Cerrar sesion"/>
 		    </form>
         </li>
         

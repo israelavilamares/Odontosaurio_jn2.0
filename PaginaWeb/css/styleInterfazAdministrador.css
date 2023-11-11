@@ -1018,3 +1018,9 @@ footer{
     color: #9e9797;
 }
 
+.cerrar-session{
+    background: transparent;
+    color: white;
+    padding: 0.6em 0.6em 0.6em 0.6em;
+    border-radius: 20% 20% 5% 5%;
+}
