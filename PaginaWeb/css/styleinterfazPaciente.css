@@ -1,5 +1,635 @@
-body{
-    background-image: url(../img/blue-ligh_vector.jpg);
-    
-    background-size:contain;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
 }
+
+body{
+    font-family: 'open sans';
+    background: linear-gradient(to right, rgb(104, 255, 230) 0%, #12D8FA 100%);
+    margin: 0; /* Ajusta los márgenes a 0 para eliminar espacios innecesarios */
+    padding: 0; /* Ajusta el relleno a 0 para eliminar espacios innecesarios */
+}
+
+/*Header*/
+
+/*titulo alado del menu haburguesa*/
+
+nav h2, .burger div{
+    color: #ffffff;
+    line-height: 2;
+    margin-left: 20px;
+}
+
+
+/*menu nav*/
+nav{
+    display: block;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: #3f1f41;
+    font-family: 'Poppins', sans-serif;
+    z-index:999;
+}
+
+.logo{
+    color:  white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: #3f1f41; 
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    width: 25%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+}
+.nav-links li{
+    opacity: 0;
+    list-style: none;
+
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 10px;
+
+}
+
+
+.burger{
+    position: absolute;
+    /*display: block;*/
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.burger div{
+    width: 40px;
+    height: 1px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+    vertical-align: middle;
+}
+
+.nav-active{
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade{
+    from{
+    opacity: 0;
+    transform: translateX(50px);
+    }
+    to{
+    opacity: 1;
+    transform: translateX(0px);
+    }
+    }
+    
+    .toggle .line1{
+    transform: rotate(-45deg) translate(-5px,6px);
+    }
+    
+    .toggle .line2{
+    opacity: 0%;
+    }
+    
+    .toggle .line3{
+    transform: rotate(45deg) translate(-5px,-6px);
+    }
+
+/* Popup ayuda y soporte */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background: linear-gradient(to right, #A6FFCB 0%, #12D8FA 100%);*/
+    background-color: rgb(91, 217, 217);
+    padding: 20px;
+    width: 70%;
+    height: 70%;
+    box-sizing: border-box; 
+    z-index: 1001; 
+    overflow-y: auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#ayudaPopup .popup-content h1 {
+    font-size: 45px; 
+    margin-bottom: 10px; 
+    position: relative;
+    color: #414141;
+    max-width: calc(100% - 20px); 
+    top: 25px;
+    z-index: 1;
+}
+
+#ayudaPopup .popup-content h2,
+#ayudaPopup .popup-content h3,
+#ayudaPopup .popup-content h4 {
+    color: #3e3e3e; 
+    font-size: 15px; 
+    margin-bottom: 10px; 
+    max-width: calc(100% - 20px); /* Resta el doble del padding para evitar que el texto se desborde */
+    position: relative;
+    top: 20px; 
+    z-index: 1;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(to right, #A6FFCB 0%, #12eefa 100%);;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 30px; 
+    line-height: 1; 
+    z-index: 1000;
+}
+
+#ayudaPopup .popup-content .imagen-ayuda {
+    position: relative;
+    margin-top: -5px; 
+    margin-left: 0px;
+    transform: rotate(-5deg);
+    z-index: 2;
+    max-height: 300px;
+    transform: scaleX(-1);
+}
+
+/*Main*/
+/*cuadro blanco user*/
+.imagen-tag {
+    position: relative;
+    top: -2%;
+    left: -35%; 
+    width: 180px; 
+    height: 180px; 
+    
+  }
+
+  .imagen-status {
+    position: relative;
+    top: -4%; 
+    left: 50%; 
+    width: 10px; 
+    height: 10px; 
+    
+  }
+
+.imagen-user {
+    position: relative;
+    top: 15%;
+    left: -3%;
+    border-radius: 50%; 
+    width: 250px; 
+    height: 250px; 
+  }
+
+.cuadro-blancouser {
+    position: relative;
+    background-color: white; /* Color de fondo blanco */
+    padding: 20px; /* Espacio interior para el contenido */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borde con transparencia */
+    text-align: center; /* Alinea el contenido al centro */
+    width: 440px; /* Ancho del cuadro */
+    height: 400px; /* Alto del cuadro */
+    border-radius: 3px; /* Radio de borde para suavizar los bordes */
+    margin-left: 15px;
+    margin-top: 10px;
+
+}
+
+.cuadro-blancouser img {
+    max-width: 100%; /* Ajusta el tamaño máximo de la imagen al contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+}
+
+.textos-user h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: -15px;
+    margin-top: -39px;
+    
+}
+.textos-user h2{
+    position: absolute;
+    font-size: 12px;
+    color: #414141;
+    margin-left: 320px;
+    margin-top: -33px;
+}
+
+/*cuadro blanco info*/
+.cuadro-blancoinfo {
+    position: relative;
+    background-color: white; /* Color de fondo blanco */
+    padding: 20px; /* Espacio interior para el contenido */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borde con transparencia */
+    text-align: center; /* Alinea el contenido al centro */
+    width: 1000px; /* Ancho del cuadro */
+    height: 400px; /* Alto del cuadro */
+    border-radius: 3px; /* Radio de borde para suavizar los bordes */
+    margin-left: 500px;
+    margin-top: -400px;
+}
+
+.textos-info h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 0px;
+    margin-top: -40px;
+}
+.textos-info h2{
+    position: absolute;
+    font-size: 10px;
+    color: #8e8e8e;
+    margin-left: 935px;
+    margin-top: -40px;
+    cursor: pointer;
+}
+
+.textos-info h2:hover {
+    text-decoration: underline; /* Agrega una línea blanca debajo del texto en el hover */
+    color: rgb(33, 33, 33); /* Cambia el color del texto al poner el puntero sobre él (opcional) */
+}
+
+.textos-info ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 30px;
+}
+
+.textos-info ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 50px; /* Agrega espaciado entre los elementos de la lista */
+}
+
+.textos-info ul li h3 {
+    
+    color: #161616; 
+    font-size: 15px; 
+   
+}
+
+/*cuadro blanco citas*/
+
+.cuadro-blancocitas {
+    position: relative;
+    background-color: white; /* Color de fondo blanco */
+    padding: 20px; /* Espacio interior para el contenido */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borde con transparencia */
+    text-align: center; /* Alinea el contenido al centro */
+    width: 440px; /* Ancho del cuadro */
+    height: 150px; /* Alto del cuadro */
+    border-radius: 3px; /* Radio de borde para suavizar los bordes */
+    margin-left: 15px;
+    margin-top: 10px;
+    
+}
+
+.textos-citas h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 35px;
+    margin-top: -145px;
+    
+}
+
+.textos-citas h2{
+    position: absolute;
+    font-size: 15px;
+    color: #ffffff;
+    margin-left: 25px;
+    margin-top: -80px;
+    cursor: pointer;
+    
+}
+
+.textos-citas h3{
+    position: absolute;
+    font-size: 15px;
+    color: #ffffff;
+    margin-left: 288px;
+    margin-top: -80px;
+    cursor: pointer;
+    
+}
+
+.textos-citas h2:hover {
+    color: rgb(33, 33, 33); /* Cambia el color del texto al poner el puntero sobre él (opcional) */
+}
+
+.textos-citas h3:hover {
+    color: rgb(33, 33, 33); /* Cambia el color del texto al poner el puntero sobre él (opcional) */
+}
+
+.imagen-boton {
+    position: relative;
+    top: 5px;
+    left: -50px; 
+    width: 140px; 
+    height: 140px;
+}
+
+.imagen-boton2 {
+    position: relative;
+    top: 5px;
+    left: 50px; 
+    width: 140px; 
+    height: 140px;
+    
+}
+
+/*popup de citas*/
+
+/* Estilos para el fondo del popup */
+#popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000; 
+}
+
+/* Estilos para el contenedor del popup */
+#popup > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background: linear-gradient(to right, #A6FFCB 0%, #12D8FA 100%);*/
+    background-color: rgb(91, 217, 217);
+    padding: 20px;
+    width: 70%;
+    height: 70%;
+    box-sizing: border-box; /* Asegura que el padding esté incluido en el ancho y alto */
+    border-radius: 10px;
+    overflow-y: auto;
+    z-index: 1001;
+}
+
+.imagen-user-cita {
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    width: 150px; /* Puedes ajustar el valor según tus necesidades */
+    height: auto; /* Para mantener la proporción de la imagen */
+}
+
+#popup h2 {
+    color: #414141;
+    font-size: 17px;
+    max-width: calc(100% - 20px); /* Resta el doble del padding para evitar que el texto se desborde */
+    position: absolute;
+    left: 180px; /* Ajusta la posición del texto a la izquierda */
+    top: 80px; /* Ajusta la posición del texto hacia arriba */
+
+}
+
+/* Estilos para el botón "Cerrar" */
+#cerrar-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(to right, #A6FFCB 0%, #12eefa 100%);;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+
+
+
+/*cuadro blanco expediente*/
+.cuadro-blancoexpediente {
+    position: relative;
+    background-color: rgb(255, 255, 255); /* Color de fondo blanco */
+    padding: 20px; /* Espacio interior para el contenido */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borde con transparencia */
+    text-align: center; /* Alinea el contenido al centro */
+    width: 1000px; /* Ancho del cuadro */
+    /*height: 400px;  Alto del cuadro */
+    min-height: 400px; /* Cambia 'height' a 'min-height' */
+    border-radius: 3px; /* Radio de borde para suavizar los bordes */
+    margin-left: 500px;
+    margin-top: -150px;
+    overflow: hidden; /*Oculta el contenido que desborda */
+}
+
+.textos-expediente h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 445px;
+    margin-top: -40px;
+}
+
+.textos-expediente h2{
+    position: absolute;
+    font-size: 10px;
+    color: #8e8e8e;
+    margin-left: 935px;
+    margin-top: -40px;
+    cursor: pointer;
+}
+
+.textos-expediente h2:hover {
+    text-decoration: underline; /* Agrega una línea blanca debajo del texto en el hover */
+    color: rgb(33, 33, 33); /* Cambia el color del texto al poner el puntero sobre él (opcional) */
+}
+
+.textos-expediente ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 30px;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+.textos-expediente ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 20px; /* Agrega espaciado entre los elementos de la lista */
+    display: flex;
+    align-items: center;
+}
+
+.textos-expediente ul li span {
+    color: #161616;
+    font-size: 15px;
+    margin-left: 10px; /* Ajusta el margen izquierdo para separar el texto de CURP de h2 */
+}
+.linea-negra {
+    width: 100%;
+    border-bottom: 2px solid #000; /* Línea negra horizontal */
+    margin-top: 10px; /* Espacio entre la línea y los elementos anteriores */
+}
+
+
+
+#lista2 li {
+    margin-bottom: 35px;
+    color: #000000;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+/* cuadro blanco imajenes seccion de imajenes */
+
+.cuadro-blancoimajenes {
+    position: relative;
+    background-color: white; /* Color de fondo blanco */
+    padding: 20px; /* Espacio interior para el contenido */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borde con transparencia */
+    text-align: center; /* Alinea el contenido al centro */
+    width: 440px; /* Ancho del cuadro */
+    height: 110px; /* Alto del cuadro */
+    border-radius: 3px; /* Radio de borde para suavizar los bordes */
+    margin-left: 15px;
+    margin-top: -270px;
+    
+}
+
+.textos-imajenes h1{
+    position: absolute;
+    font-size: 15px;
+    color: #414141;
+    left: 40%;
+    margin-top: -155px;
+}
+.textos-imajenes h2{
+    position: absolute;
+    font-size: 15px;
+    color: #ffffff;
+    left: 39%;
+    margin-top: -100px;
+    cursor: pointer;
+}
+
+.textos-imajenes h2:hover {
+    color: rgb(33, 33, 33); /* Cambia el color del texto al poner el puntero sobre él (opcional) */
+}
+
+
+.imagen-boton3 {
+    position: relative;
+    top: -20px;
+    left: 0px; 
+    width: 140px; 
+    height: 140px;
+}
+
+
+
+
+
+
+/*footer*/
+
+footer{
+   background: #414141;
+   position: absolute;
+   bottom: -500;
+   left: 0;
+   right: 0;
+   padding: 60px 0 30px 0;
+   margin: auto;
+   overflow: hidden;
+   
+}
+
+.contenedor-footer{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    margin: auto;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #ccc;  
+}
+
+.content-foo{
+    text-align: center;
+}
+
+.content-foo h4{
+    text-align: center;
+    color: #fff;
+    border-bottom: 3px solid #642a73;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.content-foo p{
+    color: #ccc;
+}
+
+.titulo-final{
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 0 0;
+    color: #9e9797;
+}
+

@@ -1,0 +1,13 @@
+listas: este js esta agregado en la interfaz de admin donde controla los
+popup de las ventanas de los botones las infos, y citas.
+establece una algo similar a una clase principal llamada cuadro adicional
+y de ahi derivo a las demas por lo que es utilizada por la mayoria de los popup.
+el if solo  crea excepciones para que nose cierren las ventanas de los botones 
+principales cuando abro infos, citas, altas etc
+
+PopupAyudaySoporte: dispara la ventana de ayuda y soporte del menu nav el codigo es normal
+solo tiene la funcion extra de que cuando das click fuera del popup este se cierra
+el js esta ligado a las interfaz de usuario y admin.
+
+PopupCita: muestra la ventana popup de ver citas en la inaterfaz de usuario
+

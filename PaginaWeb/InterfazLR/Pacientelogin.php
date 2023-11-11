@@ -29,7 +29,7 @@ if (isset($_POST['ingresar'])) {
           if (password_verify($pass, $row['pasw'])) 
           {
                 // Credenciales válidas, inicia sesión                      
-                $_SESSION['curp'] = $row['nombre'];
+                $_SESSION['nombre'] = $row['nombre'];
                   
                 // Redirige al panel de control del admin
                 header("Location: interfazAdmin.php"); 

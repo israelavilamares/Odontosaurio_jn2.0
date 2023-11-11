@@ -1,0 +1,1020 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    font-family: 'open sans';
+    background: linear-gradient(to right, rgb(104, 255, 230) 0%, #12D8FA 100%);
+    margin: 0; /* Ajusta los márgenes a 0 para eliminar espacios innecesarios */
+    padding: 0; /* Ajusta el relleno a 0 para eliminar espacios innecesarios */
+}
+
+/*Header*/
+
+/*titulo alado del menu haburguesa*/
+
+nav h2, .burger div{
+    color: #ffffff;
+    line-height: 2;
+    margin-left: 20px;
+}
+
+
+/*menu nav*/
+nav{
+    display: block;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: #3f1f41;
+    font-family: 'Poppins', sans-serif;
+    z-index:999;
+}
+
+.logo{
+    color:  white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: #3f1f41; 
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    width: 25%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+}
+.nav-links li{
+    opacity: 0;
+    list-style: none;
+
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 10px;
+
+}
+
+
+.burger{
+    position: absolute;
+    /*display: block;*/
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.burger div{
+    width: 40px;
+    height: 1px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+    vertical-align: middle;
+}
+
+.nav-active{
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade{
+    from{
+    opacity: 0;
+    transform: translateX(50px);
+    }
+    to{
+    opacity: 1;
+    transform: translateX(0px);
+    }
+    }
+    
+    .toggle .line1{
+    transform: rotate(-45deg) translate(-5px,6px);
+    }
+    
+    .toggle .line2{
+    opacity: 0%;
+    }
+    
+    .toggle .line3{
+    transform: rotate(45deg) translate(-5px,-6px);
+    }
+
+/* Popup ayuda y soporte */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background: linear-gradient(to right, #A6FFCB 0%, #12D8FA 100%);*/
+    background-color: rgb(91, 217, 217);
+    padding: 20px;
+    width: 70%;
+    height: 70%;
+    box-sizing: border-box; 
+    z-index: 1001; 
+    overflow-y: auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#ayudaPopup .popup-content h1 {
+    font-size: 45px; 
+    margin-bottom: 10px; 
+    position: relative;
+    color: #414141;
+    max-width: calc(100% - 20px); 
+    top: 25px;
+    z-index: 1;
+}
+
+#ayudaPopup .popup-content h2,
+#ayudaPopup .popup-content h3,
+#ayudaPopup .popup-content h4 {
+    color: #3e3e3e; 
+    font-size: 15px; 
+    margin-bottom: 10px; 
+    max-width: calc(100% - 20px); /* Resta el doble del padding para evitar que el texto se desborde */
+    position: relative;
+    top: 20px; 
+    z-index: 1;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(to right, #A6FFCB 0%, #12eefa 100%);;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 30px; 
+    line-height: 1; 
+    z-index: 1000;
+}
+
+#ayudaPopup .popup-content .imagen-ayuda {
+    position: relative;
+    margin-top: -5px; 
+    margin-left: 0px;
+    transform: rotate(-5deg);
+    z-index: 2;
+    max-height: 300px;
+    transform: scaleX(-1);
+}
+
+/*Main*/
+/*cuadro blanco user*/
+.imagen-tag {
+    position: relative;
+    top: -2%;
+    left: -35%; 
+    width: 180px; 
+    height: 180px; 
+    
+  }
+
+  .imagen-status {
+    position: relative;
+    top: -4%; 
+    left: 50%; 
+    width: 10px; 
+    height: 10px; 
+    
+  }
+
+.imagen-user {
+    position: relative;
+    top: 15%;
+    left: -3%;
+    border-radius: 50%; 
+    width: 210px; 
+    height: 210px; 
+  }
+
+.cuadro-blancouser {
+    position: relative;
+    background-color: white; /* Color de fondo blanco */
+    padding: 20px; /* Espacio interior para el contenido */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borde con transparencia */
+    text-align: center; /* Alinea el contenido al centro */
+    width: 440px; /* Ancho del cuadro */
+    height: 700px; /* Alto del cuadro */
+    border-radius: 3px; /* Radio de borde para suavizar los bordes */
+    margin-left: 15px;
+    margin-top: 10px;
+
+}
+
+.cuadro-blancouser img {
+    max-width: 100%; /* Ajusta el tamaño máximo de la imagen al contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+}
+
+.textos-user h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: -15px;
+    margin-top: -45px;
+    
+}
+.textos-user h2{
+    position: absolute;
+    font-size: 12px;
+    color: #414141;
+    margin-left: 320px;
+    margin-top: -43px;
+}
+
+.textos-user h3{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 0px;
+    margin-top: 15px;
+}
+.textos-user h4{
+    position: absolute;
+    font-size: 10px;
+    color: #8e8e8e;
+    margin-left: 380px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.textos-user h4:hover {
+    text-decoration: underline; /* Agrega una línea blanca debajo del texto en el hover */
+    color: rgb(33, 33, 33); /* Cambia el color del texto al poner el puntero sobre él (opcional) */
+}
+
+.textos-user ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 70px;
+}
+
+.textos-user ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 50px; /* Agrega espaciado entre los elementos de la lista */
+}
+
+.textos-user ul li h5 {
+    
+    color: #161616; 
+    font-size: 15px; 
+   
+}
+
+/*cuadro blanco busqueda*/
+
+.cuadro-blancobusqueda {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 1050px;
+    height: 75px;
+    border-radius: 3px;
+    margin-left: 460px;
+    margin-top: -700px;
+    border-radius: 30px;
+}
+
+.barra-busqueda {
+    width: 100%; /* Ancho de la barra de búsqueda */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde de la caja de texto */
+    border-radius: 5px; /* Radio de borde para suavizar los bordes */
+    margin-top: 10px; /* Espacio superior */
+    margin-left: -5px;
+    margin-top: -5px;
+}
+
+/*cuadro blanco opciones*/
+
+.cuadro-blancoopciones {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 250px;
+    height: 615px;
+    border-radius: 3px;
+    margin-left: 465px;
+    margin-top: 10px;
+}
+
+.textos-opciones {
+    position: relative;
+    z-index: 2; /* Asegura que el z-index del texto sea mayor que el de la imagen */
+}
+
+.textos-opciones ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.textos-opciones ul li {
+    position: relative;
+    font-size: 23px;
+    color: #ffffff;
+    margin-bottom: 100px;
+    cursor: pointer;
+}
+
+.boton-lista {
+    color: #ffffff;
+    font-size: 15px;
+    background-color: #43c982;
+    padding: 10px 20px;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px; /* Ajusta el espacio superior según tus preferencias */
+    transition: background-color 0.3s; /* Agrega una transición suave al cambio de color de fondo */
+    width: 220px; /* Establece un ancho fijo para todos los botones */
+}
+
+.boton-lista:hover {
+    background-color: #338866; /* Cambia el color de fondo cuando el cursor está sobre el botón */
+}
+
+
+/* lista pacientes */
+.cuadro-pacientes {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+
+.boton-alta {
+    color: #ffffff; /* Cambia el color del texto a negro, por ejemplo */
+    font-size: 15px; /* Cambia el tamaño del texto a 18px, por ejemplo */
+    background-color: #43c982; /* Color de fondo verde, puedes cambiarlo según tus preferencias */
+    padding: 10px 20px; /* Agrega relleno alrededor del texto para que parezca un botón */
+    display: inline-block; /* Hace que el h3 se comporte como un bloque en línea */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el h3 para indicar que es interactivo */
+    border: none; /* Elimina el borde del h3 */
+    border-radius: 20px; /* Agrega bordes redondeados */
+    margin-top: 20px; /* Añade espacio superior de 20px */
+}
+
+.boton-alta:hover {
+    color: #000000; /* Cambia el color del texto cuando se coloca el cursor sobre el botón */
+}
+
+
+.cuadro-pacientes .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#cuadroPacientes table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#cuadroPacientes th, #cuadroPacientes td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#cuadroPacientes th {
+    background-color: #f2f2f2;
+}
+
+#cuadroPacientes img {
+    width: 20px; /* Ajusta el tamaño de la imagen de borrar según sea necesario */
+    height: 20px;
+}
+
+/* Popup alta paciente */
+
+#altaPaciente {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+/* Estilo para el botón de cerrar en el nuevo cuadro */
+#altaPaciente .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-alta h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+
+
+/* Popup expediente */
+#expedientePaciente {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+
+#expedientePaciente .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-expediente h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+.textos-expediente ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 30px;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+.textos-expediente ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 20px; /* Agrega espaciado entre los elementos de la lista */
+    display: flex;
+    align-items: center;
+}
+
+.textos-expediente ul li span {
+    color: #161616;
+    font-size: 15px;
+    margin-left: 10px; /* Ajusta el margen izquierdo para separar el texto de CURP de h2 */
+}
+.linea-negra {
+    width: 100%;
+    border-bottom: 2px solid #000; /* Línea negra horizontal */
+    margin-top: 10px; /* Espacio entre la línea y los elementos anteriores */
+}
+
+
+
+#lista1 li {
+    margin-bottom: 35px;
+    color: #000000;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+/* Popup citas */
+#citasPaciente {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+/* Estilo para el botón de cerrar en el nuevo cuadro */
+#citasPaciente .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-citas h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+.textos-citas ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 30px;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+.textos-citas ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 20px; /* Agrega espaciado entre los elementos de la lista */
+    display: flex;
+    align-items: center;
+}
+
+.textos-citas ul li span {
+    color: #161616;
+    font-size: 15px;
+    margin-left: 10px; /* Ajusta el margen izquierdo para separar el texto de CURP de h2 */
+}
+.linea-negra {
+    width: 100%;
+    border-bottom: 2px solid #000; /* Línea negra horizontal */
+    margin-top: 10px; /* Espacio entre la línea y los elementos anteriores */
+}
+
+
+
+#lista2 li {
+    margin-bottom: 35px;
+    color: #000000;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+/* lista doctores */
+.cuadro-doctores {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+.cuadro-doctores h3 {
+    color: #ffffff; /* Cambia el color del texto a negro, por ejemplo */
+    font-size: 15px; /* Cambia el tamaño del texto a 18px, por ejemplo */
+    background-color: #43c982; /* Color de fondo verde, puedes cambiarlo según tus preferencias */
+    padding: 10px 20px; /* Agrega relleno alrededor del texto para que parezca un botón */
+    display: inline-block; /* Hace que el h3 se comporte como un bloque en línea */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el h3 para indicar que es interactivo */
+    border: none; /* Elimina el borde del h3 */
+    border-radius: 20px; /* Agrega bordes redondeados */
+    margin-top: 20px; /* Añade espacio superior de 20px */
+}
+
+.cuadro-doctores h3:hover {
+    color: #000000; /* Cambia el color del texto cuando se coloca el cursor sobre el botón */
+}
+
+.cuadro-doctores .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#cuadroDoctores table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#cuadroDoctores th, #cuadroDoctores td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#cuadroDoctores th {
+    background-color: #f2f2f2;
+}
+
+#cuadroDoctores img {
+    width: 20px; /* Ajusta el tamaño de la imagen de borrar según sea necesario */
+    height: 20px;
+}
+
+/* popup infodoctor */
+
+#infoDoctor {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+
+#infoDoctor .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-info-doctor h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+.textos-info-doctor ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 30px;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+.textos-info-doctor ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 20px; /* Agrega espaciado entre los elementos de la lista */
+    display: flex;
+    align-items: center;
+}
+
+.textos-info-doctor ul li span {
+    color: #161616;
+    font-size: 15px;
+    margin-left: 10px; /* Ajusta el margen izquierdo para separar el texto de CURP de h2 */
+}
+.linea-negra {
+    width: 100%;
+    border-bottom: 2px solid #000; /* Línea negra horizontal */
+    margin-top: 10px; /* Espacio entre la línea y los elementos anteriores */
+}
+
+/* Popup alta doctor */
+
+#altaDoctor {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+/* Estilo para el botón de cerrar en el nuevo cuadro */
+#altaDoctor .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-alta-doctor h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+
+
+/* lista Administradores */
+.cuadro-administradores {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+.cuadro-administradores h3 {
+    color: #ffffff; /* Cambia el color del texto a negro, por ejemplo */
+    font-size: 15px; /* Cambia el tamaño del texto a 18px, por ejemplo */
+    background-color: #43c982; /* Color de fondo verde, puedes cambiarlo según tus preferencias */
+    padding: 10px 20px; /* Agrega relleno alrededor del texto para que parezca un botón */
+    display: inline-block; /* Hace que el h3 se comporte como un bloque en línea */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el h3 para indicar que es interactivo */
+    border: none; /* Elimina el borde del h3 */
+    border-radius: 20px; /* Agrega bordes redondeados */
+    margin-top: 20px; /* Añade espacio superior de 20px */
+}
+
+.cuadro-administradores h3:hover {
+    color: #000000; /* Cambia el color del texto cuando se coloca el cursor sobre el botón */
+}
+
+.cuadro-administradores .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#cuadroAdministradores table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#cuadroAdministradores th, #cuadroAdministradores td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#cuadroAdministradores th {
+    background-color: #f2f2f2;
+}
+
+#cuadroAdministradores img {
+    width: 20px; /* Ajusta el tamaño de la imagen de borrar según sea necesario */
+    height: 20px;
+}
+
+/* popup infoadmin */
+
+#infoAdmin {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+
+#infoAdmin .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-info-admin h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+.textos-info-admin ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 30px;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+.textos-info-admin ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 20px; /* Agrega espaciado entre los elementos de la lista */
+    display: flex;
+    align-items: center;
+}
+
+.textos-info-admin ul li span {
+    color: #161616;
+    font-size: 15px;
+    margin-left: 10px; /* Ajusta el margen izquierdo para separar el texto de CURP de h2 */
+}
+.linea-negra {
+    width: 100%;
+    border-bottom: 2px solid #000; /* Línea negra horizontal */
+    margin-top: 10px; /* Espacio entre la línea y los elementos anteriores */
+}
+
+/* Popup alta admin */
+
+#altaAdmin {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+/* Estilo para el botón de cerrar en el nuevo cuadro */
+#altaAdmin .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-alta-admin h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+
+
+/* lista Citas */
+.cuadro-citas {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+.cuadro-citas .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#cuadroCitas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#cuadroCitas th, #cuadroCitas td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#cuadroCitas th {
+    background-color: #f2f2f2;
+}
+
+#cuadroCitas img {
+    width: 20px; /* Ajusta el tamaño de la imagen de borrar según sea necesario */
+    height: 20px;
+}
+
+.cuadro-adicional {
+    overflow-y: auto;
+}
+
+/*footer*/
+
+footer{
+   background: #414141;
+   position: absolute;
+   bottom: -500;
+   left: 0;
+   right: 0;
+   padding: 60px 0 30px 0;
+   margin: auto;
+   overflow: hidden;
+   
+}
+
+.contenedor-footer{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    margin: auto;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #ccc;  
+}
+
+.content-foo{
+    text-align: center;
+}
+
+.content-foo h4{
+    text-align: center;
+    color: #fff;
+    border-bottom: 3px solid #642a73;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.content-foo p{
+    color: #ccc;
+}
+
+.titulo-final{
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 0 0;
+    color: #9e9797;
+}
+
