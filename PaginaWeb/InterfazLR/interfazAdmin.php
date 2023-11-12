@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if (empty($_SESSION["nombre"])) {
+    header("Location: FormPacientelogin.php");
+}
 ?>
 <!DOCTYPE>
 <html>
@@ -25,7 +28,7 @@ session_start();
         <li>
         <a href="#" id="ayudaBtn">Ayuda y soporte técnico</a>
         </li>
-        <li>
+        <li> 
             <form action='sessionDestroy.php'>
     	    <input class="cerrar-session" type="submit" name="destruirsession" value="Cerrar sesion"/>
 		    </form>
