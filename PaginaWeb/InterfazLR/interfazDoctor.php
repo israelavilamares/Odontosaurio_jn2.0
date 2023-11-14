@@ -79,13 +79,13 @@ if (empty($_SESSION["nombre"])) {
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>
         </li>
-        <li>Puesto:
-       <span><?php echo $_SESSION['especialidad']=$row["especialidad"];?></span> 
+        <li>especialidad:
+       <span><?php echo $_SESSION['espec'];?></span> 
         </li>
-            <li>
-            Edad: <span><?php echo $_SESSION['edad']=$row["edad"];?></span>
-            </li>            
-            <li>Número de celular: <?php echo $_SESSION['telefono']=$row["telefono"];?></li>
+        <li>
+        Edad: <span><?php echo $_SESSION['edad'];?></span>
+        </li>            
+        <li>Número de celular: <?php echo $_SESSION['tel'];?></li>
         </ul>
 
     </section>

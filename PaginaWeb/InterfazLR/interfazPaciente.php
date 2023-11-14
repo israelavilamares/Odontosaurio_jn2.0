@@ -5,7 +5,7 @@ if (empty($_SESSION["nombre"])) {
 }
 ?>
 <!DOCTYPE>
-<html>
+<html>   
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,35 +101,31 @@ if (empty($_SESSION["nombre"])) {
     <img src="/odontosaurioApp/PaginaWeb/img/boton.png" alt="" class="imagen-boton2">
     <section class="textos-citas">
         <h1>Encuentra tu dentista y agenda tu cita</h1>
-        <h2>Agendar cita</h2>
-        <h3 id="mostrar-popup">Ver citas</h3>
+        <h2 id="mostrar-popup-agendar">Agendar cita</h2>
+        <h3 id="mostrar-popup-ver">Ver citas</h3>
     </section>
 </div>
 
-<div id="popup" style="display: none;">
+<!-- popup ver citas-->
+<div id="popup-ver" style="display: none;">
     <div>
-        <span id="cerrar-popup">X</span>
-        <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user-cita">
-        <h2>Citas disponibles de</h2>
-        <table>
-            <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Dentista</th>
-                <th>Borrar Cita</th>
-                <!-- Puedes agregar más encabezados según tus necesidades -->
-            </tr>
-            <tr>
-                <td>2023-11-09</td>
-                <td>10:00 AM</td>
-                <td>Dr. Ejemplo</td>
-                <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
-                <!-- Puedes agregar más celdas según tus necesidades -->
-            </tr>
-            <!-- Puedes agregar más filas según tus necesidades -->
-        </table>
+        <span id="cerrar-popup-ver">X</span>
+        soy ver citas
+        <!-- contnido para "Ver citas" popup -->
     </div>
 </div>
+<!-- fin popup ver citas-->
+
+<!-- popup agendar citas-->
+<div id="popup-agendar" style="display: none;">
+    <div>
+        <span id="cerrar-popup-agendar">X</span>
+        soy agendar citas
+        <!-- contenido para "Agendar citas" popup -->
+    </div>
+</div>
+<!-- fin popup agendar citas-->
+
 
 <div class="cuadro-blancoexpediente">
     <section class="textos-expediente">
@@ -174,9 +170,20 @@ if ($recuperado) {
 <img src="/odontosaurioApp/PaginaWeb/img/boton.png" alt="" class="imagen-boton3">
     <section class="textos-imajenes">
         <h1>Multimedia</h1>
-        <h2>Subir imajen</h2>
+        <h2 id="mostrar-popup-imagen">Subir imajen</h2>
     </section>
 </div>    
+
+<!-- popup para subir imagen -->
+<div id="popup-imagen" style="display: none;">
+    <div>
+        <span id="cerrar-popup-imagen">X</span>
+        <!-- Contenido del popup para subir imagen -->
+    </div>
+</div>
+<!-- Fin del popup para subir imagen -->
+
+
 
 
 </main>
@@ -208,5 +215,6 @@ if ($recuperado) {
     <script src="/odontosaurioApp/Nav/animation.js"></script>
     <script src="/odontosaurioApp/PaginaWeb/js/PopupCita.js"></script>
     <script src="/odontosaurioApp/PaginaWeb/js/PopupAyudaySoporte.js"></script>
+    <script src="/odontosaurioApp/PaginaWeb/js/PopupImagen.js"></script>
     </body>   
 </html>

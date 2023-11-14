@@ -66,10 +66,11 @@ if (isset($_POST['ingresar'])) {
       if (password_verify($pass, $row['pasw'])) {
                   // Credenciales válidas, inicia sesión
 
-                
+                //variables de sesion en la intefaz login
             $_SESSION['nombre'] = $row['nombre'];
             $_SESSION['tel'] = $row['telefono'];
             $_SESSION['espec'] = $row['especialidad'];
+            $_SESSION['edad'] = $row['edad'];    
                   
 
             
