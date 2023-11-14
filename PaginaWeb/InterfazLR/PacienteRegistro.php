@@ -35,22 +35,27 @@ if (isset($_POST['registrar'])) {
                 $curp = $_POST["curp"];
                 $nombre = $_POST["nombre"];
                 $tel = $_POST["telefono"];
-
+                $nacionalidad = $_POST["nacionalidad"];
+                $edad = $_POST["edad"];
                 //cifra la contraseña
                 $pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
                 //hacer la insercion
-                $sql = "INSERT INTO PACIENTE (curp_usuario,pasw,archivo,archivo_n,nombre,telefono) VALUES('$curp','$pass','NULL','NULL','$nombre','$tel')";
+                $sql = "INSERT INTO PACIENTE (curp_usuario,pasw,archivo,archivo_n,nombre,telefono,nacionalidad,edad) VALUES('$curp','$pass','NULL','NULL','$nombre','$tel','$nacionalidad','$edad')";
                 $stmt = $con->prepare($sql);
                 //Esto es importante para prevenir ataques de inyección SQL, ya que asegura que los datos del usuario se manejen de manera segura.
                     if ($stmt->execute()) {                               
                         
-                        echo '<div class="mensaje-correcto">Registro exitoso</div>';
-                        sleep(1);
                         // Registro exitoso                                                               
-                        header("Location: FormPacientelogin.php");
-                        //es para cerrar la el redireccinamiento
-                        exit();
-                         // Redirige al formulario de inicio de sesión
+   
+                        echo '<script>';
+                        echo '    swal("Registrado!", "You clicked the button!", "success");';
+                        echo '    window.setTimeout(function() {';
+                        echo '        window.location.href ="FormPacientelogin.php";';
+                        echo '    }, 2000);';
+                        echo '</script>';
+                      
+                        
+                       
                     } else {
                         // Error en el registro
                         echo "Error: " . $conn->error;

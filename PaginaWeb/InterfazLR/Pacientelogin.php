@@ -1,9 +1,9 @@
 <?php 
 
 session_start();
+
 require "conecta.php";
 require "verificar.php";
-
 
 if (isset($_POST['ingresar'])) {
       

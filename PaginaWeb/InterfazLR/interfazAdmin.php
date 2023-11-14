@@ -14,6 +14,7 @@ if (empty($_SESSION["nombre"])) {
     <link rel="stylesheet" type="text/css" href="../css/styleInterfazAdministrador.css">
     <link rel="shortcut icon" href="../img/icono.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@96.3,710;100,300;100,400;100,700;100,800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body>
@@ -278,8 +279,9 @@ if (empty($_SESSION["nombre"])) {
            require "conecta.php";
            require('AltaDoctores.php');
             ?>
+            
             <input class=controller type="text"  name="nombre" placeholder="nombre completo" required>
-          <!--  <label for="especialidad">Especialidad:</label>-->
+          
             <input class=controller type="text"  name="especialidad" placeholder="especialidad" required>
             
             <input class=controller type="text"  name="telefono" placeholder="telefono" maxlength="10"  required>
