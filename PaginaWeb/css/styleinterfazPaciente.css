@@ -383,58 +383,38 @@ nav{
 
 /*popup de citas*/
 
-/* Estilos para el fondo del popup */
-#popup {
+#popup-agendar {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.1);
     z-index: 1000; 
 }
 
-/* Estilos para el contenedor del popup */
-#popup > div {
+#popup-agendar > div {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 63%;
     transform: translate(-50%, -50%);
-    /*background: linear-gradient(to right, #A6FFCB 0%, #12D8FA 100%);*/
-    background-color: rgb(91, 217, 217);
+    background-color: rgb(255, 255, 255);
     padding: 20px;
-    width: 70%;
-    height: 70%;
-    box-sizing: border-box; /* Asegura que el padding esté incluido en el ancho y alto */
+    width: 60%;
+    height: 60%;
+    box-sizing: border-box;
     border-radius: 10px;
     overflow-y: auto;
     z-index: 1001;
 }
 
-.imagen-user-cita {
-    margin-right: 10px; /* Espacio entre la imagen y el texto */
-    width: 150px; /* Puedes ajustar el valor según tus necesidades */
-    height: auto; /* Para mantener la proporción de la imagen */
-}
 
-#popup h2 {
-    color: #414141;
-    font-size: 17px;
-    max-width: calc(100% - 20px); /* Resta el doble del padding para evitar que el texto se desborde */
-    position: absolute;
-    left: 180px; /* Ajusta la posición del texto a la izquierda */
-    top: 80px; /* Ajusta la posición del texto hacia arriba */
-
-}
-
-/* Estilos para el botón "Cerrar" */
-#cerrar-popup {
+#cerrar-popup-agendar {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: linear-gradient(to right, #A6FFCB 0%, #12eefa 100%);;
-    color: #ffffff;
+    color: #000000;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -442,24 +422,44 @@ nav{
     z-index: 1000;
 }
 
-table {
+#popup-ver {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
 }
 
-th, td {
-    border: 1px solid #000000;
-    padding: 8px;
-    text-align: left;
+#popup-ver > div {
+    position: absolute;
+    top: 50%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    width: 60%;
+    height: 60%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow-y: auto;
+    z-index: 1001;
 }
 
-th {
-    background-color: #f2f2f2;
+
+#cerrar-popup-ver {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
 }
-
-
-
 
 
 /*cuadro blanco expediente*/
@@ -582,7 +582,46 @@ th {
     height: 140px;
 }
 
+/* popup subir imajen */
 
+#popup-imagen {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 900; 
+}
+
+#popup-imagen > div {
+    position: absolute;
+    top: 75%;
+    left: 15.5%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    width: 30%;
+    height: 35%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow-y: auto;
+    z-index: 901;
+}
+
+
+#cerrar-popup-imagen {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+}
 
 
 

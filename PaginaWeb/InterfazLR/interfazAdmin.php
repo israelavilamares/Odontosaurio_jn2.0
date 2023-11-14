@@ -123,8 +123,14 @@ if (empty($_SESSION["nombre"])) {
             <th>Eliminar</th>
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
+        <?php   require ('conecta.php');
+      $sql= "select nombre from paciente";
+        $resultq=mysqli_query($con,$sql);
+        while ($resultado = mysqli_fetch_array($resultq))
+            {                   
+     ?>
         <tr>
-            <td>2023-11-09</td>
+            <td><?php echo $resultado['nombre'] ?></td>
             <td style="text-align: center;">
                 <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')">
             </td>
@@ -136,7 +142,9 @@ if (empty($_SESSION["nombre"])) {
             </td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
-        <!-- Puedes agregar más filas según tus necesidades -->
+        <?php 
+        }
+        ?><!-- Puedes agregar más filas según tus necesidades -->
     </table>
 </div>
 
@@ -235,8 +243,14 @@ if (empty($_SESSION["nombre"])) {
             <th>Eliminar</th>
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
+     <?php   require ('conecta.php');
+      $sql= "select nombre from doctor";
+        $resultq=mysqli_query($con,$sql);
+        while ($resultado = mysqli_fetch_array($resultq))
+            {                   
+     ?>
         <tr>
-            <td>2023-11-09</td>
+            <td><?php echo $resultado['nombre'];  ?></td>
             <td style="text-align: center;">
             <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoDoctor')">
             </td>
@@ -244,6 +258,8 @@ if (empty($_SESSION["nombre"])) {
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <!-- Puedes agregar más filas según tus necesidades -->
+        <?php 
+        } ?>
     </table>
     </div>
 
@@ -313,14 +329,23 @@ if (empty($_SESSION["nombre"])) {
             <th>Eliminar</th>
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
+        <?php      require ('conecta.php');
+      $sql= "select * from administrador";
+        $resultq=mysqli_query($con,$sql);
+        while ($resultado = mysqli_fetch_array($resultq))
+            {                   
+     ?>
         <tr>
-            <td>2023-11-09</td>
+            <td><?php echo $resultado['nombre'] ?></td>
             <td style="text-align: center;">
             <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoAdmin')">
             </td>
             <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
+        <?php 
+        }
+        ?>
         <!-- Puedes agregar más filas según tus necesidades -->
     </table>
     </div>
