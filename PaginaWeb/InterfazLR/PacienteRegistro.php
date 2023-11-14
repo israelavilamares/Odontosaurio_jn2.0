@@ -35,19 +35,19 @@ if (isset($_POST['registrar'])) {
                 $curp = $_POST["curp"];
                 $nombre = $_POST["nombre"];
                 $tel = $_POST["telefono"];
+                $nac = $_POST["nacionalidad"];
+                $edad = $_POST["edad"];
 
                 //cifra la contraseña
                 $pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
                 //hacer la insercion
-                $sql = "INSERT INTO PACIENTE (curp_usuario,pasw,archivo,archivo_n,nombre,telefono) VALUES('$curp','$pass','NULL','NULL','$nombre','$tel')";
+                $sql = "INSERT INTO PACIENTE (curp_usuario,pasw,archivo,archivo_n,nombre,telefono,nacionalidad,edad) VALUES('$curp','$pass','NULL','NULL','$nombre','$tel','$nac','$edad')";
                 $stmt = $con->prepare($sql);
                 //Esto es importante para prevenir ataques de inyección SQL, ya que asegura que los datos del usuario se manejen de manera segura.
                     if ($stmt->execute()) {                               
                         
-                        echo '<div class="mensaje-correcto">Registro exitoso</div>';
-                        sleep(1);
-
-
+                        echo 'Registro exitoso';
+                        sleep(3);
                         // Registro exitoso                                                               
                         header("Location: FormPacientelogin.php");
                         //es para cerrar la el redireccinamiento

@@ -639,3 +639,11 @@ footer{
  padding: 0.6em 0.6em 0.6em 0.6em;
  border-radius: 20% 20% 5% 5%;
 }
+
+.Update-Pac{
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}

@@ -43,13 +43,12 @@ if (isset($_POST['ingresar'])) {
             $row = $resultPac->fetch_assoc();
             if (password_verify($pass, $row['pasw'])) {
                         // Credenciales válidas, inicia sesión
-
                       
                   $_SESSION['nombre'] = $row['nombre'];
                   $_SESSION['tel'] = $row['telefono'];
                   $_SESSION['curp'] = $row['curp_usuario'];
-                        
-
+                  $_SESSION['nacionalidad'] = $row['nacionalidad'];
+                  $_SESSION['edad'] = $row['edad'];                        
                   
                   header("Location: interfazPaciente.php"); 
                   exit();// Redirige al panel de control del usuario

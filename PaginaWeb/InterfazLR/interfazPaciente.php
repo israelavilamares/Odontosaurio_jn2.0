@@ -1,8 +1,5 @@
 <?php 
 session_start();
-if (empty($_SESSION["nombre"])) {
-    header("Location: FormPacientelogin.php");
-}
 ?>
 <!DOCTYPE>
 <html>
@@ -79,16 +76,18 @@ if (empty($_SESSION["nombre"])) {
         <h1>Información de contacto</h1>
         <h2>editar</h2>
         <ul>
-        <li>Nombre: <h3><?php echo $_SESSION['nombre']; ?></h3> </li>
-            <li>Edad</li>
-            <li>CURP: 
-                <h3><?php echo $_SESSION['curp'];?></h3>
-            </li>
-            <li>Número de celular: 
-                <h3><?php echo $_SESSION['tel'];?></h3> 
-            </li>
-
-            <li>Nacionalidad</li>
+        <form  method="post">
+            <?php
+           require "conecta.php";
+           require('EditarPaciente.php');
+           ?>
+        <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span><input class="controls" type="text" name="nombre_edit" placeholder="ingresa tu Nombre completo" maxlength="50" required></li>
+            <li>Edad: <span><?php echo $_SESSION['edad'];?><span><input class="controls" type="tel" name="edad_edit" placeholder="ingresa tu edad" minlength="1" maxlength="3" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
+            <li>CURP: <span><?php echo $_SESSION['curp'];?><span><input class="controls" type="text" name="curp_edit" value= <?php echo $_SESSION['curp']?> disabled> </li>
+            <li>Número de celular: <span><?php echo $_SESSION['tel'];?><span><input class="controls" type="tel" name="telefono" placeholder="ingresa tu Telefono" minlength="10" maxlength="10" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
+            <li>Nacionalidad: <span><?php echo $_SESSION['nacionalidad'];?><span><input class="controls" type="text" name="nacionalidad_edit" placeholder="ingresa tu Nacionalidad" maxlength="50" required>
+            <input  class="button" type="submit" name="editar"></li>
+            </form>
         </ul>
     </section>
 </div>
@@ -129,28 +128,44 @@ if (empty($_SESSION["nombre"])) {
     </div>
 </div>
 
-
-
 <div class="cuadro-blancoexpediente">
     <section class="textos-expediente">
         <h1>Expediente</h1>
-        <h2>editar</h2>
+        <h2></h2>
         <ul>
             <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span></li>
             <li>CURP: <span><?php echo $_SESSION['curp']; ?></span></li>
+           
             <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
             </li>
+            <ul class="expediente" id="lista2">
         </ul>
+        
+<?php
+require "conecta.php";
+$curp = $_SESSION['curp']; 
+$res = $con->query("SELECT * FROM expediente WHERE curp = '$curp'");
+$recuperado= $res->fetch_assoc();
+if ($recuperado) {
+    // Hay datos en la tabla, puedes mostrar la información
+    ?>
+    <form method="post">
+        <ul>
+            <li>Padecimientos actuales: <span><?php echo $recuperado["padecimientos_actuales"]; ?></span></li>
+            <li>Ultimo examen dental: <span><?php echo $recuperado["ultimo_examen_dental"]; ?></span></li>
+            <li>Antecedentes médicos: <span><?php echo $recuperado["antecedentes_medicos"]; ?></span></li>
+            <li>Doctor a cargo: <span><?php echo $recuperado["doctor_a_cargo"]; ?></span></li>
+        </ul>
+    </form>
+    <?php
+} else {
+    // No hay datos en la tabla, puedes mostrar un mensaje o realizar otra acción
+    echo "No hay datos disponibles.";
+}
+?>
+</section>
+</div>
 
-        <ul class="expediente" id="lista2">
-            <li>Motivo de consulta:</li>
-            <li>Padecimientos actuales:</li>
-            <li>Ultimo examen dental:</li>
-            <li>antecedentes medicos:</li>
-            <li>Doctor a cargo:</li>
-        </ul>
-    </section>
-</div>    
    
 <div class="cuadro-blancoimajenes">
 <img src="/odontosaurioApp/PaginaWeb/img/boton.png" alt="" class="imagen-boton3">
