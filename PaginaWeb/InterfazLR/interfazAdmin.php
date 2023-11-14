@@ -1,8 +1,9 @@
 <?php 
 session_start();
-//if (empty($_SESSION["nombre"])) {
-//    header("Location: FormPacientelogin.php");
-//}
+if (empty($_SESSION["nombre"])) {
+    header("Location: FormPacientelogin.php");
+}
+
 ?>
 <!DOCTYPE>
 <html>
@@ -238,7 +239,7 @@ session_start();
             <td style="text-align: center;">
             <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoDoctor')">
             </td>
-            <td style="text-align: center;"><img src="/Odontosaurio/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
+            <td style="text-align: center;"><img src="/OdontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <!-- Puedes agregar más filas según tus necesidades -->
@@ -271,25 +272,25 @@ session_start();
     <section class="textos-alta-doctor">
         <h1>Alta de Doctor</h1>
         <!-- Agregar el formulario para dar de alta al doctor -->
-        <form>
-            <!-- Campos del formulario (nombre, apellido, etc.) -->
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" name="apellidos">
-            <label for="especialidad">Especialidad:</label>
-            <input type="text" id="especialidad" name="especialidad">
-            <label for="telefono">Telefono:</label>
-            <input type="text" id="telefono" name="telefono">
-            <label for="contraseña">Contraseña:</label>
-            <input type="text" id="contraseña" name="contraseña">
-            <label for="foto">Foto:</label>
-            <input type="text" id="foto" name="foto">
-            <!-- Otros campos del formulario... -->
-
+        <div class="cuadro-AltoDoctor">
+            <form  method="post">
+            <?php
+           require "conecta.php";
+           require('AltaDoctores.php');
+            ?>
+            <input class=controller type="text"  name="nombre" placeholder="nombre completo" required>
+          <!--  <label for="especialidad">Especialidad:</label>-->
+            <input class=controller type="text"  name="especialidad" placeholder="especialidad" required>
+            
+            <input class=controller type="text"  name="telefono" placeholder="telefono" maxlength="10"  required>
+           
+            <input class=controller type="password" name="pass" placeholder="contraseña"  required>
+            
+            <input class=controller type="text" name="edad" placeholder="Edad" required>
             <!-- Botón para enviar el formulario -->
-            <input type="submit" value="Dar de alta">
-        </form>
+            <input class="boton-Alta-Doctor" type="submit" name="RegistraDoc" value="Agregar">
+        </form></div>
+
     </section>
 </div>
 <!-- Fin del Cuadro blanco adicional para Doctores -->
