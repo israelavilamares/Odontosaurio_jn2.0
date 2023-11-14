@@ -1,8 +1,8 @@
 <?php 
 session_start();
-if (empty($_SESSION["nombre"])) {
-    header("Location: FormPacientelogin.php");
-}
+//if (empty($_SESSION["nombre"])) {
+//    header("Location: FormPacientelogin.php");
+//}
 ?>
 <!DOCTYPE>
 <html>
@@ -74,13 +74,16 @@ if (empty($_SESSION["nombre"])) {
       <h3>Información de contacto</h3>
       <h4>editar</h4>
       <ul>
-        <li>Nombre
+        <li>Nombre:
         <?php echo $_SESSION['nombre'];?>
         </li>
-            <li>Edad</li>
-            <li>CURP</li>
-            <li>Número de celular</li>
-            <li>Nacionalidad</li>
+        <li>Puesto:
+       <span><?php echo $_SESSION['puesto'];?></span> 
+        </li>
+            <li>
+            Edad: <span><?php echo $_SESSION['edad'];?></span>
+            </li>            
+            <li>Número de celular: <?php echo $_SESSION['telefono'];?></li>
         </ul>
 
     </section>

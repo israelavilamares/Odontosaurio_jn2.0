@@ -28,6 +28,9 @@ if (isset($_POST['ingresar'])) {
           {
                 // Credenciales válidas, inicia sesión                      
                 $_SESSION['nombre'] = $row['nombre'];
+                $_SESSION['telefono'] = $row['telefono'];
+                $_SESSION['puesto'] = $row['puesto'];
+                $_SESSION['edad'] = $row['edad'];
                   
                 // Redirige al panel de control del admin
                 header("Location: interfazAdmin.php"); 
