@@ -32,7 +32,7 @@ if (isset($_POST['RegistraPaciente'])) {
      }elseif( $resultPac->num_rows > 0 )
     {
         echo '<script>';
-        echo '    swal("Error!", "ya esta registrado ese Nombre. Intentelo de Nuevo con otro Nombre!", "error");';
+        echo '    swal("INFORMACION!", "El Registro ya esta en la Tabla!", "info");';
         echo '</script>';
     }else{
 
@@ -57,6 +57,7 @@ if (isset($_POST['RegistraPaciente'])) {
    
                         echo '<script>';
                         echo '    swal("Registrado!", "You clicked the button!", "success");';
+                        echo 'setTimeout("document.location.reload()",5000);';
                         echo '</script>';
                       
                         

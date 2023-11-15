@@ -15,6 +15,11 @@ if (isset($_POST['RegistraDoc'])) {
      //evita que registren a un doctor con el nombre de un paciente.
      $resultDoc = verifDoctor($nombreDoc);
      //evita el registro de usuarios que ya estan el base de datos que no sea igual a el de administrador.
+    
+     $nombrePac = $_POST['nombre'];
+    
+     $resultPac = NomverifPaciente($nombrePac);
+
      if ($resultAdm->num_rows > 0) 
      {
          //mensaje error
@@ -24,9 +29,14 @@ if (isset($_POST['RegistraDoc'])) {
          
      }elseif($resultDoc->num_rows > 0 ){
         echo '<script>';
+        echo '    swal("INFORMACION!", "El Registro ya esta en la Tabla!", "info");';
+        echo '</script>';
+    }elseif($resultPac->num_rows > 0 ){
+
+        echo '<script>';
         echo '    swal("Error!", "ya esta registrado ese Nombre. Intentelo de Nuevo con otro Nombre!", "error");';
         echo '</script>';
-     }else{
+    }else{
 
        
             //variables post
@@ -46,6 +56,7 @@ if (isset($_POST['RegistraDoc'])) {
 
                             echo '<script>';
                             echo '    swal("Registrado!", "You clicked the button!", "success");';
+                            echo 'setTimeout("document.location.reload()",5000);';
                             echo '</script>';
                             
 

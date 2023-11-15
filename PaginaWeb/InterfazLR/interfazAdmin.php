@@ -386,7 +386,7 @@ if (empty($_SESSION["nombre"])) {
                 <!-- Campos del formulario (nombre, apellido, etc.) -->
                 <input class="controller" type="text" id="nombre" name="nombre" placeholder="nombre completo" required>
                 <input class="controller" type="password" id="contraseña" name="passw" placeholder="contraseña" required>
-                <input class="controller" type="tel" id="tel" name="tel" placeholder="telefono" maxlength="10" required> 
+                <input class="controller" type="tel" id="tel" name="telefono" placeholder="telefono" maxlength="10" required> 
                 <input class="controller" type="text" id="puesto" name="puesto" placeholder="puesto" required>
                 <input class="controller" type="tel" id="edad" name="edad" placeholder="edad" maxlength="3" required>
                 

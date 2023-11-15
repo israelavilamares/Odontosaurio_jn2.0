@@ -30,6 +30,19 @@ function verifPaciente($vfNomPac)
     return $resul;
 }
 
+function NomverifPaciente($vfNomPac)
+{
+    //conxion DB
+    require "conecta.php";
+    //verificar la curp
+    $query = "SELECT * FROM paciente where nombre = ?";
+    $query = $con->prepare($query);
+    $query->bind_param("s", $vfNomPac);
+    $query->execute();
+    $resul = $query->get_result();
+
+    return $resul;
+}
 function verifDoctor($vfNomDoc)
 {
     //conxion DB
