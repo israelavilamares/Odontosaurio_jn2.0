@@ -1024,10 +1024,34 @@ footer{
     padding: 0.6em 0.6em 0.6em 0.6em;
     border-radius: 20% 20% 5% 5%;
 }
+
+.cuadro-AltaAdmin
+{
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.boton-Alta-Admin
+{
+    padding: 0.5em 1em;
+    width: 20em;
+    background: #69b0cb;
+    border: none;
+    color: white;
+
+    cursor: pointer;
+
+border-radius: 40px;
+}
 .cuadro-AltoDoctor{
 
-    width: 100%;
-    max-width: 800px;
+    width: 70%;
+    max-width: 700px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -1041,11 +1065,22 @@ footer{
     background: #69b0cb;
     border: none;
     color: white;
-    /*
-        border-top-left-radius: 15%;
-    border-bottom-left-radius: 15%;
-    border-top-right-radius: 15%;
-       border-bottom-right-radius: 15%; */
+
+    cursor: pointer;
+
+border-radius: 40px;
+}
+
+.buttonAlta-Paciente
+{
+
+    
+    padding: 0.5em 1em;
+    width: 20em;
+    background: #69b0cb;
+    border: none;
+    color: white;
+
     cursor: pointer;
 
 border-radius: 40px;
@@ -1060,7 +1095,7 @@ border-radius: 40px;
     font-size: 14px;
     font-weight: bold;
     background: transparent;
-width: 90%;
+width: 80%;
 height: 30px;
 margin: 0.5rem;
 }

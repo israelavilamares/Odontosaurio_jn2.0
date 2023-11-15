@@ -155,25 +155,28 @@ if (empty($_SESSION["nombre"])) {
     <section class="textos-alta">
         <h1>Alta de Paciente</h1>
         <!-- Agregar el formulario para dar de alta al paciente -->
-        <form>
-            <!-- Campos del formulario (nombre, CURP, etc.) -->
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" name="apellidos">
-            <label for="curp">CURP:</label>
-            <input type="text" id="curp" name="curp">
-            <label for="telefono">Telefono:</label>
-            <input type="text" id="telefono" name="telefono">
-            <label for="contraseña">Contraseña:</label>
-            <input type="text" id="contraseña" name="contraseña">
-            <label for="foto">Foto:</label>
-            <input type="text" id="foto" name="foto">
-            <!-- Otros campos del formulario... -->
+        <div class="cuadro-AltoDoctor">
 
-            <!-- Botón para enviar el formulario -->
-            <input type="submit" value="Dar de alta">
-        </form>
+
+        <form  method="post">
+            <?php
+           require "conecta.php";
+           require('AltaPaciente.php');
+            ?>
+                <!-- Campos del formulario (nombre, CURP, etc.) -->
+                <input class="controller" type="text" id="nombre" name="nombre" placeholder = "nombre completo" required>
+                <input class="controller" type="text" id="curp" name="curp" placeholder="curp"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros"required>
+                <input class="controller" type="text" id="telefono" name="telefono" maxlength="10" placeholder="telefono" required>
+                <input class="controller" type="password" id="contraseña" name="pasw" placeholder="contraseña" required>
+                <input class="controller" type="text" id="nacionalidad" name="nacionalidad" placeholder="nacionalidad" required>
+                <input class="controller" type="tel" id="edad" name="edad" maxlength="3" placeholder="edad" required>
+                
+                <!-- Otros campos del formulario... -->
+    
+                <!-- Botón para enviar el formulario -->
+                <input class="buttonAlta-Paciente" type="submit" value="Agregar Paciente" name="RegistraPaciente">
+            </form>
+        </div>
     </section>
 </div>
 
@@ -254,13 +257,14 @@ if (empty($_SESSION["nombre"])) {
             <td style="text-align: center;">
             <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoDoctor')">
             </td>
-            <td style="text-align: center;"><img src="/OdontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
+            <td style="text-align: center;">  <img src="/OdontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"> </td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <!-- Puedes agregar más filas según tus necesidades -->
         <?php 
         } ?>
     </table>
+    <a href=""></a>
     </div>
 
      <!--popup infodoctor-->
@@ -340,7 +344,7 @@ if (empty($_SESSION["nombre"])) {
             <td style="text-align: center;">
             <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoAdmin')">
             </td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
+            <td style="text-align: center;"> <img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <?php 
@@ -373,18 +377,26 @@ if (empty($_SESSION["nombre"])) {
     <!-- Contenido específico del nuevo cuadro para el alta de paciente -->
     <section class="textos-alta-Admin">
         <h1>Alta de Administrador</h1>
+        <div  class="cuadro-AltaAdmin">
+            <form method="post">
+            <?php
+           require "conecta.php";
+           require('AltaAdmin.php');
+           ?>
+                <!-- Campos del formulario (nombre, apellido, etc.) -->
+                <input class="controller" type="text" id="nombre" name="nombre" placeholder="nombre completo" required>
+                <input class="controller" type="password" id="contraseña" name="passw" placeholder="contraseña" required>
+                <input class="controller" type="tel" id="tel" name="tel" placeholder="telefono" maxlength="10" required> 
+                <input class="controller" type="text" id="puesto" name="puesto" placeholder="puesto" required>
+                <input class="controller" type="tel" id="edad" name="edad" placeholder="edad" maxlength="3" required>
+                
+                <!-- Otros campos del formulario... -->
+    
+                <!-- Botón para enviar el formulario -->
+                <input type="submit" class="boton-Alta-Admin" name="RegistrarAdmin" value="Dar de Alta">
+            </form>
+        </div>
         <!-- Agregar el formulario para dar de alta al admin -->
-        <form>
-            <!-- Campos del formulario (nombre, apellido, etc.) -->
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
-            <label for="contraseña">Contraseña:</label>
-            <input type="text" id="contraseña" name="contraseña">
-            <!-- Otros campos del formulario... -->
-
-            <!-- Botón para enviar el formulario -->
-            <input type="submit" value="Dar de alta">
-        </form>
     </section>
 </div>
 
