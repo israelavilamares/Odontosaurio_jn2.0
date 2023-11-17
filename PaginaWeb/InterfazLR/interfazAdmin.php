@@ -117,29 +117,27 @@ if (empty($_SESSION["nombre"])) {
     <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
     <table border="1">
         <tr>
+             <!--<th>ID<th>-->
             <th>Nombre Paciente</th>
             <th>Expediente</th>
             <th>Citas</th>
-            <th>Eliminar</th>
+            <th>Accion</th>
+            
+            
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
         <?php   require ('conecta.php');
-      $sql= "select nombre from paciente";
+      $sql= "select * from paciente";
         $resultq=mysqli_query($con,$sql);
         while ($resultado = mysqli_fetch_array($resultq))
             {                   
      ?>
         <tr>
-            <td><?php echo $resultado['nombre'] ?></td>
-            <td style="text-align: center;">
-                <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')">
-            </td>
-            <td style="text-align: center;">
-                <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')">
-            </td>
-            <td style="text-align: center;">
-                <img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;">
-            </td>
+           <!-- <td><//?php echo $resultado['id']?></td>-->
+            <td><?php echo $resultado['nombre']?></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')?id=<?php echo $resultado['id'];?>"></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')"></td>
+            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <?php 
@@ -247,17 +245,15 @@ if (empty($_SESSION["nombre"])) {
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
      <?php   require ('conecta.php');
-      $sql= "select nombre from doctor";
+      $sql= "select * from doctor";
         $resultq=mysqli_query($con,$sql);
         while ($resultado = mysqli_fetch_array($resultq))
             {                   
      ?>
         <tr>
             <td><?php echo $resultado['nombre'];  ?></td>
-            <td style="text-align: center;">
-            <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoDoctor')">
-            </td>
-            <td style="text-align: center;">  <img src="/OdontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"> </td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoDoctor')"></td>
+            <td style="text-align: center;"><a href='deleteDocIntAdm.php?id=<?php echo $resultado['idDoctor'];?>' class="bto-eliminar2">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <!-- Puedes agregar más filas según tus necesidades -->

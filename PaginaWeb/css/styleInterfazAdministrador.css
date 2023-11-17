@@ -1109,3 +1109,24 @@ margin: 0.5rem;
 color: green;
 
 }
+
+.bto-eliminar{
+    
+    padding: 0.5em 1em;
+    width: 20em;
+    background: #69b0cb;
+    border: none;
+    color: white;
+    cursor: pointer;
+/*border-radius: 40px;*/
+}
+.bto-eliminar2{
+    
+    padding: 0.5em 1em;
+    width: 20em;
+    background: #69b0cb;
+    border: none;
+    color: white;
+    cursor: pointer;
+/*border-radius: 40px;*/
+}

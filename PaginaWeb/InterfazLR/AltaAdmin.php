@@ -60,18 +60,10 @@ if (isset($_POST['RegistrarAdmin'])) {
                             echo '<script>';
                             echo '    swal("Registrado!", "You clicked the button!", "success");';
                             
-                            echo 'setTimeout("document.location.reload()",5000);';
+                            echo 'setTimeout("document.location.reload()",4000);';
                             echo '</script>';
                             
-                     /*       if ($resultAdm->num_rows > 0) 
-                            {
-                                //mensaje error
-                                echo '<script>';
-                                echo '    swal("Actulizado!", "ya esta registrado En la Tabla!", "success");';
-                                echo '</script>';
-                                
-                            }
-                          */
+                   
 
                     } else {
                         // Error en el registro
@@ -82,24 +74,5 @@ if (isset($_POST['RegistrarAdmin'])) {
         }
         
 
-}/*else{
-
-    require "conecta.php";
-    require "verificar.php";
-     //require "verificar.php";
-     $nombreAdm = $_POST['nombre'];
-     // la funcion para verificar si en el campo nombre, esta el nombre de algun administrador
-     $resultAdm = verifAdmin($nombreAdm);
-
-if ($resultAdm->num_rows > 0) 
-    {
-        //mensaje error
-        echo '<script>';
-        echo '    swal("Actulizado!", "ya esta registrado En la Tabla!", "success");';
-        echo '</script>';
-        
-    }
-
-
-}*/
+}
 ?>
