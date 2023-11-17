@@ -340,7 +340,7 @@ if (empty($_SESSION["nombre"])) {
             <td style="text-align: center;">
             <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoAdmin')">
             </td>
-            <td style="text-align: center;"> <img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
+            <td style="text-align: center;"><a href='deleteAdmIntAdm.php?id=<?php echo $resultado['idAdmin'];?>' class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <?php 
