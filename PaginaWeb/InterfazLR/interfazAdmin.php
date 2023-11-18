@@ -337,9 +337,8 @@ if (empty($_SESSION["nombre"])) {
      ?>
         <tr>
             <td><?php echo $resultado['nombre'] ?></td>
-            <td style="text-align: center;">
-            <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoAdmin')">
-            </td>
+           <!-- <td><a href="#" style="cursor: pointer;" data-id="<//?php echo $resultado['idAdmin'];?>" onclick="mostrarCuadro('infoAdmin')">ver</a></td>-->
+           <td><a id="<?php echo $resultado['idAdmin']?>" style="cursor: pointer;"  onclick="mostrarCuadro('infoAdmin')">ver</a></td>
             <td style="text-align: center;"><a href='deleteAdmIntAdm.php?id=<?php echo $resultado['idAdmin'];?>' class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
@@ -350,16 +349,38 @@ if (empty($_SESSION["nombre"])) {
     </table>
     </div>
 
+    <script>
+       document.addEventListener('click', function(e){
+    e.preventDefault();
+      elemento = e.target;
+      dataID = elemento.getAttribute('data-id');
+
+     console.log(dataID);
+      
+      
+});
+    </script>
 
      <!--popup infoadminstrados-->
-     <div id="infoAdmin" class="cuadro-adicional" style="display: none;">
+     <div id="infoAdmin"  class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('infoAdmin')">X</span>
     <!-- Contenido específico del nuevo cuadro para el infoadmin -->
     <section class="textos-info-admin">
         <h1>Info</h1>
+        <?php require ('conecta.php');
+        $id=$_GET["id"];
+      $sql= "select * from administrador WHERE idAdmin = '$id'";
+        $resultq=mysqli_query($con,$sql);
+        while ($resultado = mysqli_fetch_array($resultq))
+           {         
+                      
+    ?>
         <ul>
-            <li>Nombre:</li>
-            <li>Contraseña:</li>
+            <li>Nombre: <?php echo $resultado["nombre"]; ?></li>
+            <li>Contraseña: </li>
+      <!--  <?php 
+        
+        }?>-->
             <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
         </ul>
         <h2 class="boton-lista">Editar informacion</h2>

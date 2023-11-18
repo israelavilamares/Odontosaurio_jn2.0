@@ -5,19 +5,8 @@ $id=$_GET["id"];
 $query = "DELETE FROM doctor WHERE idDoctor = '$id'";
 $con->query($query);
 
+     header("Location: interfazAdmin.php");
 
-
-  // echo '<script>';
-   // echo '"location.href = "interfazAdmin.php";';
-  //  echo '    swal("Eliminado!", "You clicked the button!", "success");';
-  //  echo '</script>';
-//
-    header("Location: interfazAdmin.php");
-    //echo '<script language="javascript">';
-    //echo 'alert("Eliminado Correctamente");';
-    //echo '</script>';
-  //  echo '<script language="javascript">window.location.href="interfazAdmin.php"</script>';
-   
 
 
 ?>

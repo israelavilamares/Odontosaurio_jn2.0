@@ -12,6 +12,11 @@
 
    //function conecta(){
         $con = new mysqli($host, $USER_BD, $PASS_BD, $BD);
+
+
+       
+   // mysqli_close($con); 
+
     // return $con;
     //}
 
