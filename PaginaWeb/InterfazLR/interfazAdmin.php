@@ -15,6 +15,7 @@ if (empty($_SESSION["nombre"])) {
     <link rel="shortcut icon" href="../img/icono.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@96.3,710;100,300;100,400;100,700;100,800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--CAMBIOOOOO agregue esta libreria para controlar los popup sin cambiar la URL-->
     </head>
 
     <body>
@@ -282,6 +283,13 @@ if (empty($_SESSION["nombre"])) {
 </div>
 
 
+
+
+
+
+
+
+
 <!-- Nuevo cuadro adicional para Alta de doctor -->
 <div id="altaDoctor" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('altaDoctor')">X</span>
@@ -316,79 +324,61 @@ if (empty($_SESSION["nombre"])) {
 
 
 
+
+
+
+
+
+
 <!-- Cuadro blanco adicional para administradores -->
-    <div id="cuadroAdministradores" class="cuadro-adicional cuadro-administradores">
-        <span class="cerrar" onclick="cerrarCuadro('cuadroAdministradores')">X</span>
-        <!-- Contenido del cuadro blanco adicional para administradores -->
-        <h2>Información de administradores</h2>
-        <button class="boton-alta" onclick="mostrarCuadro('altaAdmin')">Dar alta Administrador </button>
-        <table border="1">
+
+<!--CAMBIOOOOO aqui estaba el error de ver (corregido)-->
+<div id="cuadroAdministradores" class="cuadro-adicional cuadro-administradores">
+    <span class="cerrar" onclick="cerrarCuadro('cuadroAdministradores')">X</span>
+    <!-- Contenido del cuadro blanco adicional para administradores -->
+    <h2>Información de administradores</h2>
+    <button class="boton-alta" onclick="mostrarCuadro('altaAdmin')">Dar alta Administrador </button>
+    <table border="1">
         <tr>
             <th>Nombre Admin</th>
             <th>Info</th>
             <th>Eliminar</th>
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
-        <?php      require ('conecta.php');
-      $sql= "select * from administrador";
-        $resultq=mysqli_query($con,$sql);
-        while ($resultado = mysqli_fetch_array($resultq))
-            {                   
-     ?>
-        <tr>
-            <td><?php echo $resultado['nombre'] ?></td>
-           <!-- <td><a href="#" style="cursor: pointer;" data-id="<//?php echo $resultado['idAdmin'];?>" onclick="mostrarCuadro('infoAdmin')">ver</a></td>-->
-           <td><a id="<?php echo $resultado['idAdmin']?>" style="cursor: pointer;"  onclick="mostrarCuadro('infoAdmin')">ver</a></td>
-            <td style="text-align: center;"><a href='deleteAdmIntAdm.php?id=<?php echo $resultado['idAdmin'];?>' class="bto-eliminar">Eliminar</a></td>
-            <!-- Puedes agregar más celdas según tus necesidades -->
-        </tr>
-        <?php 
-        }
-        ?>
+        <?php
+        require ('conecta.php');
+        $sql = "select * from administrador";
+        $resultq = mysqli_query($con, $sql);
+        while ($resultado = mysqli_fetch_array($resultq)) { ?>
+            <tr>
+                <td><?php echo $resultado['nombre'] ?></td>
+                <!-- Asegúrate de envolver la ID en comillas -->
+                <!--<td style="text-align: center;" data-id="<//?php echo $resultado['idAdmin']?>" ><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;"></td>-->
+               <td style="text-align: center;"><a href="#" class="ver-admin" data-id="<?php echo $resultado['idAdmin']?>" style="cursor: pointer;">ver</a></td>
+                <td style="text-align: center;"><a href='deleteAdmIntAdm.php?id=<?php echo $resultado['idAdmin'];?>' class="bto-eliminar">Eliminar</a></td>
+                <!-- Puedes agregar más celdas según tus necesidades -->
+            </tr>
+        <?php } ?>
         <!-- Puedes agregar más filas según tus necesidades -->
     </table>
-    </div>
+</div>
 
-    <script>
-       document.addEventListener('click', function(e){
-    e.preventDefault();
-      elemento = e.target;
-      dataID = elemento.getAttribute('data-id');
 
-     console.log(dataID);
-      
-      
-});
-    </script>
-
-     <!--popup infoadminstrados-->
-     <div id="infoAdmin"  class="cuadro-adicional" style="display: none;">
+<!--popup infoadminstrados-->
+<div id="infoAdmin" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('infoAdmin')">X</span>
     <!-- Contenido específico del nuevo cuadro para el infoadmin -->
     <section class="textos-info-admin">
         <h1>Info</h1>
-        <?php require ('conecta.php');
-        $id=$_GET["id"];
-      $sql= "select * from administrador WHERE idAdmin = '$id'";
-        $resultq=mysqli_query($con,$sql);
-        while ($resultado = mysqli_fetch_array($resultq))
-           {         
-                      
-    ?>
-        <ul>
-            <li>Nombre: <?php echo $resultado["nombre"]; ?></li>
-            <li>Contraseña: </li>
-      <!--  <?php 
         
-        }?>-->
-            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-        </ul>
-        <h2 class="boton-lista">Editar informacion</h2>
     </section>
 </div>
+<!--CAMBIOOOO aqui termina el error de ver (corregido)-->
 
 
-<!-- Nuevo cuadro adicional para Alta de doctor -->
+
+
+<!-- Nuevo cuadro adicional para Alta de admin -->
 <div id="altaAdmin" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('altaAdmin')">X</span>
     <!-- Contenido específico del nuevo cuadro para el alta de paciente -->
@@ -418,6 +408,10 @@ if (empty($_SESSION["nombre"])) {
 </div>
 
 <!-- Fin del Cuadro blanco adicional para Administradores -->
+
+
+
+
 
 
 
