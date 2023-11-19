@@ -116,6 +116,8 @@ if (empty($_SESSION["nombre"])) {
     <!-- Contenido del cuadro blanco adicional para Pacientes -->
     <h2>Información de Pacientes</h2>
     <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
+    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
+
     <table border="1">
         <tr>
              <!--<th>ID<th>-->
@@ -238,6 +240,7 @@ if (empty($_SESSION["nombre"])) {
         <!-- Contenido del cuadro blanco adicional para doctores -->
         <h2>Información de Doctores</h2>
         <button class="boton-alta" onclick="mostrarCuadro('altaDoctor')">Dar alta doctor </button>
+        <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
         <table border="1">
         <tr>
             <th>Nombre Doctor</th>
@@ -327,7 +330,13 @@ if (empty($_SESSION["nombre"])) {
 
 
 
+<script>
+    const boton =  document.getElementById("mi-botonInfoAlta");
+    boton.addEventListener("click", function(){
+        location.reload();
+});
 
+</script>
 
 
 <!-- Cuadro blanco adicional para administradores -->
@@ -335,9 +344,12 @@ if (empty($_SESSION["nombre"])) {
 <!--CAMBIOOOOO aqui estaba el error de ver (corregido)-->
 <div id="cuadroAdministradores" class="cuadro-adicional cuadro-administradores">
     <span class="cerrar" onclick="cerrarCuadro('cuadroAdministradores')">X</span>
+
     <!-- Contenido del cuadro blanco adicional para administradores -->
     <h2>Información de administradores</h2>
     <button class="boton-alta" onclick="mostrarCuadro('altaAdmin')">Dar alta Administrador </button>
+    
+    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
     <table border="1">
         <tr>
             <th>Nombre Admin</th>

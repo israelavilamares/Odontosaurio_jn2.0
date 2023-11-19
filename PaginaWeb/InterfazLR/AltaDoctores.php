@@ -29,7 +29,7 @@ if (isset($_POST['RegistraDoc'])) {
          
      }elseif($resultDoc->num_rows > 0 ){
         echo '<script>';
-        echo '    swal("INFORMACION!", "El Registro ya esta en la Tabla!", "info");';
+        echo '    swal("INFORMACION!", "El Registro ya esta en la Tabla Actulizado!", "success");';
         echo '</script>';
     }elseif($resultPac->num_rows > 0 ){
 
@@ -56,7 +56,7 @@ if (isset($_POST['RegistraDoc'])) {
 
                             echo '<script>';
                             echo '    swal("Registrado!", "You clicked the button!", "success");';
-                            echo 'setTimeout("document.location.reload()",5000);';
+                            
                             echo '</script>';
                             
 
