@@ -14,9 +14,6 @@ $sql = "UPDATE administrador SET nombre = '$name',puesto='$puest',edad='$edad',t
 if($con->query($sql)){
 
     header("Location: interfazAdmin.php");
-   echo "<script>"; 
-    echo"alert('Actualizado')";
-    echo" </script>"; 
 
 }else{
     echo "ERROR";
