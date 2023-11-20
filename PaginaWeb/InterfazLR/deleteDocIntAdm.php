@@ -7,6 +7,7 @@ $con->query($query);
 
      header("Location: interfazAdmin.php");
 
-
+   
+ 
 
 ?>

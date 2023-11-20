@@ -256,36 +256,24 @@ if (empty($_SESSION["nombre"])) {
      ?>
         <tr>
             <td><?php echo $resultado['nombre'];  ?></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('infoDoctor')"></td>
+            <td style="text-align: center;"><button data-id="#editChildresn<?php echo $resultado['idDoctor'];?>" onclick="mostrarCuadro('editChildresn')"  class="bto-eliminar2">ver</button></td>
             <td style="text-align: center;"><a href='deleteDocIntAdm.php?id=<?php echo $resultado['idDoctor'];?>' class="bto-eliminar2">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <!-- Puedes agregar más filas según tus necesidades -->
         <?php 
+        
+               require 'obtenerInfoDoc.php';
+
         } ?>
     </table>
-    <a href=""></a>
+    
     </div>
 
      <!--popup infodoctor-->
-    <div id="infoDoctor" class="cuadro-adicional" style="display: none;">
-    <span class="cerrar" onclick="cerrarCuadro('infoDoctor')">X</span>
-    <!-- Contenido específico del nuevo cuadro para el infodoctor -->
-    <section class="textos-info-doctor">
-        <h1>Info</h1>
-        <ul>
-            <li>Nombre:</li>
-            <li>Apellidos:</li>
-            <li>Contraseña:</li>
-            <li>Numero celular:</li>
-            <li>Especialidad:</li>
-            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-        </ul>
-        <h2 class="boton-lista">Editar informacion</h2>
-    </section>
-</div>
 
 
+     
 
 
 
