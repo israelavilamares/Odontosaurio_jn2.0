@@ -19,6 +19,7 @@ if ($id !== null) {
             <input type="text" name="nombre"  value=" <?php echo $resultado[1]; ?>" required>
             <label  >Puesto: </label>
             <input type="text" name = "puesto" value="<?php echo $resultado[3]; ?>"required>
+            <div class="linea-negra"></div>
             <label>contraseña: </label>
             <input name = "pasw"  type="password"required>
             <label >edad: </label>
@@ -26,12 +27,9 @@ if ($id !== null) {
             <label >Telefono: </label>
             <input name = "tel" value="<?php echo $resultado[5]; ?>"required>
             
+            <div class="linea-negra"></div>
             <input  class="boton-lista" type="submit" value="Editar" >
         </form>
-    
-       
-        <div class="linea-negra"></div>
-       
         <?php
     }
 } else {

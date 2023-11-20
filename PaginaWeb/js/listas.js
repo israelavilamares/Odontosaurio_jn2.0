@@ -46,3 +46,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+//CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+document.addEventListener('DOMContentLoaded', function () {
+    var enlacesVerDoc = document.querySelectorAll('.ver-Doc');
+
+    enlacesVerDoc.forEach(function (enlace) {
+        enlace.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var idDoctor = enlace.getAttribute('data-id');
+
+            // Utiliza AJAX para enviar la ID al servidor
+            $.ajax({
+                url: 'obtenerInfoDoc.php', // Nombre del script PHP que manejará la solicitud
+                type: 'GET',
+                data: { id: idDoctor },
+                success: function (data) {
+                    // Muestra el cuadro de información del administrador con la respuesta del servidor
+                    mostrarCuadro('infoDoctor');
+                    // Actualiza el contenido del cuadro con la información obtenida del servidor
+                    document.querySelector('#infoDoctor.textos-info-doctor').innerHTML = data;
+                },
+                error: function () {
+                    console.error('Error al obtener información del Doctor.');
+                }
+            });
+        });
+    });
+});

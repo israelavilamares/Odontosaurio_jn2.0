@@ -1,8 +1,8 @@
 <?php 
 session_start();
-if (empty($_SESSION["nombre"])) {
-    header("Location: FormPacientelogin.php");
-}
+//if (empty($_SESSION["nombre"])) {
+//    header("Location: FormPacientelogin.php");
+//}
 
 ?>
 <!DOCTYPE>
@@ -256,28 +256,25 @@ if (empty($_SESSION["nombre"])) {
      ?>
         <tr>
             <td><?php echo $resultado['nombre'];  ?></td>
-            <td style="text-align: center;"><button data-id="#editChildresn<?php echo $resultado['idDoctor'];?>" onclick="mostrarCuadro('editChildresn')"  class="bto-eliminar2">ver</button></td>
+            <td style="text-align: center;"><a href="#"  class="ver-Doc" data-id="<?php echo $resultado['idDoctor']?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
             <td style="text-align: center;"><a href='deleteDocIntAdm.php?id=<?php echo $resultado['idDoctor'];?>' class="bto-eliminar2">Eliminar</a></td>
-            <!-- Puedes agregar más celdas según tus necesidades -->
-        </tr>
-        <!-- Puedes agregar más filas según tus necesidades -->
-        <?php 
         
-               require 'obtenerInfoDoc.php';
-
-        } ?>
+        </tr>
+        
+        <?php } ?>
     </table>
-    
-    </div>
+</div>
+
+
 
      <!--popup infodoctor-->
-
-
-     
-
-
-
-
+     <div id="infoDoctor" class="cuadro-adicional" style="display: none;">
+    <span class="cerrar" onclick="cerrarCuadro('infoDoctor')">X</span>
+    <!-- Contenido específico del nuevo cuadro para el infodoctor -->
+    <section class="textos-info-doctor">
+    </section>
+    </div> 
+    
 
 
 
@@ -318,13 +315,7 @@ if (empty($_SESSION["nombre"])) {
 
 
 
-<script>
-    const boton =  document.getElementById("mi-botonInfoAlta");
-    boton.addEventListener("click", function(){
-        location.reload();
-});
 
-</script>
 
 
 <!-- Cuadro blanco adicional para administradores -->
@@ -353,8 +344,7 @@ if (empty($_SESSION["nombre"])) {
             <tr>
                 <td><?php echo $resultado['nombre'] ?></td>
                 <!-- Asegúrate de envolver la ID en comillas -->
-                <!--<td style="text-align: center;" data-id="<//?php echo $resultado['idAdmin']?>" ><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;"></td>-->
-               <td style="text-align: center;"><a href="#" class="ver-admin" data-id="<?php echo $resultado['idAdmin']?>" style="cursor: pointer;">ver</a></td>
+               <td style="text-align: center;"><a href="#" class="ver-admin" data-id="<?php echo $resultado['idAdmin']?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
                 <td style="text-align: center;"><a href='deleteAdmIntAdm.php?id=<?php echo $resultado['idAdmin'];?>' class="bto-eliminar">Eliminar</a></td>
                 <!-- Puedes agregar más celdas según tus necesidades -->
             </tr>

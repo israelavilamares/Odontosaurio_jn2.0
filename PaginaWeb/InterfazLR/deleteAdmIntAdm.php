@@ -9,6 +9,6 @@ $con->query($query);
    
     
 
- 
+mysqli_close($con);
 
 ?>
