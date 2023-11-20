@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Muestra el cuadro de información del administrador con la respuesta del servidor
                     mostrarCuadro('infoDoctor');
                     // Actualiza el contenido del cuadro con la información obtenida del servidor
-                    document.querySelector('#infoDoctor.textos-info-doctor').innerHTML = data;
+                    document.querySelector('#infoDoctor. textos-info-doctor').innerHTML = data;
                 },
                 error: function () {
                     console.error('Error al obtener información del Doctor.');
