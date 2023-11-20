@@ -21,7 +21,7 @@ if ($id !== null) {
             <input type="text" name = "puesto" value="<?php echo $resultado[3]; ?>"required>
             <div class="linea-negra"></div>
             <label>contraseña: </label>
-            <input name = "pasw"  type="password"required>
+            <input name = "pasw"  type="password" required>
             <label >edad: </label>
             <input name = "edad" value="<?php echo $resultado[4]; ?>"required>
             <label >Telefono: </label>

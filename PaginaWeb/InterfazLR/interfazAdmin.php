@@ -272,9 +272,13 @@ session_start();
     <span class="cerrar" onclick="cerrarCuadro('infoDoctor')">X</span>
     <!-- Contenido específico del nuevo cuadro para el infodoctor -->
     <section class="textos-info-doctor">
+    <h1>Info</h1>
     </section>
     </div> 
     
+
+
+
 
 
 

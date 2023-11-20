@@ -68,6 +68,6 @@ if (isset($_POST['RegistraPaciente'])) {
                     }    
         }
         
-
+        mysqli_close($con);
 }
 ?>

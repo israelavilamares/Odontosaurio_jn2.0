@@ -85,7 +85,7 @@ if (isset($_POST['ingresar'])) {
             echo '<label class="alerta">No esta registrado ese usuario</label>';
 
           }
-
+         mysqli_close($con);
 }
  
 ?>

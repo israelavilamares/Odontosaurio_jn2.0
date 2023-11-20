@@ -68,6 +68,6 @@ if (isset($_POST['RegistraDoc'])) {
         
         }
         
-
+        mysqli_close($con);
 }
 ?>
