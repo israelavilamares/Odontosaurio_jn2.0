@@ -5,5 +5,6 @@ $id=$_GET["id"];
 $query = "DELETE FROM doctor WHERE idDoctor = '$id'";
 $con->query($query);
 
-mysqli_close($con);
+header("Location:  interfazAdmin.php");
+
 ?>

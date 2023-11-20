@@ -6,7 +6,7 @@ $id=$_GET["id"];
 $query = "DELETE FROM paciente WHERE id = '$id'";
 $con->query($query);
 
+header("Location:  interfazAdmin.php");
 
 
-mysqli_close($con);
 ?>

@@ -13,10 +13,8 @@ $pass = password_hash($_POST['pasw'], PASSWORD_BCRYPT);
 $sql = "UPDATE administrador SET nombre = '$name',pasw = '$pass' ,puesto='$puest',edad='$edad',telefono= '$tel'  WHERE idAdmin = '$id';";
 if($con->query($sql)){
 
-    echo '   <script>';
-    echo ' swal("Registrado!", "You clicked the button!", "success");';
-    echo '  window.location.href="interfazAdmin.php";';
-    echo '    </script>';
+    header("Location:  interfazAdmin.php");
+
 
 }else{
     echo "ERROR";
