@@ -1,8 +1,8 @@
 <?php 
 session_start();
-//if (empty($_SESSION["nombre"])) {
-//    header("Location: FormPacientelogin.php");
-//}
+if (empty($_SESSION["nombre"])) {
+    header("Location: FormPacientelogin.php");
+}
 
 ?>
 <!DOCTYPE>
@@ -24,9 +24,6 @@ session_start();
     <ul class="nav-links">
         <li>
             <a href="#idinicio">Inicio</a>
-        </li>
-        <li>
-            <a href="#configuracion">Configuracion de la cuenta</a>
         </li>
         <li>
         <a href="#" id="ayudaBtn">Ayuda y soporte técnico</a>
@@ -75,7 +72,7 @@ session_start();
       <h2>Conectado</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
       <h3>Información de contacto</h3>
-      <h4>editar</h4>
+    
       <ul>
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>

@@ -24,9 +24,7 @@ if (empty($_SESSION["nombre"])) {
         <li>
             <a href="#idinicio">Inicio</a>
         </li>
-        <li>
-            <a href="#configuracion">Configuracion de la cuenta</a>
-        </li>
+
         <li>
         <a href="#" id="ayudaBtn">Ayuda y soporte técnico</a>
         </li>
