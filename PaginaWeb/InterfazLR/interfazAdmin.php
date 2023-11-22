@@ -203,6 +203,9 @@ if (empty($_SESSION["nombre"])) {
     </section>
 </div>
 
+
+
+
 <!-- Nuevo cuadro adicional para Citas del Paciente -->
 <div id="citasPaciente" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>

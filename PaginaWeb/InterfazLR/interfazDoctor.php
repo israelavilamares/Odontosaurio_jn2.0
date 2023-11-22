@@ -72,7 +72,7 @@ if (empty($_SESSION["nombre"])) {
       <h2>Conectado</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
       <h3>Información de contacto</h3>
-      <h4>editar</h4>
+      
       <ul>
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>

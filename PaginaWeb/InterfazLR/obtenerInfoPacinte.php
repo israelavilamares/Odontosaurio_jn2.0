@@ -15,10 +15,11 @@ if ($id !== null) {
 
 
 
-<input type="hidden" name ="id" value="<?php echo $resultado[0];?>" required>
-<li>Nombre:<?php echo $resultado[5]; ?></li>
-<li>CURP: <?php echo $resultado[1]; ?></li>
-<li>Numero celular: <?php echo $resultado[1]; ?></li>
+        <input type="hidden" name ="id" value="<?php echo $resultado[0];?>" required>
+        <ul>
+        <li>Nombre:<?php echo $resultado[5]; ?></li>
+        <li>CURP: <?php echo $resultado[1]; ?></li>
+        <li>Numero celular: <?php echo $resultado[6]; ?></li>
 
           
           <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
@@ -31,7 +32,7 @@ if ($id !== null) {
           <li>Doctor a cargo:</li>
       </ul>
    
-      <h2 class="boton-lista">Eliminar cita</h2>
+      <button style="text-align: center;"><a href='deleteCitasIntAdm.php?id=<?php echo $resultado[0];?>' class="bto-eliminar">Eliminar</a></button>
             
         <?php
     }

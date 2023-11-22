@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
 document.addEventListener('DOMContentLoaded', function () {
-    var enlacesVerDoc = document.querySelectorAll('.ver-Pac');
+    var enlacesVerPac = document.querySelectorAll('.ver-Pac');
 
-    enlacesVerDoc.forEach(function (enlace) {
+    enlacesVerPac.forEach(function (enlace) {
         enlace.addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Muestra el cuadro de información del administrador con la respuesta del servidor
                     mostrarCuadro('citasPaciente');
                     // Actualiza el contenido del cuadro con la información obtenida del servidor
-                    document.querySelector('#citasPaciente .textos-info-doctor').innerHTML = data;
+                    document.querySelector('#citasPaciente .textos-citas').innerHTML = data;
                 },
                 error: function () {
                     console.error('Error al obtener información del Paciente.');
