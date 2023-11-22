@@ -135,9 +135,9 @@ if (empty($_SESSION["nombre"])) {
         <tr>
            <!-- <td><//?php echo $resultado['id']?></td>-->
             <td><?php echo $resultado['nombre']?></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')?id=<?php echo $resultado['id'];?>"></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')"></td>
-            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')"></td>
+            <td style="text-align: center;"><a href="#" class="ver-Pac" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
+            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado[0]?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <?php 
@@ -208,21 +208,6 @@ if (empty($_SESSION["nombre"])) {
     <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
     <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
     <section class="textos-citas">
-        <h1>Citas</h1>
-        <ul>
-            <li>Nombre:</li>
-            <li>CURP:</li>
-            <li>Numero celular:</li>
-            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-        </ul>
-
-        <ul class="citas" id="lista2">
-            <li>Numero cita:</li>
-            <li>Fecha:</li>
-            <li>Hora:</li>
-            <li>Doctor a cargo:</li>
-        </ul>
-        <h2 class="boton-lista">Eliminar cita</h2>
     </section>
 </div>
 <!-- Fin del Cuadro blanco adicional para Pacientes -->
@@ -421,17 +406,31 @@ if (empty($_SESSION["nombre"])) {
             <th>Borrar Cita</th>
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
+        <?php
+         require ('conecta.php');
+        $sql = "select * from consulta";
+        $resultq = mysqli_query($con, $sql);
+        while ($resultado = mysqli_fetch_array($resultq)) { ?>
         <tr>
-            <td>2023-11-09</td>
-            <td>10:00 AM</td>
-            <td>Dr. Ejemplo</td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
+            
+            <td><?php echo $resultado[5]?></td>
+            <td><?php echo $resultado[3]?></td>
+            <?php    $sql = "select nombre from doctor JOIN consulta ON  doctor.idDoctor=consulta.idDoctor_doctor WHERE idDoctor = '$resultado[1]' limit 1";
+        $resultaq2 = mysqli_query($con, $sql);
+        while ($resultadoND = mysqli_fetch_array($resultaq2)) { ?>
+             
+             <td><?php echo $resultadoND[0]?></td>
+             <?php } ?>      
+            <td style="text-align: center;"><a href='deleteCitasIntAdm.php?id=<?php echo $resultado[2];?>' class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <!-- Puedes agregar más filas según tus necesidades -->
+        <?php } ?>
     </table>
+
     </div>
-</div>
+
+
 <!-- Fin del Cuadro blanco adicional para citas -->
 
 
