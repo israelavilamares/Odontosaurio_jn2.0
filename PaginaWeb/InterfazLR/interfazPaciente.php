@@ -8,6 +8,7 @@ if (empty($_SESSION["nombre"])) {
 <html>   
     <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IEwedge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinica Odontosaurio</title>
     <link rel="stylesheet" type="text/css" href="../css/styleInterfazPaciente.css">
@@ -115,15 +116,88 @@ if (empty($_SESSION["nombre"])) {
 <!-- fin popup ver citas-->
 
 <!-- popup agendar citas-->
-<div id="popup-agendar" style="display: none;">
-    <div>
-        <span id="cerrar-popup-agendar">X</span>
-        soy agendar citas
-        <!-- contenido para "Agendar citas" popup -->
-    </div>
+<div id="popup-agendar" style="display: none; position: fixed; width: 80%; max-width: 600px; height: 80%; max-height: 400px; overflow: auto; background-color: white; z-index: 1000; border: 1px solid black; padding: 20px;">
+    <form id="form-agendar" method="post" action="agendar.php">
+        <div>
+            <span id="cerrar-popup-agendar">X</span>
+            Selecciona un paciente: 
+            <select name="curp" id="paciente">
+            <?php
+                require ('conecta.php');
+                $sql= "select nombre, curp_usuario from paciente where nombre = '".$_SESSION["nombre"]."'";
+                $resultq=mysqli_query($con,$sql);
+                while ($resultado = mysqli_fetch_array($resultq))
+                    {   
+                        echo "<option value='".$resultado['curp_usuario']."'>".$resultado['nombre']."</option>";
+                    }
+            ?>
+            </select> <br><br><br>
+            Selecciona un dia:    <input type="date" name="fecha" id="fecha" min="2023-12-01" max="2024-06-30">         
+            Selecciona una hora:    <input type="time" name="hora" id="hora" min="09:00" max="19:00" required> <br><br><br>
+            Selecciona un doctor: 
+            <select name="doctor" id="doctor">
+            <?php
+                require ('conecta.php');
+                $sql= "select * from doctor";
+                $resultq=mysqli_query($con,$sql);
+                $consultorios = range(1, 5); // Crear un array con los números de consultorio
+                shuffle($consultorios); // Mezclar el array para asignar consultorios de manera aleatoria
+                while ($resultado = mysqli_fetch_array($resultq))
+                {   
+                    $consultorio = array_pop($consultorios); // Asignar un consultorio a cada doctor
+                    echo "<option value='".$resultado['idDoctor']."' data-consultorio='".$consultorio."'>".$resultado['nombre']." (Consultorio: ".$consultorio.")</option>";
+                }
+            ?>
+            </select> <br><br><br>
+            <input type="hidden" name="consultorio" id="consultorio" value="">
+            <input type="submit" value="Agendar">
+        </div>
+    </form>
+    <div id="mensaje-exito" style="display: none;">Cita agendada con éxito.</div>
 </div>
-<!-- fin popup agendar citas-->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Cuando se cambia el valor del select de doctores
+    $('#doctor').change(function() {
+        // Obtén el valor del atributo data-consultorio de la opción seleccionada
+        var consultorio = $('option:selected', this).data('consultorio');
+        // Establece el valor del campo oculto de consultorio
+        $('#consultorio').val(consultorio);
+    });
+
+    // Asigna el valor del consultorio de la opción predeterminada al cargar la página
+    var consultorio = $('#doctor option:selected').data('consultorio');
+    $('#consultorio').val(consultorio);
+
+    // Cuando se cambia el valor del select de pacientes
+    $('#paciente').change(function() {
+        // Obtén el valor de la opción seleccionada
+        var curp = $(this).val();
+        // Establece el valor del campo de curp
+        $('#curp').val(curp);
+    });
+
+    // Asigna el valor de curp de la opción predeterminada al cargar la página
+    var curp = $('#paciente option:selected').val();
+    $('#curp').val(curp);
+
+    $("#form-agendar").on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: 'agendar.php',
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(response){
+                $("#mensaje-exito").show().delay(3000).fadeOut();
+                $("#popup-agendar").delay(3000).fadeOut();
+            }
+        });
+    });
+});
+</script>
+<!-- fin popup agendar citas-->
 
 <div class="cuadro-blancoexpediente">
     <section class="textos-expediente">
@@ -162,7 +236,6 @@ if ($recuperado) {
 ?>
 </section>
 </div>
-
    
 <div class="cuadro-blancoimajenes">
 <img src="/odontosaurioApp/PaginaWeb/img/boton.png" alt="" class="imagen-boton3">
@@ -176,13 +249,15 @@ if ($recuperado) {
 <div id="popup-imagen" style="display: none;">
     <div>
         <span id="cerrar-popup-imagen">X</span>
+        Selecciona tu archivo: <br>
+        <input type="file" name="archivos" id="archivos" accept=".jpg,.jpeg,.png"> <br><br><br>
+        <input type="submit" value="Guardar">
         <!-- Contenido del popup para subir imagen -->
     </div>
 </div>
 <!-- Fin del popup para subir imagen -->
 
-
-
+</main>
 
 </main>
 
