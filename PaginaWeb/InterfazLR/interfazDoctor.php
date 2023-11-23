@@ -184,44 +184,6 @@ if (empty($_SESSION["nombre"])) {
     </section>
     
 
-<!-- Cuadro blanco adicional para Pacientes -->
-<div id="cuadroPacientes" class="cuadro-adicional cuadro-pacientes">
-    <span class="cerrar" onclick="cerrarCuadro('cuadroPacientes')">X</span>
-    <!-- Contenido del cuadro blanco adicional para Pacientes -->
-    <h2>Información de Pacientes</h2>
-    <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
-    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
-
-    <table border="1">
-        <tr>
-             <!--<th>ID<th>-->
-            <th>Nombre Paciente</th>
-            <th>Expediente</th>
-            <th>Citas</th>
-            <th>Accion</th>
-            
-            
-            <!-- Puedes agregar más encabezados según tus necesidades -->
-        </tr>
-        <?php   require ('conecta.php');
-      $sql= "select * from paciente";
-        $resultq=mysqli_query($con,$sql);
-        while ($resultado = mysqli_fetch_array($resultq))
-            {                   
-     ?>
-        <tr>
-           <!-- <td><//?php echo $resultado['id']?></td>-->
-            <td><?php echo $resultado['nombre']?></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')?id=<?php echo $resultado['id'];?>"></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')"></td>
-            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
-            <!-- Puedes agregar más celdas según tus necesidades -->
-        </tr>
-        <?php 
-        }
-        ?><!-- Puedes agregar más filas según tus necesidades -->
-    </table>
-</div>
 
 <!-- Nuevo cuadro adicional para Alta de Paciente -->
 <div id="altaPaciente" class="cuadro-adicional" style="display: none;">
@@ -280,29 +242,54 @@ if (empty($_SESSION["nombre"])) {
     </section>
 </div>
 
-<!-- Nuevo cuadro adicional para Citas del Paciente -->
-<div id="citasPaciente" class="cuadro-adicional" style="display: none;">
-    <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
-    <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
-    <section class="textos-citas">
-        <h1>Citas</h1>
-        <ul>
-            <li>Nombre:</li>
-            <li>CURP:</li>
-            <li>Numero celular:</li>
-            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-        </ul>
+<!-- Cuadro blanco adicional para citas -->
+<div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
+    <span class="cerrar" onclick="cerrarCuadro('cuadroCitas')">X</span>
+    <!-- Contenido del cuadro blanco adicional para citas -->
+    <h2>Información de citas</h2>
+    <table border="1">
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Paciente</th>
+            <th>Borrar Cita</th>
+            <!-- Puedes agregar más encabezados según tus necesidades -->
+        </tr>
+        <?php
+        require('conecta.php');
+        
+        // Supongamos que tienes la CURP almacenada en la variable $_SESSION['curp']
+        $id = $_SESSION['id'];
+        // Consulta SQL para obtener las citas relacionadas con la CURP
+        $sql = "SELECT consulta.*, paciente.nombre
+                FROM consulta
+                JOIN paciente ON  consulta.CURP_paciente = paciente.curp_usuario 
+                WHERE consulta.idDoctor_doctor = ?
+                ORDER BY consulta.fecha, consulta.hora";
 
-        <ul class="citas" id="lista2">
-            <li>Numero cita:</li>
-            <li>Fecha:</li>
-            <li>Hora:</li>
-            <li>Doctor a cargo:</li>
-        </ul>
-        <h2 class="boton-lista">Eliminar cita</h2>
-    </section>
+        // Preparar la consulta
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $id);
+        
+        // Ejecutar la consulta
+        mysqli_stmt_execute($stmt);
+
+        // Obtener resultados
+        $resultq = mysqli_stmt_get_result($stmt);
+
+        while ($resultado = mysqli_fetch_array($resultq)) { ?>
+            <tr>
+                <td><?php echo $resultado['fecha'] ?></td>
+                <td><?php echo $resultado['hora'] ?></td>
+                <td><?php echo $resultado['nombre'] ?></td>
+                <td style="text-align: center;"><a href='deleteCitasIntDoc.php?id=<?php echo $resultado['id']; ?>' class="bto-eliminar">Eliminar</a></td>
+                <!-- Puedes agregar más celdas según tus necesidades -->
+            </tr>
+            <!-- Puedes agregar más filas según tus necesidades -->
+        <?php } ?>
+    </table>
 </div>
-<!-- Fin del Cuadro blanco adicional para Pacientes -->
+<!-- Fin del Cuadro blanco adicional para citas -->
 
 
 
@@ -358,35 +345,61 @@ if (empty($_SESSION["nombre"])) {
 
 
 
+<!-- Cuadro blanco adicional para Pacientes -->
+<div id="cuadroPacientes" class="cuadro-adicional cuadro-pacientes">
+    <span class="cerrar" onclick="cerrarCuadro('cuadroPacientes')">X</span>
+    <!-- Contenido del cuadro blanco adicional para Pacientes -->
+    <h2>Información de Pacientes</h2>
+    <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
+    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
 
-
-<!-- Cuadro blanco adicional para citas -->
-    <div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
-        <span class="cerrar" onclick="cerrarCuadro('cuadroCitas')">X</span>
-        <!-- Contenido del cuadro blanco adicional para citas -->
-        <h2>Información de citas</h2>
-        <table border="1">
+    <table border="1">
         <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Paciente</th>
-            <th>Borrar Cita</th>
+             <!--<th>ID<th>-->
+            <th>Nombre Paciente</th>
+            <th>Expediente</th>
+            <th>Citas</th>
+            <th>Accion</th>
+            
+            
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
+        <?php
+        require('conecta.php');
+        
+        // Supongamos que tienes la CURP almacenada en la variable $_SESSION['curp']
+        $id = $_SESSION['id'];
+        // Consulta SQL para obtener las citas relacionadas con la CURP
+        $sql = "SELECT consulta.*, paciente.nombre
+                FROM consulta
+                JOIN paciente ON  consulta.CURP_paciente = paciente.curp_usuario 
+                WHERE consulta.idDoctor_doctor = ?
+                ORDER BY consulta.fecha, consulta.hora";
+
+        // Preparar la consulta
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $id);
+        
+        // Ejecutar la consulta
+        mysqli_stmt_execute($stmt);
+
+        // Obtener resultados
+        $resultq = mysqli_stmt_get_result($stmt);
+
+        while ($resultado = mysqli_fetch_array($resultq)) { ?>
         <tr>
-            <td>2023-11-09</td>
-            <td>10:00 AM</td>
-            <td>Jose eduardo perez jimenez</td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;"></td>
+           <!-- <td><//?php echo $resultado['id']?></td>-->
+            <td><?php echo $resultado['nombre']?></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')"></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"  alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')"></img></td>
+            <td style="text-align: center;"><a href="deletePacIntDoc.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
-        <!-- Puedes agregar más filas según tus necesidades -->
+        <?php 
+        }
+        ?><!-- Puedes agregar más filas según tus necesidades -->
     </table>
-    </div>
 </div>
-<!-- Fin del Cuadro blanco adicional para citas -->
-
-
 
 </main>
 <footer>

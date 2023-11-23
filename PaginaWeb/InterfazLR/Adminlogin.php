@@ -24,7 +24,8 @@ if (isset($_POST['ingresar'])) {
           //verificamos la contraseña sea correcta
           if (password_verify($pass, $row['pasw'])) 
           {
-                // Credenciales válidas, inicia sesión                      
+                // Credenciales válidas, inicia sesión  
+                                  
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['telefono'] = $row['telefono'];
                 $_SESSION['puesto'] = $row['puesto'];
@@ -46,6 +47,7 @@ if (isset($_POST['ingresar'])) {
                   // Credenciales válidas, inicia sesión
 
                 //variables de sesion en la intefaz login
+                $_SESSION['id']=$row['idDoctor'];  
             $_SESSION['nombre'] = $row['nombre'];
             $_SESSION['tel'] = $row['telefono'];
             $_SESSION['espec'] = $row['especialidad'];
