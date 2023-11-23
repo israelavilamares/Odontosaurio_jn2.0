@@ -1,3 +1,8 @@
+function cerrarPopupAgendar() {
+    var popupAgendar = document.getElementById("popup-agendar");
+    popupAgendar.style.display = "none";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     var mostrarPopupAgendarButton = document.getElementById("mostrar-popup-agendar");
     var cerrarPopupAgendarButton = document.getElementById("cerrar-popup-agendar");
@@ -15,25 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (e) {
         if (e.target === popupAgendar) {
             popupAgendar.style.display = "none";
-        }
-    });
-
-    var mostrarPopupVerButton = document.getElementById("mostrar-popup-ver");
-    var cerrarPopupVerButton = document.getElementById("cerrar-popup-ver");
-    var popupVer = document.getElementById("popup-ver");
-
-    mostrarPopupVerButton.addEventListener("click", function () {
-        popupVer.style.display = "block";
-    });
-
-    cerrarPopupVerButton.addEventListener("click", function () {
-        popupVer.style.display = "none";
-    });
-
-    // Agregar evento de clic para cerrar el popup cuando se hace clic fuera de él
-    document.addEventListener("click", function (e) {
-        if (e.target === popupVer) {
-            popupVer.style.display = "none";
         }
     });
 });

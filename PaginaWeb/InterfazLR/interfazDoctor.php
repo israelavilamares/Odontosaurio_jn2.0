@@ -72,7 +72,7 @@ if (empty($_SESSION["nombre"])) {
       <h2>Conectado</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
       <h3>Información de contacto</h3>
-      <h4>editar</h4>
+      
       <ul>
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>
@@ -179,7 +179,7 @@ if (empty($_SESSION["nombre"])) {
         <ul>
             <li class="boton-lista" onclick="mostrarCuadro('cuadroPacientes')">Pacientes</li>
             <li class="boton-lista" onclick="mostrarCuadro('cuadroCitas')">Citas</li>
-            <li class="boton-lista" onclick="mostrarCuadro('cuadroAgendar')">Agendar</li>
+            <li id="mostrar-popup-agendar" class="boton-lista">Agendar</li>
         </ul>
     </section>
     
@@ -224,23 +224,11 @@ if (empty($_SESSION["nombre"])) {
     <span class="cerrar" onclick="cerrarCuadro('expedientePaciente')">X</span>
     <!-- Contenido específico del nuevo cuadro para el expediente del paciente -->
     <section class="textos-expediente">
-        <h1>Expediente</h1>
-        <ul>
-            <li>Nombre:</li>
-            <li>CURP:</li>
-            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-        </ul>
-
-        <ul class="expediente" id="lista1">
-            <li>Motivo de consulta:</li>
-            <li>Padecimientos actuales:</li>
-            <li>Ultimo examen dental:</li>
-            <li>Antecedentes médicos:</li>
-            <li>Doctor a cargo:</li>
-        </ul>
-        <h2 class="boton-lista">Modificar expediente</h2>
+       
     </section>
 </div>
+
+
 
 <!-- Cuadro blanco adicional para citas -->
 <div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
@@ -296,16 +284,99 @@ if (empty($_SESSION["nombre"])) {
 
 
 
+<!-- popup agendar citas-->
+<div id="popup-agendar" class="popup-agendar">
+    <form id="form-agendar" method="post" action="agendar.php">
+        <div>
+            <span id="cerrar-popup-agendar" class="cerrar-popup">X</span>
+            Selecciona un paciente: 
+            <select name="curp" id="paciente">
+            <?php
+                  require('conecta.php');
+    
+                  // Cambia la consulta para obtener todos los pacientes, no solo los asociados al doctor actual
+                  $sql = "SELECT nombre, curp_usuario FROM paciente";
+                  $resultq = mysqli_query($con, $sql);
 
-<!-- Cuadro blanco adicional para agendar -->
-<div id="cuadroAgendar" class="cuadro-adicional cuadro-agendar">
-        <span class="cerrar" onclick="cerrarCuadro('cuadroAgendar')">X</span>
-        <!-- Contenido del cuadro blanco adicional para doctores -->
-        <h2>Agendar cita</h2>
-        
+                  while ($resultado = mysqli_fetch_array($resultq)) {
+                  echo "<option value='" . $resultado['curp_usuario'] . "' data-nombre='" . $resultado['nombre'] . "'>" . $resultado['nombre'] . "</option>";
+                  }
+             ?>
+            </select>
+            <br><br><br>
+            Selecciona un día:    <input type="date" name="fecha" id="fecha" min="2023-12-01" max="2024-06-30">         
+            Selecciona una hora:    <input type="time" name="hora" id="hora" min="09:00" max="19:00" required> <br><br><br>
+            Selecciona un doctor: 
+            <select name="doctor" id="doctor">
+            <?php
+                require ('conecta.php');
+                $sql= "select * from doctor";
+                $resultq=mysqli_query($con,$sql);
+                $consultorios = range(1, 5); // Crear un array con los números de consultorio
+                shuffle($consultorios); // Mezclar el array para asignar consultorios de manera aleatoria
+                while ($resultado = mysqli_fetch_array($resultq))
+                {   
+                    $consultorio = array_pop($consultorios); // Asignar un consultorio a cada doctor
+                    echo "<option value='".$resultado['idDoctor']."' data-consultorio='".$consultorio."'>".$resultado['nombre']." (Consultorio: ".$consultorio.")</option>";
+                }
+            ?>
+            </select> <br><br><br>
+            <input type="hidden" name="consultorio" id="consultorio" value="">
+            <input type="submit" value="Agendar">
+        </div>
+    </form>
+    <div id="mensaje-exito" class="mensaje-exito">Cita agendada con éxito.</div>
+</div>
 
-    </div>
-<!-- Fin del Cuadro blanco adicional para agendar -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Cuando se cambia el valor del select de doctores
+    $('#doctor').change(function() {
+        // Obtén el valor del atributo data-consultorio de la opción seleccionada
+        var consultorio = $('option:selected', this).data('consultorio');
+        // Establece el valor del campo oculto de consultorio
+        $('#consultorio').val(consultorio);
+    });
+
+    // Asigna el valor del consultorio de la opción predeterminada al cargar la página
+    var consultorio = $('#doctor option:selected').data('consultorio');
+    $('#consultorio').val(consultorio);
+
+    // Cuando se cambia el valor del select de pacientes
+    $('#paciente').change(function() {
+        // Obtén el valor de la opción seleccionada
+        var curp = $(this).val();
+        // Establece el valor del campo de curp
+        $('#curp').val(curp);
+    });
+
+    // Asigna el valor de curp de la opción predeterminada al cargar la página
+    var curp = $('#paciente option:selected').val();
+    $('#curp').val(curp);
+
+    $("#form-agendar").on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: 'agendar.php',
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(response){
+                $("#mensaje-exito").show().delay(3000).fadeOut();
+                setTimeout(function() {
+                        location.reload();
+                    }, 2000);
+                $("#popup-agendar").delay(3000).fadeOut();
+            }
+        });
+    });
+});
+</script>
+<!-- fin popup agendar citas-->
+
+
+
+
 
 
 
@@ -323,21 +394,7 @@ if (empty($_SESSION["nombre"])) {
     <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
     <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
     <section class="textos-citas">
-        <h1>Citas</h1>
-        <ul>
-            <li>Nombre:</li>
-            <li>CURP:</li>
-            <li>Numero celular:</li>
-            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-        </ul>
 
-        <ul class="citas" id="lista2">
-            <li>Numero cita:</li>
-            <li>Fecha:</li>
-            <li>Hora:</li>
-            <li>Doctor a cargo:</li>
-        </ul>
-        <h2 class="boton-lista">Eliminar cita</h2>
     </section>
 </div>
 <!-- Fin del Cuadro blanco adicional para Pacientes -->
@@ -370,7 +427,7 @@ if (empty($_SESSION["nombre"])) {
         // Supongamos que tienes la CURP almacenada en la variable $_SESSION['curp']
         $id = $_SESSION['id'];
         // Consulta SQL para obtener las citas relacionadas con la CURP
-        $sql = "SELECT consulta.*, paciente.nombre
+        $sql = "SELECT consulta.*, paciente.nombre 
                 FROM consulta
                 JOIN paciente ON  consulta.CURP_paciente = paciente.curp_usuario 
                 WHERE consulta.idDoctor_doctor = ?
@@ -390,8 +447,8 @@ if (empty($_SESSION["nombre"])) {
         <tr>
            <!-- <td><//?php echo $resultado['id']?></td>-->
             <td><?php echo $resultado['nombre']?></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')"></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"  alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')"></img></td>
+            <td style="text-align: center;"><a href="#" class="ver-DocExp" data-id="<?php echo $resultado['id']?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
+            <td style="text-align: center;"><a href="#" class="ver-DocPac" data-id="<?php echo $resultado['id']?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
             <td style="text-align: center;"><a href="deletePacIntDoc.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
@@ -420,14 +477,15 @@ if (empty($_SESSION["nombre"])) {
    <h2 class="titulo-final">&copy; Six Gears | IngSoftware</h2>
 </footer>
 
-    <!-- Desabilita el clickderecho -->
-    <script src="/odontosaurioApp/Bak/clickderecho.js"></script>
+  <!-- Desabilita el clickderecho -->
+  <script src="/odontosaurioApp/Bak/clickderecho.js"></script>
     <!-- Botones para el fullscreen -->
     <!-- <script src="../Bak/botones.js"></script> -->
     <!-- Menu pegajoso -->
     <script src="/odontosaurioApp/Bak/menu.js"></script>
     <script src="/odontosaurioApp/Nav/animation.js"></script>
     <script src="/odontosaurioApp/PaginaWeb/js/listas.js"></script>
+    <script src="/odontosaurioApp/PaginaWeb/js/PopupCita.js"></script>
     <script src="/odontosaurioApp/PaginaWeb/js/PopupAyudaySoporte.js"></script>
     </body>   
 </html>

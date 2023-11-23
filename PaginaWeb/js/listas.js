@@ -1,5 +1,5 @@
 //-----------------------------------------------
-//modales generales
+//modales generales -
 //-------------------------------------------------
 function mostrarCuadro(id) {
     // Si el cuadro a mostrar no es ni 'expedientePaciente' ni 'citasPaciente', oculta los demás
@@ -24,7 +24,7 @@ function cerrarCuadro(id) {
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
 
 //-----------------------------------------------
-//Admin
+//Interfaz Admin
 //-------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //-----------------------------------------------
-//doctor
+//Interfaz Adm doctor
 //-------------------------------------------------
 
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
 //-----------------------------------------------
-//cita
+//Interfaz Adm cita
 //-------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
 
 //-----------------------------------------------
-//cexpediente
+//Interfaz Adm  expediente
 //-------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -160,3 +160,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+//CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+
+//-----------------------------------------------
+//Interfaz Doc cita
+//-------------------------------------------------
+document.addEventListener('DOMContentLoaded', function () {
+    var enlacesVerDocPac = document.querySelectorAll('.ver-DocPac');
+
+    enlacesVerDocPac.forEach(function (enlace) {
+        enlace.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var idPacCita = enlace.getAttribute('data-id');
+
+            // Utiliza AJAX para enviar la ID al servidor
+            $.ajax({
+                url: 'obtenerInfoPacinte.php', // Nombre del script PHP que manejará la solicitud
+                type: 'GET',
+                data: { id: idPacCita  },
+                success: function (data) {
+                    // Muestra el cuadro de información del administrador con la respuesta del servidor
+                    mostrarCuadro('citasPaciente');
+                    // Actualiza el contenido del cuadro con la información obtenida del servidor
+                    document.querySelector('#citasPaciente .textos-citas').innerHTML = data;
+                },
+                error: function () {
+                    console.error('Error al obtener información del Paciente.');
+                }
+            });
+        });
+    });
+});

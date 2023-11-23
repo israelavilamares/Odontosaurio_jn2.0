@@ -695,27 +695,74 @@ nav{
 
 /*cuadro agendar */
 
-.cuadro-agendar {
+.popup-agendar {
     display: none;
     position: absolute;
-    top: 305px;
-    left: 262%;
-    transform: translate(-50%, -50%);
+    max-width: 600px;
+    height: 80%;
+    max-height: 400px;
+    overflow: auto;
     background-color: white;
     padding: 20px;
+    top: 305px;
+    left: 262%;
+    /* Agrega estilos adicionales según tus preferencias */
+    transform: translate(-50%, -50%);
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    z-index: 4; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
     width: 785px; /* Ajusta el ancho del cuadro */
     height: 615px; /* Ajusta la altura del cuadro */
 }
 
-.cuadro-agendar .cerrar {
+.popup-agendar form {
+    /* Estilos para el formulario dentro del popup */
+    margin-bottom: 20px;
+}
+
+.popup-agendar select,
+.popup-agendar input[type="date"],
+.popup-agendar input[type="time"] {
+    /* Estilos para los select, date y time dentro del popup */
+    margin-bottom: 10px;
+    padding: 8px;
+    /* Otros estilos según tus preferencias */
+}
+
+.popup-agendar input[type="submit"] {
+    /* Estilos para el botón de enviar dentro del popup */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-agendar input[type="submit"]:hover {
+    /* Estilos para el botón de enviar al pasar el mouse sobre él */
+    background-color: #45a049;
+}
+
+.mensaje-exito {
+    display: none;
+    /* Estilos para el mensaje de éxito */
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.cerrar-popup {
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
+    /* Otros estilos según tus preferencias */
 }
+
+
+
+
 
 /*footer*/
 

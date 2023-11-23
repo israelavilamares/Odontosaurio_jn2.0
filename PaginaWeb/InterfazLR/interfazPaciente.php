@@ -123,19 +123,63 @@ if (empty($_SESSION["nombre"])) {
     <section class="textos-citas">
         <h1>Encuentra tu dentista y agenda tu cita</h1>
         <h2 id="mostrar-popup-agendar">Agendar cita</h2>
-        <h3 id="mostrar-popup-ver">Ver citas</h3>
+        <h3 class="boton-lista" onclick="mostrarCuadro('cuadroCitas')"> Ver Citas</h3>
     </section>
 </div>
 
-<!-- popup ver citas-->
-<div id="popup-ver" style="display: none;">
-    <div>
-        <span id="cerrar-popup-ver">X</span>
-        soy ver citas
-        <!-- contnido para "Ver citas" popup -->
-    </div>
+
+
+<!-- Cuadro blanco adicional para citas -->
+<div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
+    <span class="cerrar" onclick="cerrarCuadro('cuadroCitas')">X</span>
+    <!-- Contenido del cuadro blanco adicional para citas -->
+    <h2>Información de citas</h2>
+    <table border="1">
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Dentista</th>
+            <th>Borrar Cita</th>
+            <!-- Puedes agregar más encabezados según tus necesidades -->
+        </tr>
+        <?php
+        require('conecta.php');
+        
+        // Supongamos que tienes la CURP almacenada en la variable $_SESSION['curp']
+        $curp = $_SESSION['curp'];
+
+        // Consulta SQL para obtener las citas relacionadas con la CURP
+        $sql = "SELECT consulta.*, doctor.nombre
+                FROM consulta
+                JOIN doctor ON doctor.idDoctor = consulta.idDoctor_doctor
+                WHERE consulta.curp_paciente = ?
+                ORDER BY consulta.fecha, consulta.hora";
+
+        // Preparar la consulta
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $curp);
+        
+        // Ejecutar la consulta
+        mysqli_stmt_execute($stmt);
+
+        // Obtener resultados
+        $resultq = mysqli_stmt_get_result($stmt);
+
+        while ($resultado = mysqli_fetch_array($resultq)) { ?>
+            <tr>
+                <td><?php echo $resultado['fecha'] ?></td>
+                <td><?php echo $resultado['hora'] ?></td>
+                <td><?php echo $resultado['nombre'] ?></td>
+                <td style="text-align: center;"><a href='deleteCitasIntPacient.php?id=<?php echo $resultado['id']; ?>' class="bto-eliminar">Eliminar</a></td>
+                <!-- Puedes agregar más celdas según tus necesidades -->
+            </tr>
+            <!-- Puedes agregar más filas según tus necesidades -->
+        <?php } ?>
+    </table>
 </div>
-<!-- fin popup ver citas-->
+<!-- Fin del Cuadro blanco adicional para citas -->
+
+
 
 <!-- popup agendar citas-->
 <div id="popup-agendar" style="display: none; position: fixed; width: 80%; max-width: 600px; height: 80%; max-height: 400px; overflow: auto; background-color: white; z-index: 1000; border: 1px solid black; padding: 20px;">
@@ -213,6 +257,9 @@ $(document).ready(function(){
             data: $(this).serialize(),
             success: function(response){
                 $("#mensaje-exito").show().delay(3000).fadeOut();
+                setTimeout(function() {
+                        location.reload();
+                    }, 2000);
                 $("#popup-agendar").delay(3000).fadeOut();
             }
         });
@@ -221,6 +268,10 @@ $(document).ready(function(){
 </script>
 <!-- fin popup agendar citas-->
 
+
+
+
+
 <div class="cuadro-blancoexpediente">
     <section class="textos-expediente">
         <h1>Expediente</h1>
@@ -228,10 +279,8 @@ $(document).ready(function(){
         <ul>
             <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span></li>
             <li>CURP: <span><?php echo $_SESSION['curp']; ?></span></li>
-           
             <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
             </li>
-            <ul class="expediente" id="lista2">
         </ul>
         
 <?php
@@ -259,6 +308,18 @@ if ($recuperado) {
 </section>
 </div>
    
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="cuadro-blancoimajenes">
 <img src="/odontosaurioApp/PaginaWeb/img/boton.png" alt="" class="imagen-boton3">
     <section class="textos-imajenes">
@@ -311,5 +372,6 @@ if ($recuperado) {
     <script src="/odontosaurioApp/PaginaWeb/js/PopupCita.js"></script>
     <script src="/odontosaurioApp/PaginaWeb/js/PopupAyudaySoporte.js"></script>
     <script src="/odontosaurioApp/PaginaWeb/js/PopupImagen.js"></script>
+    <script src="/odontosaurioApp/PaginaWeb/js/listas.js"></script>
     </body>   
 </html>

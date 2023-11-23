@@ -381,8 +381,8 @@ nav{
     
 }
 
-/*popup de citas*/
 
+/*popup de agenda*/
 #popup-agendar {
     display: none;
     position: fixed;
@@ -422,44 +422,66 @@ nav{
     z-index: 1000;
 }
 
-#popup-ver {
+/*popup de citas*/
+.cuadro-citas {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    z-index: 1000; 
-}
-
-#popup-ver > div {
-    position: absolute;
-    top: 50%;
-    left: 63%;
+    top: 400px;
+    left: 59%;
     transform: translate(-50%, -50%);
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(241, 241, 241);
     padding: 20px;
-    width: 60%;
-    height: 60%;
-    box-sizing: border-box;
-    border-radius: 10px;
-    overflow-y: auto;
-    z-index: 1001;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 415px; /* Ajusta la altura del cuadro */
 }
 
-
-#cerrar-popup-ver {
+.cuadro-citas .cerrar {
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #000000;
-    border: none;
-    padding: 10px 20px;
     cursor: pointer;
-    font-size: 20px;
-    z-index: 1000;
 }
+
+#cuadroCitas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+#cuadroCitas th, #cuadroCitas td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#cuadroCitas th {
+    background-color: #ffffff;
+}
+
+#cuadroCitas img {
+    width: 20px; /* Ajusta el tamaño de la imagen de borrar según sea necesario */
+    height: 20px;
+}
+
+.cuadro-adicional {
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*cuadro blanco expediente*/
