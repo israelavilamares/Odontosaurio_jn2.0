@@ -24,6 +24,9 @@ if ($id !== null) {
           
           <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
       </ul>
+      <?php    $sql = "select nombre from doctor JOIN consulta ON  doctor.idDoctor=consulta.idDoctor_doctor WHERE idDoctor = '$resultado[1]' limit 1";
+        $resultaq2 = mysqli_query($con, $sql);
+        while ($resultadoND = mysqli_fetch_array($resultaq2)) { ?>
 
       <ul class="citas" id="lista2">
           <li>Numero cita:</li>
@@ -31,7 +34,7 @@ if ($id !== null) {
           <li>Hora:</li>
           <li>Doctor a cargo:</li>
       </ul>
-   
+   <?php } ?>
       <button style="text-align: center;"><a href='deleteCitasIntAdm.php?id=<?php echo $resultado[0];?>' class="bto-eliminar">Eliminar</a></button>
             
         <?php

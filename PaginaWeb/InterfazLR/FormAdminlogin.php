@@ -13,20 +13,16 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
         <form action="" method="post">
         <?php 
             require "conecta.php";
-            require "Pacientelogin.php";
+            require "Adminlogin.php";
         ?>
             
-                <input class="controls" type="text" name="curp" placeholder="ingresa tu curp" required>
+                <input class="controls" type="text" name="curp" placeholder="ingresa tu nombre" required>
            
             
                 <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña" required>
             
             
                 <input class="button" type="submit" name="ingresar">
-            
-
-            <p>¿No tienes Cuenta?<a href="FormPacienteregistro.php">Registrate</a></p>
-            <p>¿eres parte de nuestro <a href="FormAdminlogin.php">equipo</a>?</p>
             <br>
             <p><a href="../index.html">Volver a Pagina Principal</a></b>
 

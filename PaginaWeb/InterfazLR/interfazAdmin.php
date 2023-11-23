@@ -90,10 +90,86 @@ if (empty($_SESSION["nombre"])) {
   </div>
 </div>
 
+<!-- Cuadro blanco  busqueda -->
 <div class="cuadro-blancobusqueda">
-    <input type="text" class="barra-busqueda" placeholder="Buscar...">
+    <form id="formularioBusqueda">
+        <input type="text" class="barra-busqueda" id="busquedaInput" placeholder="Buscar...">
+        <div id="resultadosBusqueda"></div>
+    </form>
 </div>
 
+<script>
+    document.getElementById('formularioBusqueda').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitar que el formulario se envíe normalmente
+
+        var query = document.getElementById('busquedaInput').value;
+
+        if (query.length >= 3) {
+            // Realiza la búsqueda asincrónica
+            buscarEnBaseDeDatos(query);
+        }
+    });
+
+    function buscarEnBaseDeDatos(query) {
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // Abre un nuevo popup con los resultados y muestra el cuadro deseado
+                abrirPopup(this.responseText, 'cuadroResultados');
+            }
+        };
+
+        // Envía la consulta al servidor PHP sin cambiar la URL
+        xmlhttp.open("POST", "buscar.php", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("query=" + encodeURIComponent(query));
+    }
+
+    function abrirPopup(resultados, cuadroId) {
+    // Obtén el modal
+    var modal = document.getElementById(cuadroId);
+
+    // Escribe los resultados en el contenido del modal
+    modal.innerHTML = '<span class="cerrar" onclick="cerrarCuadro(\'' + cuadroId + '\')">X</span>';
+    modal.innerHTML += '<h2>Resultados de la Búsqueda</h2>';
+    modal.innerHTML += '<div id="resultados">' + resultados + '</div>';
+
+    // Muestra el modal
+    modal.style.display = 'block';
+
+    // Muestra el cuadro deseado
+    mostrarCuadro(cuadroId);
+}
+
+    function mostrarCuadro(id) {
+        // Si el cuadro a mostrar no es ni 'expedientePaciente' ni 'citasPaciente', oculta los demás
+        if (id !== 'expedientePaciente' && id !== 'citasPaciente' && id !== 'altaPaciente' && id !== 'infoDoctor' && id !== 'altaDoctor' && id !== 'altaAdmin' && id !== 'infoAdmin') {
+            // Oculta todos los cuadros adicionales
+            var cuadros = document.querySelectorAll('.cuadro-adicional');
+            cuadros.forEach(function(cuadro) {
+                cuadro.style.display = 'none';
+            });
+        }
+
+        // Muestra el cuadro deseado
+        var cuadro = document.getElementById(id);
+        cuadro.style.display = 'block';
+    }
+
+    function cerrarCuadro(id) {
+        var cuadro = document.getElementById(id);
+        cuadro.style.display = 'none';
+    }
+</script>
+<!-- Modal para mostrar los resultados -->
+<div id="cuadroResultados" class="cuadro-adicional" style="display: none;">
+    <span class="cerrar" onclick="cerrarCuadro('cuadroResultados')">X</span>
+    <!-- Contenido del modal -->
+    <h2>Resultados de la Búsqueda</h2>
+    <div id="resultados"></div>
+</div>
+<!--Fin Cuadro blanco  busqueda -->
 
 
 <div class="cuadro-blancoopciones">
@@ -135,9 +211,9 @@ if (empty($_SESSION["nombre"])) {
         <tr>
            <!-- <td><//?php echo $resultado['id']?></td>-->
             <td><?php echo $resultado['nombre']?></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')"></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')?id=<?php echo $resultado['id'];?>"></td>
             <td style="text-align: center;"><a href="#" class="ver-Pac" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
-            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado[0]?> " class="bto-eliminar">Eliminar</a></td>
+            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <?php 
@@ -203,9 +279,7 @@ if (empty($_SESSION["nombre"])) {
     </section>
 </div>
 
-
-
-
+<!-- Nuevo cuadro adicional para Citas del Paciente -->
 <!-- Nuevo cuadro adicional para Citas del Paciente -->
 <div id="citasPaciente" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
@@ -213,6 +287,9 @@ if (empty($_SESSION["nombre"])) {
     <section class="textos-citas">
     </section>
 </div>
+<!-- Fin del Cuadro blanco adicional para Pacientes -->
+
+
 <!-- Fin del Cuadro blanco adicional para Pacientes -->
 
 
@@ -397,7 +474,7 @@ if (empty($_SESSION["nombre"])) {
 
 
 <!-- Cuadro blanco adicional para citas -->
-    <div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
+<div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
         <span class="cerrar" onclick="cerrarCuadro('cuadroCitas')">X</span>
         <!-- Contenido del cuadro blanco adicional para citas -->
         <h2>Información de citas</h2>
@@ -432,8 +509,6 @@ if (empty($_SESSION["nombre"])) {
     </table>
 
     </div>
-
-
 <!-- Fin del Cuadro blanco adicional para citas -->
 
 

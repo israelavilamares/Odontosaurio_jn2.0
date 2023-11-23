@@ -76,23 +76,45 @@ if (empty($_SESSION["nombre"])) {
 <div class="cuadro-blancoinfo">
     <section class="textos-info">
         <h1>Información de contacto</h1>
-        <h2>editar</h2>
         <ul>
         <form  method="post">
             <?php
            require "conecta.php";
            require('EditarPaciente.php');
            ?>
-        <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span><input class="controls" type="text" name="nombre_edit" placeholder="ingresa tu Nombre completo" maxlength="50" required></li>
+            <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span><input class="controls" type="text" name="nombre_edit" placeholder="ingresa tu Nombre completo" maxlength="50" required></li>
             <li>Edad: <span><?php echo $_SESSION['edad'];?><span><input class="controls" type="tel" name="edad_edit" placeholder="ingresa tu edad" minlength="1" maxlength="3" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
             <li>CURP: <span><?php echo $_SESSION['curp'];?><span><input class="controls" type="text" name="curp_edit" value= <?php echo $_SESSION['curp']?> disabled> </li>
             <li>Número de celular: <span><?php echo $_SESSION['tel'];?><span><input class="controls" type="tel" name="telefono" placeholder="ingresa tu Telefono" minlength="10" maxlength="10" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
             <li>Nacionalidad: <span><?php echo $_SESSION['nacionalidad'];?><span><input class="controls" type="text" name="nacionalidad_edit" placeholder="ingresa tu Nacionalidad" maxlength="50" required>
-            <input  class="button" type="submit" name="editar"></li>
+            <input class="button" type="submit" name="editar" onclick="recargarPagina()"></li>
             </form>
         </ul>
     </section>
 </div>
+
+<script>
+    function recargarPagina() {
+        var form = document.getElementById("editarForm");
+        var formData = new FormData(form);
+
+        // Utiliza AJAX para enviar el formulario
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", form.action, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Maneja la respuesta del servidor aquí si es necesario
+
+                // Recarga la página sin caché
+                setTimeout(function () {
+                    location.reload(true);
+                }, 500);
+            }
+        };
+        xhr.send(formData);
+    }
+</script>
+
 
 
 <div class="cuadro-blancocitas">

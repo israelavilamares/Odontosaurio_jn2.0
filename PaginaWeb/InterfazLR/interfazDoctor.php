@@ -72,7 +72,7 @@ if (empty($_SESSION["nombre"])) {
       <h2>Conectado</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
       <h3>Información de contacto</h3>
-      
+      <h4>editar</h4>
       <ul>
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>
@@ -90,9 +90,87 @@ if (empty($_SESSION["nombre"])) {
   </div>
 </div>
 
+<!-- Cuadro blanco  busqueda -->
 <div class="cuadro-blancobusqueda">
-    <input type="text" class="barra-busqueda" placeholder="Buscar...">
+    <form id="formularioBusqueda">
+        <input type="text" class="barra-busqueda" id="busquedaInput" placeholder="Buscar...">
+        <div id="resultadosBusqueda"></div>
+    </form>
 </div>
+
+<script>
+    document.getElementById('formularioBusqueda').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitar que el formulario se envíe normalmente
+
+        var query = document.getElementById('busquedaInput').value;
+
+        if (query.length >= 3) {
+            // Realiza la búsqueda asincrónica
+            buscarEnBaseDeDatos(query);
+        }
+    });
+
+    function buscarEnBaseDeDatos(query) {
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // Abre un nuevo popup con los resultados y muestra el cuadro deseado
+                abrirPopup(this.responseText, 'cuadroResultados');
+            }
+        };
+
+        // Envía la consulta al servidor PHP sin cambiar la URL
+        xmlhttp.open("POST", "buscarUserDoc.php", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("query=" + encodeURIComponent(query));
+    }
+
+    function abrirPopup(resultados, cuadroId) {
+    // Obtén el modal
+    var modal = document.getElementById(cuadroId);
+
+    // Escribe los resultados en el contenido del modal
+    modal.innerHTML = '<span class="cerrar" onclick="cerrarCuadro(\'' + cuadroId + '\')">X</span>';
+    modal.innerHTML += '<h2>Resultados de la Búsqueda</h2>';
+    modal.innerHTML += '<div id="resultados">' + resultados + '</div>';
+
+    // Muestra el modal
+    modal.style.display = 'block';
+
+    // Muestra el cuadro deseado
+    mostrarCuadro(cuadroId);
+}
+
+    function mostrarCuadro(id) {
+        // Si el cuadro a mostrar no es ni 'expedientePaciente' ni 'citasPaciente', oculta los demás
+        if (id !== 'expedientePaciente' && id !== 'citasPaciente' && id !== 'altaPaciente' && id !== 'infoDoctor' && id !== 'altaDoctor' && id !== 'altaAdmin' && id !== 'infoAdmin') {
+            // Oculta todos los cuadros adicionales
+            var cuadros = document.querySelectorAll('.cuadro-adicional');
+            cuadros.forEach(function(cuadro) {
+                cuadro.style.display = 'none';
+            });
+        }
+
+        // Muestra el cuadro deseado
+        var cuadro = document.getElementById(id);
+        cuadro.style.display = 'block';
+    }
+
+    function cerrarCuadro(id) {
+        var cuadro = document.getElementById(id);
+        cuadro.style.display = 'none';
+    }
+</script>
+<!-- Modal para mostrar los resultados -->
+<div id="cuadroResultados" class="cuadro-adicional" style="display: none;">
+    <span class="cerrar" onclick="cerrarCuadro('cuadroResultados')">X</span>
+    <!-- Contenido del modal -->
+    <h2>Resultados de la Búsqueda</h2>
+    <div id="resultados"></div>
+</div>
+<!--Fin Cuadro blanco  busqueda -->
+
 
 
 
@@ -112,28 +190,36 @@ if (empty($_SESSION["nombre"])) {
     <!-- Contenido del cuadro blanco adicional para Pacientes -->
     <h2>Información de Pacientes</h2>
     <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
+    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
+
     <table border="1">
         <tr>
+             <!--<th>ID<th>-->
             <th>Nombre Paciente</th>
             <th>Expediente</th>
             <th>Citas</th>
-            <th>Eliminar</th>
+            <th>Accion</th>
+            
+            
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
+        <?php   require ('conecta.php');
+      $sql= "select * from paciente";
+        $resultq=mysqli_query($con,$sql);
+        while ($resultado = mysqli_fetch_array($resultq))
+            {                   
+     ?>
         <tr>
-            <td>Jose eduardo perez jimenez</td>
-            <td style="text-align: center;">
-                <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')">
-            </td>
-            <td style="text-align: center;">
-                <img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')">
-            </td>
-            <td style="text-align: center;">
-                <img src="/odontosaurioApp/PaginaWeb/img/borrar.png" alt="Borrar" style="cursor: pointer;">
-            </td>
+           <!-- <td><//?php echo $resultado['id']?></td>-->
+            <td><?php echo $resultado['nombre']?></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')?id=<?php echo $resultado['id'];?>"></td>
+            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('citasPaciente')"></td>
+            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
-        <!-- Puedes agregar más filas según tus necesidades -->
+        <?php 
+        }
+        ?><!-- Puedes agregar más filas según tus necesidades -->
     </table>
 </div>
 
@@ -144,25 +230,28 @@ if (empty($_SESSION["nombre"])) {
     <section class="textos-alta">
         <h1>Alta de Paciente</h1>
         <!-- Agregar el formulario para dar de alta al paciente -->
-        <form>
-            <!-- Campos del formulario (nombre, CURP, etc.) -->
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" name="apellidos">
-            <label for="curp">CURP:</label>
-            <input type="text" id="curp" name="curp">
-            <label for="telefono">Telefono:</label>
-            <input type="text" id="telefono" name="telefono">
-            <label for="contraseña">Contraseña:</label>
-            <input type="text" id="contraseña" name="contraseña">
-            <label for="foto">Foto:</label>
-            <input type="text" id="foto" name="foto">
-            <!-- Otros campos del formulario... -->
+        <div class="cuadro-AltoDoctor">
 
-            <!-- Botón para enviar el formulario -->
-            <input type="submit" value="Dar de alta">
-        </form>
+
+        <form  method="post">
+            <?php
+           require "conecta.php";
+           require('AltaPaciente.php');
+            ?>
+                <!-- Campos del formulario (nombre, CURP, etc.) -->
+                <input class="controller" type="text" id="nombre" name="nombre" placeholder = "nombre completo" required>
+                <input class="controller" type="text" id="curp" name="curp" placeholder="curp"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros"required>
+                <input class="controller" type="text" id="telefono" name="telefono" maxlength="10" placeholder="telefono" required>
+                <input class="controller" type="password" id="contraseña" name="pasw" placeholder="contraseña" required>
+                <input class="controller" type="text" id="nacionalidad" name="nacionalidad" placeholder="nacionalidad" required>
+                <input class="controller" type="tel" id="edad" name="edad" maxlength="3" placeholder="edad" required>
+                
+                <!-- Otros campos del formulario... -->
+    
+                <!-- Botón para enviar el formulario -->
+                <input class="buttonAlta-Paciente" type="submit" value="Agregar Paciente" name="RegistraPaciente">
+            </form>
+        </div>
     </section>
 </div>
 
@@ -191,6 +280,29 @@ if (empty($_SESSION["nombre"])) {
     </section>
 </div>
 
+<!-- Nuevo cuadro adicional para Citas del Paciente -->
+<div id="citasPaciente" class="cuadro-adicional" style="display: none;">
+    <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
+    <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
+    <section class="textos-citas">
+        <h1>Citas</h1>
+        <ul>
+            <li>Nombre:</li>
+            <li>CURP:</li>
+            <li>Numero celular:</li>
+            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
+        </ul>
+
+        <ul class="citas" id="lista2">
+            <li>Numero cita:</li>
+            <li>Fecha:</li>
+            <li>Hora:</li>
+            <li>Doctor a cargo:</li>
+        </ul>
+        <h2 class="boton-lista">Eliminar cita</h2>
+    </section>
+</div>
+<!-- Fin del Cuadro blanco adicional para Pacientes -->
 
 
 
