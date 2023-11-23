@@ -183,6 +183,9 @@ if (empty($_SESSION["nombre"])) {
     </section>
     
 
+<!-- Cuadros para Pacientes -->
+
+
 <!-- Cuadro blanco adicional para Pacientes -->
 <div id="cuadroPacientes" class="cuadro-adicional cuadro-pacientes">
     <span class="cerrar" onclick="cerrarCuadro('cuadroPacientes')">X</span>
@@ -211,7 +214,7 @@ if (empty($_SESSION["nombre"])) {
         <tr>
            <!-- <td><//?php echo $resultado['id']?></td>-->
             <td><?php echo $resultado['nombre']?></td>
-            <td style="text-align: center;"><img src="/odontosaurioApp/PaginaWeb/img/see.png" alt="ver" style="cursor: pointer;" onclick="mostrarCuadro('expedientePaciente')?id=<?php echo $resultado['id'];?>"></td>
+            <td style="text-align: center;"><a href="#" class="ver-Exp" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
             <td style="text-align: center;"><a href="#" class="ver-Pac" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
             <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
@@ -261,26 +264,15 @@ if (empty($_SESSION["nombre"])) {
     <span class="cerrar" onclick="cerrarCuadro('expedientePaciente')">X</span>
     <!-- Contenido específico del nuevo cuadro para el expediente del paciente -->
     <section class="textos-expediente">
-        <h1>Expediente</h1>
-        <ul>
-            <li>Nombre:</li>
-            <li>CURP:</li>
-            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-        </ul>
-
-        <ul class="expediente" id="lista1">
-            <li>Motivo de consulta:</li>
-            <li>Padecimientos actuales:</li>
-            <li>Ultimo examen dental:</li>
-            <li>Antecedentes médicos:</li>
-            <li>Doctor a cargo:</li>
-        </ul>
-        <h2 class="boton-lista">Modificar expediente</h2>
     </section>
 </div>
+<!-- Fin del Cuadro blanco adicional para expedientes del paciente -->
+
+
+
 
 <!-- Nuevo cuadro adicional para Citas del Paciente -->
-<!-- Nuevo cuadro adicional para Citas del Paciente -->
+
 <div id="citasPaciente" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
     <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
@@ -290,7 +282,7 @@ if (empty($_SESSION["nombre"])) {
 <!-- Fin del Cuadro blanco adicional para Pacientes -->
 
 
-<!-- Fin del Cuadro blanco adicional para Pacientes -->
+
 
 
 

@@ -1,57 +1,68 @@
-<?php 
+<?php
+require('conecta.php');
 
-    // CAMBIOOOOOO  obtenerInfoPacinete.php nuevo php que maneja la info con el id
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-    require('conecta.php');
+if ($id !== null) {
+    $sql = "SELECT * FROM paciente WHERE id = '$id'";
+    $resultq = mysqli_query($con, $sql);
 
-    $id = isset($_GET['id']) ? $_GET['id'] : null;
-
-
-        
-        $sql = "SELECT * FROM paciente WHERE id = '$id'";
-        $resultq = mysqli_query($con, $sql);
-
-        while ($resultado = mysqli_fetch_array($resultq)) {?>
-
-            <form action="">
-                <input type="hidden" name ="id" value="<?php echo $resultado[0];?>">
-                <label>Nombre:</label>
-                <input  type="text"  name="nombre" value="<?php echo $resultado["nombre"];?>" disabled>
-                <label>CURP:</label>
-                <input  type="text"  name="curp" value="<?php echo $resultado["curp_usuario"];?>" disabled>
-                <label>Telefono:</label>
-                <input  type="text"  name="Telefono" value="<?php echo $resultado["telefono"];?>" disabled>
+    while ($resultado = mysqli_fetch_array($resultq)) {
+        ?>
+        <input type="hidden" name="id" value="<?php echo $resultado[0]; ?>" required>
+        <ul>
+            <li>Nombre:<?php echo $resultado[5]; ?></li>
+            <li>CURP: <?php echo $resultado[1]; ?></li>
+            <li>Número celular: <?php echo $resultado[6]; ?></li>
+            <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
+            <h2 style="text-align: center;">Información de citas</h2>
             
-                    </form>
-                    <br>
-                    
-                    
-                    <?php } ?>                    
-                    
-                    <br>
-                    <div class="linea-negra"></div> <!-- Agrega la línea negra aquí -->
-                    <br>
-                    <?php   $sql = "select consulta.CURP_paciente,consulta.id,consulta.hora,consulta.fecha from consulta JOIN paciente ON consulta.CURP_paciente=paciente.curp_usuario WHERE paciente.id = '$id' limit 1";
-                $resultaq2 = mysqli_query($con, $sql);
-                while ($resultadoCP = mysqli_fetch_array($resultaq2)) { 
-            ?>
+            <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tr style="background-color: #f2f2f2; padding: 15px;">
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Dentista</th>
+                    <th>Borrar Cita</th>
+                    <!-- Puedes agregar más estilos según tus necesidades -->
+                </tr>
+                <?php
+                require('conecta.php');
 
-                <form action=""><label>Id:</label>
-                <input  type="text"  name="id" value="<?php echo $resultadoCP[1];?>" disabled>
-                <label>Hora:</label>
-                <input  type="text"  name="hora" value="<?php echo $resultadoCP[2];?>" disabled>
-                <label>Fecha:</label>
-                <input  type="text"  name="fecha" value = "<?php echo $resultadoCP[3];?>" disabled>
-                
-            </form>
-                <br>
-                <button style="text-align: center;"><a href='deleteCitasIntAdm.php?id=<?php echo $resultadoCP["id"];?>' class="bto-eliminar">Eliminar</a></button>
+                // Utiliza $resultado[1] directamente para obtener la CURP
+                $curp = $resultado[1];
+
+                // Consulta SQL para obtener las citas relacionadas con la CURP
+                $sql = "SELECT consulta.*, doctor.nombre
+                        FROM consulta
+                        JOIN doctor ON doctor.idDoctor = consulta.idDoctor_doctor
+                        WHERE consulta.curp_paciente = ?
+                        ORDER BY consulta.fecha, consulta.hora";
+
+                // Preparar la consulta
+                $stmt = mysqli_prepare($con, $sql);
+                mysqli_stmt_bind_param($stmt, 's', $curp);
+
+                // Ejecutar la consulta
+                mysqli_stmt_execute($stmt);
+
+                // Obtener resultados
+                $resultq = mysqli_stmt_get_result($stmt);
+
+                while ($resultado = mysqli_fetch_array($resultq)) { ?>
+                    <tr style="border-bottom: 2px solid #ddd;">
+                        <td style="padding: 10px;"><?php echo $resultado['fecha'] ?></td>
+                        <td style="padding: 10px;"><?php echo $resultado['hora'] ?></td>
+                        <td style="padding: 10px;"><?php echo $resultado['nombre'] ?></td>
+                        <td style="text-align: center; padding: 10px;"><a href='deleteCitasIntAdm.php?id=<?php echo $resultado['id']; ?>' style="text-decoration: none;">Eliminar</a></td>
+                        <!-- Puedes agregar más estilos según tus necesidades -->
+                    </tr>
+                    <!-- Puedes agregar más filas según tus necesidades -->
                 <?php } ?>
-                
-
-        
-
-            
-
-    
-                
+            </table>
+        </ul>
+<?php
+    }
+} else {
+    echo "No se proporcionó una ID válida en la solicitud.";
+}
+?>

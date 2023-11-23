@@ -1,3 +1,6 @@
+//-----------------------------------------------
+//modales generales
+//-------------------------------------------------
 function mostrarCuadro(id) {
     // Si el cuadro a mostrar no es ni 'expedientePaciente' ni 'citasPaciente', oculta los demás
     if (id !== 'expedientePaciente' && id !== 'citasPaciente' && id !== 'altaPaciente' && id !== 'infoDoctor' && id !== 'altaDoctor' && id !== 'altaAdmin' && id !== 'infoAdmin') {
@@ -19,6 +22,11 @@ function cerrarCuadro(id) {
 }
 
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+
+//-----------------------------------------------
+//Admin
+//-------------------------------------------------
+
 document.addEventListener('DOMContentLoaded', function () {
     var enlacesVerAdmin = document.querySelectorAll('.ver-admin');
 
@@ -46,6 +54,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+//-----------------------------------------------
+//doctor
+//-------------------------------------------------
 
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
 document.addEventListener('DOMContentLoaded', function () {
@@ -76,7 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
 //CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+//-----------------------------------------------
+//cita
+//-------------------------------------------------
+
 document.addEventListener('DOMContentLoaded', function () {
     var enlacesVerPac = document.querySelectorAll('.ver-Pac');
 
@@ -106,4 +124,39 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
+
+//CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+
+//-----------------------------------------------
+//cexpediente
+//-------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    var enlacesVerExp = document.querySelectorAll('.ver-Exp');
+
+    enlacesVerExp.forEach(function (enlace) {
+        enlace.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var idPacExp = enlace.getAttribute('data-id');
+
+            // Utiliza AJAX para enviar la ID al servidor
+            $.ajax({
+                url: 'obtenerInfoExpePac.php', // Nombre del script PHP que manejará la solicitud
+                type: 'GET',
+                data: { id: idPacExp  },
+                success: function (data) {
+                    // Muestra el cuadro de información del administrador con la respuesta del servidor
+                    mostrarCuadro('expedientePaciente');
+                    // Actualiza el contenido del cuadro con la información obtenida del servidor
+                    document.querySelector('#expedientePaciente .textos-expediente').innerHTML = data;
+                },
+                error: function () {
+                    console.error('Error al obtener información del expediente del Paciente.');
+                }
+            });
+        });
+    });
+});
 
