@@ -577,6 +577,75 @@ nav{
 
 }
 
+/* popup alta expediente */
+#expedienteAlta {
+    display: none;
+    position: absolute;
+    top: 305px;
+    left: 262%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    z-index: 3; /* Asegura que el cuadro adicional esté sobre el cuadro principal */
+    width: 785px; /* Ajusta el ancho del cuadro */
+    height: 615px; /* Ajusta la altura del cuadro */
+}
+
+
+#expedienteAlta .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.textos-alta-expediente h1{
+    position: absolute;
+    font-size: 17px;
+    color: #414141;
+    margin-left: 340px;
+    margin-top: -40px;
+}
+
+.textos-alta-expediente ul {
+    list-style-type: none; /* Elimina los puntos negros de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo predeterminado */
+    text-align: left; 
+    margin-top: 30px;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
+.textos-alta-expediente ul li {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 20px; /* Agrega espaciado entre los elementos de la lista */
+    display: flex;
+    align-items: center;
+}
+
+.textos-alta-expediente ul li span {
+    color: #161616;
+    font-size: 15px;
+    margin-left: 10px; /* Ajusta el margen izquierdo para separar el texto de CURP de h2 */
+}
+.linea-negra {
+    width: 100%;
+    border-bottom: 2px solid #000; /* Línea negra horizontal */
+    margin-top: 10px; /* Espacio entre la línea y los elementos anteriores */
+}
+
+
+
+#lista1 li {
+    margin-bottom: 35px;
+    color: #000000;
+    overflow: hidden; /* Oculta el contenido que desborda */
+
+}
+
 /* Popup citas */
 #citasPaciente {
     display: none;

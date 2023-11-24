@@ -183,9 +183,6 @@ if (empty($_SESSION["nombre"])) {
     </section>
     
 
-<!-- Cuadros para Pacientes -->
-
-
 <!-- Cuadro blanco adicional para Pacientes -->
 <div id="cuadroPacientes" class="cuadro-adicional cuadro-pacientes">
     <span class="cerrar" onclick="cerrarCuadro('cuadroPacientes')">X</span>
@@ -200,7 +197,8 @@ if (empty($_SESSION["nombre"])) {
             <th>Nombre Paciente</th>
             <th>Expediente</th>
             <th>Citas</th>
-            <th>Accion</th>
+            <th>Agregar Expediente</th>
+            <th>Eliminar</th>
             
             
             <!-- Puedes agregar más encabezados según tus necesidades -->
@@ -216,6 +214,7 @@ if (empty($_SESSION["nombre"])) {
             <td><?php echo $resultado['nombre']?></td>
             <td style="text-align: center;"><a href="#" class="ver-Exp" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
             <td style="text-align: center;"><a href="#" class="ver-Pac" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
+            <td style="text-align: center;"><a href="#" class="alta-Exp" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/folder.png"></img></a></td>
             <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
@@ -232,7 +231,7 @@ if (empty($_SESSION["nombre"])) {
     <section class="textos-alta">
         <h1>Alta de Paciente</h1>
         <!-- Agregar el formulario para dar de alta al paciente -->
-        <div class="cuadro-AltoDoctor">
+        <div class="cuadro-AltaPaciente">
 
 
         <form  method="post">
@@ -259,6 +258,31 @@ if (empty($_SESSION["nombre"])) {
 
 
 
+
+
+
+
+<!-- Nuevo cuadro adicional para Alta Expediente del Paciente -->
+<div id="expedienteAlta" class="cuadro-adicional" style="display: none;">
+    <span class="cerrar" onclick="cerrarCuadro('expedienteAlta')">X</span>
+    <!-- Contenido específico del nuevo cuadro para el expediente del paciente -->
+    <section class="textos-alta-expediente">
+    </section>
+</div>
+<!-- Fin del Cuadro blanco adicional para Alta expedientes del paciente -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Nuevo cuadro adicional para Expediente del Paciente -->
 <div id="expedientePaciente" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('expedientePaciente')">X</span>
@@ -272,7 +296,6 @@ if (empty($_SESSION["nombre"])) {
 
 
 <!-- Nuevo cuadro adicional para Citas del Paciente -->
-
 <div id="citasPaciente" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
     <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
@@ -280,8 +303,6 @@ if (empty($_SESSION["nombre"])) {
     </section>
 </div>
 <!-- Fin del Cuadro blanco adicional para Pacientes -->
-
-
 
 
 
@@ -343,7 +364,7 @@ if (empty($_SESSION["nombre"])) {
     <section class="textos-alta-doctor">
         <h1>Alta de Doctor</h1>
         <!-- Agregar el formulario para dar de alta al doctor -->
-        <div class="cuadro-AltoDoctor">
+        <div class="cuadro-AltaDoctor">
             <form  method="post">
             <?php
            require "conecta.php";
@@ -421,7 +442,6 @@ if (empty($_SESSION["nombre"])) {
         
     </section>
 </div>
-<!--CAMBIOOOO aqui termina el error de ver (corregido)-->
 
 
 

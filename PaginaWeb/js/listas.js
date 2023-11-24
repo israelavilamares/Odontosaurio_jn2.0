@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Utiliza AJAX para enviar la ID al servidor
             $.ajax({
-                url: 'obtenerInfoExpePac.php', // Nombre del script PHP que manejará la solicitud
+                url: 'obtenerInfoExpediente.php', // Nombre del script PHP que manejará la solicitud
                 type: 'GET',
                 data: { id: idPacExp  },
                 success: function (data) {
@@ -172,13 +172,13 @@ document.addEventListener('DOMContentLoaded', function () {
         enlace.addEventListener('click', function (event) {
             event.preventDefault();
 
-            var idPacCita = enlace.getAttribute('data-id');
+            var idPacDocCita = enlace.getAttribute('data-id');
 
             // Utiliza AJAX para enviar la ID al servidor
             $.ajax({
-                url: 'obtenerInfoPacinte.php', // Nombre del script PHP que manejará la solicitud
+                url: 'obtenerInfoDocPacinte.php', // Nombre del script PHP que manejará la solicitud
                 type: 'GET',
-                data: { id: idPacCita  },
+                data: { id: idPacDocCita  },
                 success: function (data) {
                     // Muestra el cuadro de información del administrador con la respuesta del servidor
                     mostrarCuadro('citasPaciente');
@@ -192,3 +192,112 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+
+
+
+//CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+document.addEventListener('DOMContentLoaded', function () {
+    var enlacesAltaExp = document.querySelectorAll('.alta-Exp');
+
+    enlacesAltaExp.forEach(function (enlace) {
+        enlace.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var idExpAlt = enlace.getAttribute('data-id');
+
+            // Utiliza AJAX para enviar la ID al servidor
+            $.ajax({
+                url: 'AltaExpediente.php', // Nombre del script PHP que manejará la solicitud
+                type: 'GET',
+                data: { id: idExpAlt  },
+                success: function (data) {
+                    // Muestra el cuadro de información del administrador con la respuesta del servidor
+                    mostrarCuadro('expedienteAlta');
+                    // Actualiza el contenido del cuadro con la información obtenida del servidor
+                    document.querySelector('#expedienteAlta .textos-alta-expediente').innerHTML = data;
+                },
+                error: function () {
+                    console.error('Error al obtener información del expediente del Paciente.');
+                }
+            });
+        });
+    });
+});
+
+
+
+
+
+
+
+
+//CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+document.addEventListener('DOMContentLoaded', function () {
+    var enlacesAltaExpD = document.querySelectorAll('.alta-ExpDoc');
+
+    enlacesAltaExpD.forEach(function (enlace) {
+        enlace.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var idExpAltD = enlace.getAttribute('data-id');
+
+            // Utiliza AJAX para enviar la ID al servidor
+            $.ajax({
+                url: 'AltaExpedienteDoc.php', // Nombre del script PHP que manejará la solicitud
+                type: 'GET',
+                data: { id: idExpAltD  },
+                success: function (data) {
+                    // Muestra el cuadro de información del administrador con la respuesta del servidor
+                    mostrarCuadro('expedienteAlta');
+                    // Actualiza el contenido del cuadro con la información obtenida del servidor
+                    document.querySelector('#expedienteAlta .textos-alta-expediente').innerHTML = data;
+                },
+                error: function () {
+                    console.error('Error al obtener información del expediente del Paciente.');
+                }
+            });
+        });
+    });
+});
+
+
+
+
+
+
+//CAMBIOOOO nuevo sejmento que controla las ids sin cambiar la URL
+document.addEventListener('DOMContentLoaded', function () {
+    var enlacesAltaExpD = document.querySelectorAll('.alta-ExpDoc');
+
+    enlacesAltaExpD.forEach(function (enlace) {
+        enlace.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var idExpAltD = enlace.getAttribute('data-id');
+
+            // Utiliza AJAX para enviar la ID al servidor
+            $.ajax({
+                url: 'AltaExpedienteDoc.php', // Nombre del script PHP que manejará la solicitud
+                type: 'GET',
+                data: { id: idExpAltD  },
+                success: function (data) {
+                    // Muestra el cuadro de información del administrador con la respuesta del servidor
+                    mostrarCuadro('expedienteAlta');
+                    // Actualiza el contenido del cuadro con la información obtenida del servidor
+                    document.querySelector('#expedienteAlta .textos-alta-expediente').innerHTML = data;
+                },
+                error: function () {
+                    console.error('Error al obtener información del expediente del Paciente.');
+                }
+            });
+        });
+    });
+});
+
+
+
+
+
+

@@ -72,7 +72,7 @@ if (empty($_SESSION["nombre"])) {
       <h2>Conectado</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
       <h3>Información de contacto</h3>
-      
+      <h4>editar</h4>
       <ul>
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>
@@ -184,6 +184,46 @@ if (empty($_SESSION["nombre"])) {
     </section>
     
 
+<!-- Cuadro blanco adicional para Pacientes -->
+<div id="cuadroPacientes" class="cuadro-adicional cuadro-pacientes">
+    <span class="cerrar" onclick="cerrarCuadro('cuadroPacientes')">X</span>
+    <!-- Contenido del cuadro blanco adicional para Pacientes -->
+    <h2>Información de Pacientes</h2>
+    <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
+    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
+
+    <table border="1">
+        <tr>
+             <!--<th>ID<th>-->
+            <th>Nombre Paciente</th>
+            <th>Expediente</th>
+            <th>Citas</th>
+            <th>Agregar Expediente</th>
+            <th>Accion</th>
+            
+            
+            <!-- Puedes agregar más encabezados según tus necesidades -->
+        </tr>
+        <?php   require ('conecta.php');
+      $sql= "select * from paciente";
+        $resultq=mysqli_query($con,$sql);
+        while ($resultado = mysqli_fetch_array($resultq))
+            {                   
+     ?>
+        <tr>
+           <!-- <td><//?php echo $resultado['id']?></td>-->
+            <td><?php echo $resultado['nombre']?></td>
+            <td style="text-align: center;"><a href="#" class="ver-Exp" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
+            <td style="text-align: center;"><a href="#" class="ver-Pac" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
+            <td style="text-align: center;"><a href="#" class="alta-ExpDoc" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/folder.png"></img></a></td>
+            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
+            <!-- Puedes agregar más celdas según tus necesidades -->
+        </tr>
+        <?php 
+        }
+        ?><!-- Puedes agregar más filas según tus necesidades -->
+    </table>
+</div>
 
 <!-- Nuevo cuadro adicional para Alta de Paciente -->
 <div id="altaPaciente" class="cuadro-adicional" style="display: none;">
@@ -219,67 +259,122 @@ if (empty($_SESSION["nombre"])) {
 
 
 
-<!-- Nuevo cuadro adicional para Expediente del Paciente -->
+
+
+<!-- Nuevo cuadro adicional para Alta Expediente del Paciente -->
+<div id="expedienteAlta" class="cuadro-adicional" style="display: none;">
+    <span class="cerrar" onclick="cerrarCuadro('expedienteAlta')">X</span>
+    <!-- Contenido específico del nuevo cuadro para el expediente del paciente -->
+    <section class="textos-alta-expediente">
+    </section>
+</div>
+<!-- Fin del Cuadro blanco adicional para Alta expedientes del paciente -->
+
+
+
+
+
+
+
+
+<!--Nuevo cuadro adicional para Expediente del Paciente -->
 <div id="expedientePaciente" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('expedientePaciente')">X</span>
     <!-- Contenido específico del nuevo cuadro para el expediente del paciente -->
     <section class="textos-expediente">
-       
+        
     </section>
 </div>
+<!-- Fin del Cuadro blanco adicional para expedientes del paciente -->
 
 
 
-<!-- Cuadro blanco adicional para citas -->
-<div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
-    <span class="cerrar" onclick="cerrarCuadro('cuadroCitas')">X</span>
-    <!-- Contenido del cuadro blanco adicional para citas -->
-    <h2>Información de citas</h2>
-    <table border="1">
-        <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Paciente</th>
-            <th>Borrar Cita</th>
-            <!-- Puedes agregar más encabezados según tus necesidades -->
-        </tr>
-        <?php
-        require('conecta.php');
-        
-        // Supongamos que tienes la CURP almacenada en la variable $_SESSION['curp']
-        $id = $_SESSION['id'];
-        // Consulta SQL para obtener las citas relacionadas con la CURP
-        $sql = "SELECT consulta.*, paciente.nombre
-                FROM consulta
-                JOIN paciente ON  consulta.CURP_paciente = paciente.curp_usuario 
-                WHERE consulta.idDoctor_doctor = ?
-                ORDER BY consulta.fecha, consulta.hora";
-
-        // Preparar la consulta
-        $stmt = mysqli_prepare($con, $sql);
-        mysqli_stmt_bind_param($stmt, 's', $id);
-        
-        // Ejecutar la consulta
-        mysqli_stmt_execute($stmt);
-
-        // Obtener resultados
-        $resultq = mysqli_stmt_get_result($stmt);
-
-        while ($resultado = mysqli_fetch_array($resultq)) { ?>
-            <tr>
-                <td><?php echo $resultado['fecha'] ?></td>
-                <td><?php echo $resultado['hora'] ?></td>
-                <td><?php echo $resultado['nombre'] ?></td>
-                <td style="text-align: center;"><a href='deleteCitasIntDoc.php?id=<?php echo $resultado['id']; ?>' class="bto-eliminar">Eliminar</a></td>
-                <!-- Puedes agregar más celdas según tus necesidades -->
-            </tr>
-            <!-- Puedes agregar más filas según tus necesidades -->
-        <?php } ?>
-    </table>
+<!-- Nuevo cuadro adicional para Citas del Paciente -->
+<div id="citasPaciente" class="cuadro-adicional" style="display: none;">
+    <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
+    <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
+    <section class="textos-citas">
+    </section>
 </div>
-<!-- Fin del Cuadro blanco adicional para citas -->
+<!-- Fin del Cuadro blanco adicional para Pacientes -->
 
 
+
+<?php
+require('conecta.php');
+
+// Verificar si hay una sesión activa y obtener el nombre del doctor
+if (isset($_SESSION['nombre'])) {
+    $nombre = $_SESSION['nombre'];
+
+    // Consulta SQL para obtener el idDoctor del doctor actual
+    $sqlIdDoctor = "SELECT idDoctor FROM doctor WHERE nombre = '$nombre' LIMIT 1";
+    $resultIdDoctor = mysqli_query($con, $sqlIdDoctor);
+
+    if ($resultIdDoctor && $rowIdDoctor = mysqli_fetch_assoc($resultIdDoctor)) {
+        $idDoctorActual = $rowIdDoctor['idDoctor'];
+
+        // Consulta SQL para obtener las citas del doctor actual
+        $sqlCitas = "SELECT consulta.* FROM consulta
+                     JOIN doctor ON doctor.idDoctor = consulta.idDoctor_doctor
+                     WHERE doctor.idDoctor = '$idDoctorActual'";
+
+        $resultCitas = mysqli_query($con, $sqlCitas);
+
+        // Mostrar las citas del doctor actual
+        if ($resultCitas) {
+            ?>
+            <!-- Cuadro blanco adicional para citas -->
+            <div id="cuadroCitas" class="cuadro-adicional cuadro-citas">
+                <span class="cerrar" onclick="cerrarCuadro('cuadroCitas')">X</span>
+                <!-- Contenido del cuadro blanco adicional para citas -->
+                <h2>Información de citas</h2>
+                <table border="1">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Dentista</th>
+                        <th>Borrar Cita</th>
+                        <!-- Puedes agregar más encabezados según tus necesidades -->
+                    </tr>
+                    <?php
+                    while ($resultado = mysqli_fetch_array($resultCitas)) {
+                        ?>
+                        <tr>
+                            <td><?php echo $resultado[5] ?></td>
+                            <td><?php echo $resultado[3] ?></td>
+                            <?php
+                            // Consulta para obtener el nombre del dentista
+                            $sqlDentista = "SELECT nombre FROM doctor WHERE idDoctor = '$resultado[1]' LIMIT 1";
+                            $resultDentista = mysqli_query($con, $sqlDentista);
+
+                            if ($resultDentista && $rowDentista = mysqli_fetch_assoc($resultDentista)) {
+                                ?>
+                                <td><?php echo $rowDentista['nombre'] ?></td>
+                            <?php } ?>
+                            <td style="text-align: center;"><a href='deleteCitasIntDoc.php?id=<?php echo $resultado[2];?>' class="bto-eliminar">Eliminar</a></td>
+                            <!-- Puedes agregar más celdas según tus necesidades -->
+                        </tr>
+                        <!-- Puedes agregar más filas según tus necesidades -->
+                    <?php }
+                    ?>
+                </table>
+            </div>
+            <!-- Fin del Cuadro blanco adicional para citas -->
+            <?php
+        } else {
+            echo '<p>Error al ejecutar la consulta de citas: ' . mysqli_error($con) . '</p>';
+        }
+    } else {
+        echo '<p>Error al obtener el idDoctor: ' . mysqli_error($con) . '</p>';
+    }
+} else {
+    echo '<p>No hay sesión de doctor iniciada.</p>';
+}
+
+// Cerrar la conexión a la base de datos
+mysqli_close($con);
+?>
 
 
 
@@ -378,86 +473,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- Nuevo cuadro adicional para Citas del Paciente -->
-<div id="citasPaciente" class="cuadro-adicional" style="display: none;">
-    <span class="cerrar" onclick="cerrarCuadro('citasPaciente')">X</span>
-    <!-- Contenido específico del nuevo cuadro para las citas del paciente -->
-    <section class="textos-citas">
-
-    </section>
-</div>
-<!-- Fin del Cuadro blanco adicional para Pacientes -->
-
-
-
-
-<!-- Cuadro blanco adicional para Pacientes -->
-<div id="cuadroPacientes" class="cuadro-adicional cuadro-pacientes">
-    <span class="cerrar" onclick="cerrarCuadro('cuadroPacientes')">X</span>
-    <!-- Contenido del cuadro blanco adicional para Pacientes -->
-    <h2>Información de Pacientes</h2>
-    <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
-    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
-
-    <table border="1">
-        <tr>
-             <!--<th>ID<th>-->
-            <th>Nombre Paciente</th>
-            <th>Expediente</th>
-            <th>Citas</th>
-            <th>Accion</th>
-            
-            
-            <!-- Puedes agregar más encabezados según tus necesidades -->
-        </tr>
-        <?php
-        require('conecta.php');
-        
-        // Supongamos que tienes la CURP almacenada en la variable $_SESSION['curp']
-        $id = $_SESSION['id'];
-        // Consulta SQL para obtener las citas relacionadas con la CURP
-        $sql = "SELECT consulta.*, paciente.nombre 
-                FROM consulta
-                JOIN paciente ON  consulta.CURP_paciente = paciente.curp_usuario 
-                WHERE consulta.idDoctor_doctor = ?
-                ORDER BY consulta.fecha, consulta.hora";
-
-        // Preparar la consulta
-        $stmt = mysqli_prepare($con, $sql);
-        mysqli_stmt_bind_param($stmt, 's', $id);
-        
-        // Ejecutar la consulta
-        mysqli_stmt_execute($stmt);
-
-        // Obtener resultados
-        $resultq = mysqli_stmt_get_result($stmt);
-
-        while ($resultado = mysqli_fetch_array($resultq)) { ?>
-        <tr>
-           <!-- <td><//?php echo $resultado['id']?></td>-->
-            <td><?php echo $resultado['nombre']?></td>
-            <td style="text-align: center;"><a href="#" class="ver-DocExp" data-id="<?php echo $resultado['id']?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
-            <td style="text-align: center;"><a href="#" class="ver-DocPac" data-id="<?php echo $resultado['id']?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
-            <td style="text-align: center;"><a href="deletePacIntDoc.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
-            <!-- Puedes agregar más celdas según tus necesidades -->
-        </tr>
-        <?php 
-        }
-        ?><!-- Puedes agregar más filas según tus necesidades -->
-    </table>
-</div>
-
 </main>
 <footer>
    <div class="contenedor-footer">
@@ -477,8 +492,8 @@ $(document).ready(function(){
    <h2 class="titulo-final">&copy; Six Gears | IngSoftware</h2>
 </footer>
 
-  <!-- Desabilita el clickderecho -->
-  <script src="/odontosaurioApp/Bak/clickderecho.js"></script>
+    <!-- Desabilita el clickderecho -->
+    <script src="/odontosaurioApp/Bak/clickderecho.js"></script>
     <!-- Botones para el fullscreen -->
     <!-- <script src="../Bak/botones.js"></script> -->
     <!-- Menu pegajoso -->
