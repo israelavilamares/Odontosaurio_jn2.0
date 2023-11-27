@@ -182,6 +182,23 @@ if (empty($_SESSION["nombre"])) {
 
 
 <!-- popup agendar citas-->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  var select = '';
+  for (i=9;i<=19;i++){
+    select += '<option val=' + i + '>' + i + ':00</option>';
+    select += '<option val=' + i + '>' + i + ':30</option>';
+  }
+  $('#hora').html(select);
+});
+</script>
+</head>
+<body>
+
 <div id="popup-agendar" style="display: none; position: fixed; width: 80%; max-width: 600px; height: 80%; max-height: 400px; overflow: auto; background-color: white; z-index: 1000; border: 1px solid black; padding: 20px;">
     <form id="form-agendar" method="post" action="agendar.php">
         <div>
@@ -199,7 +216,10 @@ if (empty($_SESSION["nombre"])) {
             ?>
             </select> <br><br><br>
             Selecciona un dia:    <input type="date" name="fecha" id="fecha" min="2023-12-01" max="2024-06-30">         
-            Selecciona una hora:    <input type="time" name="hora" id="hora" min="09:00" max="19:00" required> <br><br><br>
+            Selecciona una hora:  
+            <select name="hora" id="hora">
+            </select>
+            <br><br><br>
             Selecciona un doctor: 
             <select name="doctor" id="doctor">
             <?php
@@ -220,6 +240,38 @@ if (empty($_SESSION["nombre"])) {
         </div>
     </form>
     <div id="mensaje-exito" style="display: none;">Cita agendada con éxito.</div>
+    <div id="mensaje-error" style="display: none; color: red;"></div> <!-- Nuevo div para mostrar mensajes de error -->
+</div>
+
+</body>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    // ...
+    $("#form-agendar").on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: 'agendar.php',
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(response){
+                if (response === "Cita agendada con éxito.") {
+                    // Si la cita se agendó con éxito, muestra el mensaje de éxito
+                    $("#mensaje-exito").show().text(response);
+                    $("#mensaje-error").hide();
+                } else {
+                    // Si hubo un error, muestra el mensaje de error
+                    $("#mensaje-error").show().text(response);
+                    $("#mensaje-exito").hide();
+                }
+            }
+        });
+    });
+});
+</script>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -297,6 +349,8 @@ if ($recuperado) {
             <li>Ultimo examen dental: <span><?php echo $recuperado["ultimo_examen_dental"]; ?></span></li>
             <li>Antecedentes médicos: <span><?php echo $recuperado["antecedentes_medicos"]; ?></span></li>
             <li>Doctor a cargo: <span><?php echo $recuperado["doctor_a_cargo"]; ?></span></li>
+            <!-- Añade un elemento de lista para la imagen -->
+            <li>Imagen: <img width="100" src="data:image/jpg;base64,<?php echo base64_encode($recuperado["archivo"]); ?>"></li>
         </ul>
     </form>
     <?php
@@ -333,8 +387,29 @@ if ($recuperado) {
     <div>
         <span id="cerrar-popup-imagen">X</span>
         Selecciona tu archivo: <br>
-        <input type="file" name="archivos" id="archivos" accept=".jpg,.jpeg,.png"> <br><br><br>
-        <input type="submit" value="Guardar">
+        <form name="forma01" action="upload.php" enctype="multipart/form-data" method="POST">
+        
+        <br>
+        <b style="color: #FBFDFB ;font-size: 20px;">Introduzca los datos:</b>
+        <table  style="text-align:left;margin-left: 30%;">
+            <tr>
+                <td><label>Nombre:</label></td>
+                <td><input id="campo1" type="text" class="campo" name="descripcion" placeholder="Escribe nombre" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="imgen_alfa">Imagen(600px x 200px):</label></td>
+                <td><input type="file" id="archivo" name="archivo" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" >
+                    <input style="margin-left: 100px;"class="btnEnviar" onclick="return recibe();" type="submit" value="Enviar">
+                    <div style="color:#ff1c42;margin-left: 65px;font-weight: bold;"id="mensajeEnviar"></div>
+                </td>
+            </tr>
+            
+        </table >
+    </form>
         <!-- Contenido del popup para subir imagen -->
     </div>
 </div>

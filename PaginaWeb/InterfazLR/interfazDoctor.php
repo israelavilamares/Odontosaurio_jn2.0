@@ -72,7 +72,7 @@ if (empty($_SESSION["nombre"])) {
       <h2>Conectado</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
       <h3>Información de contacto</h3>
-      <h4>editar</h4>
+      <h4></h4>
       <ul>
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>
@@ -216,7 +216,7 @@ if (empty($_SESSION["nombre"])) {
             <td style="text-align: center;"><a href="#" class="ver-Exp" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
             <td style="text-align: center;"><a href="#" class="ver-Pac" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/see.png"></img></a></td>
             <td style="text-align: center;"><a href="#" class="alta-ExpDoc" data-id="<?php echo $resultado[0]?>" style="cursor: pointer;"><img src="/odontosaurioApp/PaginaWeb/img/folder.png"></img></a></td>
-            <td style="text-align: center;"><a href="deletePacIntAdm.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
+            <td style="text-align: center;"><a href="deletePacIntDoc.php?id=<?php echo $resultado['id']?> " class="bto-eliminar">Eliminar</a></td>
             <!-- Puedes agregar más celdas según tus necesidades -->
         </tr>
         <?php 
@@ -242,7 +242,7 @@ if (empty($_SESSION["nombre"])) {
             ?>
                 <!-- Campos del formulario (nombre, CURP, etc.) -->
                 <input class="controller" type="text" id="nombre" name="nombre" placeholder = "nombre completo" required>
-                <input class="controller" type="text" id="curp" name="curp" placeholder="curp"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros"required>
+                <input class="controller" type="text" id="curpp" name="curp" placeholder="curp"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros"required>
                 <input class="controller" type="text" id="telefono" name="telefono" maxlength="10" placeholder="telefono" required>
                 <input class="controller" type="password" id="contraseña" name="pasw" placeholder="contraseña" required>
                 <input class="controller" type="text" id="nacionalidad" name="nacionalidad" placeholder="nacionalidad" required>
@@ -399,7 +399,7 @@ mysqli_close($con);
              ?>
             </select>
             <br><br><br>
-            Selecciona un día:    <input type="date" name="fecha" id="fecha" min="2023-12-01" max="2024-06-30">         
+            Selecciona un día:    <input type="date" name="fecha" id="fecha" min="2023-12-01" max="2024-06-30"required>         
             Selecciona una hora:    <input type="time" name="hora" id="hora" min="09:00" max="19:00" required> <br><br><br>
             Selecciona un doctor: 
             <select name="doctor" id="doctor">

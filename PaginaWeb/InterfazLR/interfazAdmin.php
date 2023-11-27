@@ -443,9 +443,6 @@ if (empty($_SESSION["nombre"])) {
     </section>
 </div>
 
-
-
-
 <!-- Nuevo cuadro adicional para Alta de admin -->
 <div id="altaAdmin" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('altaAdmin')">X</span>
