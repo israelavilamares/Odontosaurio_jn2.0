@@ -23,12 +23,12 @@ if (isset($_POST['registrar'])) {
     if ($resultAdm->num_rows > 0) 
     {
         //mensaje error
-        echo '<div class="alerta">ya esta registrado ese Nombre. Intentelo de Nuevo con otro Nombre</div>';
+        echo '<div class="alerta">Ya está registrado ese nombre. Inténtelo de nuevo con otro nombre</div>';
     }elseif($resultPac->num_rows > 0)
     {        //mensaje error
-        echo '<div class="alerta">ya esta registrado esa Curp. Intentelo de Nuevo</div>';
+        echo '<div class="alerta">Ya está registrada esa CURP. Inténtelo de nuevo</div>';
     }elseif($resultDoc->num_rows > 0 ){
-        echo '<div class="alerta">ya esta registrado ese Nombre.Intentelo de Nuevo con otro Nombre</div>';
+        echo '<div class="alerta">Ya está registrado ese nombre. Inténtelo de nuevo con otro nombre</div>';
     }else{
 
                 //variables post
@@ -48,7 +48,7 @@ if (isset($_POST['registrar'])) {
                         // Registro exitoso                                                               
    
                         echo '<script>';
-                        echo '    swal("Registrado!", "You clicked the button!", "success");';
+                        echo '    swal("¡Registrad@!", "¡Rawr!", "success");';
                         echo '    window.setTimeout(function() {';
                         echo '        window.location.href ="FormPacientelogin.php";';
                         echo '    }, 2000);';

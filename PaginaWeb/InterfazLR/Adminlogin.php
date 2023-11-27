@@ -63,7 +63,7 @@ if (isset($_POST['ingresar'])) {
             } 
     }else {
                   // Nombre de usuario no encontrado     
-            echo '<label class="alerta">No esta registrado ese usuario</label>';
+            echo '<label class="alerta">No está registrad@ ese usuario</label>';
 
           }
          mysqli_close($con);

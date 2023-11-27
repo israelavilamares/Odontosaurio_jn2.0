@@ -31,7 +31,7 @@ if (isset($_POST['ingresar'])) {
                   exit();// Redirige al panel de control del usuario
             } else{ // Contraseña incorrecta
                           //  echo "Contraseña incorrecta";
-                    echo '<label class="alerta">Contraseña incorrecta</label>';
+                    echo '<label class="alerta">Oops. Contraseña incorrecta</label>';
                   } 
     }
          mysqli_close($con);

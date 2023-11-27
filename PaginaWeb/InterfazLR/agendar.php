@@ -16,7 +16,7 @@
         // Si el doctor no tiene una cita a esa hora, inserta la nueva cita
         $sql_insert = "INSERT INTO consulta (CURP_paciente, idDoctor_doctor, hora, consultorio, fecha) VALUES ('$curp', '$idDoctor', '$hora', '$consultorio', '$fecha')";
         if(mysqli_query($con, $sql_insert)){
-            echo "Cita agendada con éxito.";
+            echo "Cita agendada con éxito, ¡rawr!.";
         } else{
             echo "ERROR: No se pudo ejecutar $sql_insert. " . mysqli_error($con);
         }

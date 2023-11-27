@@ -40,7 +40,7 @@ if ($id !== null) {
                        <label for="padecimientos_actuales">Padecimientos actuales:</label>
                     <input type="text" name="padecimientos_actuales" value="<?php echo $rowExpediente['padecimientos_actuales']; ?>">
 
-                   <label for="ultimo_examen_dental">Ultimo examen dental:</label>
+                   <label for="ultimo_examen_dental">Último examen dental:</label>
                     <input type="text" name="ultimo_examen_dental" value="<?php echo $rowExpediente['ultimo_examen_dental']; ?>">
 
                    <label for="antecedentes_medicos">Antecedentes médicos:</label>
@@ -64,7 +64,7 @@ if ($id !== null) {
     <label for="padecimientos_actuales">Padecimientos actuales:</label>
     <input type="text" name="padecimientos_actuales" value="<?php echo $rowExpediente ? $rowExpediente['padecimientos_actuales'] : ''; ?>">
 
-    <label for="ultimo_examen_dental">Ultimo examen dental:</label>
+    <label for="ultimo_examen_dental">Último examen dental:</label>
     <input type="text" name="ultimo_examen_dental" value="<?php echo $rowExpediente ? $rowExpediente['ultimo_examen_dental'] : ''; ?>">
 
     <label for="antecedentes_medicos">Antecedentes médicos:</label>

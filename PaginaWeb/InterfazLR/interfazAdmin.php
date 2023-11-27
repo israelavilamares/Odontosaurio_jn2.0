@@ -35,7 +35,7 @@ if (empty($_SESSION["nombre"])) {
         </li>
         
         </ul>
-        <h2>¡ Bienvenid@, -<?php echo $_SESSION['nombre'];?>-!</h2>
+        <h2>¡ Bienvenid@, <?php echo $_SESSION['nombre'];?>!</h2>
         <div class="burger" >
           <div class="line1"></div>
           <div class="line2"></div>
@@ -51,7 +51,7 @@ if (empty($_SESSION["nombre"])) {
             <h1>Contenido de Ayuda y Soporte</h1>
             <h2>¿Tienes alguna duda? ¡No te preocupes!</h2>
             <h3>En este tutorial abarcamos todas las preguntas frecuentes que nos han hecho.</h3>
-            <h4>Si las dudas persisten, no dudes en contactarnosen nuestro apartado "dudas y comentarios" en nuestra pagina principal.</h4>
+            <h4>Si las dudas persisten, no dudes en contactarnos en nuestro apartado "dudas y comentarios" en nuestra pagina principal.</h4>
             <img src="/odontosaurioApp/PaginaWeb/img/velociraptor.png" alt="" class="imagen-ayuda">
 
         </div>
@@ -69,7 +69,7 @@ if (empty($_SESSION["nombre"])) {
     <img src="/odontosaurioApp/PaginaWeb/img/tag.png" alt="" class="imagen-tag">
     <section class="textos-user">
       <h1>ADMINISTRADOR</h1>
-      <h2>Conectado</h2>
+      <h2>Conectad@</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
       <h3>Información de contacto</h3>
     
@@ -83,7 +83,7 @@ if (empty($_SESSION["nombre"])) {
             <li>
             Edad: <span><?php echo $_SESSION['edad'];?></span>
             </li>            
-            <li>Número de celular: <?php echo $_SESSION['telefono'];?></li>
+            <li>Número de teléfono: <?php echo $_SESSION['telefono'];?></li>
         </ul>
 
     </section>
@@ -189,7 +189,7 @@ if (empty($_SESSION["nombre"])) {
     <!-- Contenido del cuadro blanco adicional para Pacientes -->
     <h2>Información de Pacientes</h2>
     <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
-    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
+    <input type="button" class="boton-alta" value="Actualizar tabla"  onclick="location.reload()"></input>
 
     <table border="1">
         <tr>
@@ -240,12 +240,12 @@ if (empty($_SESSION["nombre"])) {
            require('AltaPaciente.php');
             ?>
                 <!-- Campos del formulario (nombre, CURP, etc.) -->
-                <input class="controller" type="text" id="nombre" name="nombre" placeholder = "nombre completo" required>
-                <input class="controller" type="text" id="curp" name="curp" placeholder="curp"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros"required>
-                <input class="controller" type="text" id="telefono" name="telefono" maxlength="10" placeholder="telefono" required>
-                <input class="controller" type="password" id="contraseña" name="pasw" placeholder="contraseña" required>
-                <input class="controller" type="text" id="nacionalidad" name="nacionalidad" placeholder="nacionalidad" required>
-                <input class="controller" type="tel" id="edad" name="edad" maxlength="3" placeholder="edad" required>
+                <input class="controller" type="text" id="nombre" name="nombre" placeholder = "Nombre completo" required>
+                <input class="controller" type="text" id="curp" name="curp" placeholder="CURP"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros"required>
+                <input class="controller" type="text" id="telefono" name="Número de teléfono" maxlength="10" placeholder="telefono" required>
+                <input class="controller" type="password" id="contraseña" name="pasw" placeholder="Contraseña" required>
+                <input class="controller" type="text" id="nacionalidad" name="nacionalidad" placeholder="Nacionalidad" required>
+                <input class="controller" type="tel" id="edad" name="edad" maxlength="3" placeholder="Edad" required>
                 
                 <!-- Otros campos del formulario... -->
     
@@ -313,13 +313,13 @@ if (empty($_SESSION["nombre"])) {
     <div id="cuadroDoctores" class="cuadro-adicional cuadro-doctores">
         <span class="cerrar" onclick="cerrarCuadro('cuadroDoctores')">X</span>
         <!-- Contenido del cuadro blanco adicional para doctores -->
-        <h2>Información de Doctores</h2>
+        <h2>Información de doctores</h2>
         <button class="boton-alta" onclick="mostrarCuadro('altaDoctor')">Dar alta doctor </button>
-        <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
+        <input type="button" class="boton-alta" value="Actulizar tabla"  onclick="location.reload()"></input>
         <table border="1">
         <tr>
-            <th>Nombre Doctor</th>
-            <th>Info</th>
+            <th>Nombre del doctor</th>
+            <th>Información</th>
             <th>Eliminar</th>
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
@@ -371,13 +371,13 @@ if (empty($_SESSION["nombre"])) {
            require('AltaDoctores.php');
             ?>
             
-            <input class=controller type="text"  name="nombre" placeholder="nombre completo" required>
+            <input class=controller type="text"  name="nombre" placeholder="Nombre completo" required>
           
-            <input class=controller type="text"  name="especialidad" placeholder="especialidad" required>
+            <input class=controller type="text"  name="especialidad" placeholder="Especialidad" required>
             
-            <input class=controller type="text"  name="telefono" placeholder="telefono" maxlength="10"  required>
+            <input class=controller type="text"  name="telefono" placeholder="Número de teléfono" maxlength="10"  required>
            
-            <input class=controller type="password" name="pass" placeholder="contraseña"  required>
+            <input class=controller type="password" name="pass" placeholder="Contraseña"  required>
             
             <input class=controller type="text" name="edad" placeholder="Edad" required>
             <!-- Botón para enviar el formulario -->
@@ -405,13 +405,13 @@ if (empty($_SESSION["nombre"])) {
 
     <!-- Contenido del cuadro blanco adicional para administradores -->
     <h2>Información de administradores</h2>
-    <button class="boton-alta" onclick="mostrarCuadro('altaAdmin')">Dar alta Administrador </button>
+    <button class="boton-alta" onclick="mostrarCuadro('altaAdmin')">Dar alta a un administrador </button>
     
-    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
+    <input type="button" class="boton-alta" value="Actulizar tabla"  onclick="location.reload()"></input>
     <table border="1">
         <tr>
-            <th>Nombre Admin</th>
-            <th>Info</th>
+            <th>Nombre del admin</th>
+            <th>Información</th>
             <th>Eliminar</th>
             <!-- Puedes agregar más encabezados según tus necesidades -->
         </tr>
@@ -456,11 +456,11 @@ if (empty($_SESSION["nombre"])) {
            require('AltaAdmin.php');
            ?>
                 <!-- Campos del formulario (nombre, apellido, etc.) -->
-                <input class="controller" type="text" id="nombre" name="nombre" placeholder="nombre completo" required>
-                <input class="controller" type="password" id="contraseña" name="passw" placeholder="contraseña" required>
-                <input class="controller" type="tel" id="tel" name="telefono" placeholder="telefono" maxlength="10" required> 
-                <input class="controller" type="text" id="puesto" name="puesto" placeholder="puesto" required>
-                <input class="controller" type="tel" id="edad" name="edad" placeholder="edad" maxlength="3" required>
+                <input class="controller" type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
+                <input class="controller" type="password" id="contraseña" name="passw" placeholder="Contraseña" required>
+                <input class="controller" type="tel" id="tel" name="telefono" placeholder="Número de teléfono" maxlength="10" required> 
+                <input class="controller" type="text" id="puesto" name="puesto" placeholder="Puesto" required>
+                <input class="controller" type="tel" id="edad" name="edad" placeholder="Edad" maxlength="3" required>
                 
                 <!-- Otros campos del formulario... -->
     

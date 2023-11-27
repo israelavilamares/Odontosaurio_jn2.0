@@ -28,21 +28,21 @@ if (isset($_POST['RegistrarAdmin'])) {
 
  if($resultDoc->num_rows > 0){
        echo '<script>';
-       echo '    swal("Error!", "ya esta registrado ese Nombre. Intentelo de Nuevo con otro Nombre!", "error");';
+       echo '    swal("¡Error!", "Ya está registrado ese nombre. Intentelo de Nuevo con otro Nombre, ¡Rawr!", "error");';
 
        echo '</script>';
       
     }elseif($resultPac->num_rows > 0){
        
        echo '<script>';
-       echo '    swal("Error!", "ya esta registrado ese Nombre. Intentelo de Nuevo con otro Nombre!", "error");';
+       echo '    swal("¡Error!", "Ya está registrado ese nombre. Intentelo de Nuevo con otro Nombre, ¡Rawr!", "error");';
 
        echo '</script>';
        
     }elseif($resultadoAdm->num_rows > 0){
 
         echo '<script>';
-        echo '    swal("info!", "ya esta registrado ese en la tabla!", "success");';
+        echo '    swal("¡DINO-INFORMACIÓN! ¡Rawr!", "El registro ya está actualizado en la tabla!", "success");';
         echo '</script>';
 
     }else{

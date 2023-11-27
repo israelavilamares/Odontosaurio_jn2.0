@@ -687,8 +687,8 @@ nav{
 }
 
 .textos-citas ul li {
-    font-size: 11px;
-    color: #8e8e8e;
+    font-size: 13px;
+    color: #686868;
     margin-bottom: 20px; /* Agrega espaciado entre los elementos de la lista */
     display: flex;
     align-items: center;
@@ -937,3 +937,29 @@ margin: 0.5rem;
 color: green;
 
 }
+
+/* Estilos para el botón "Agregar Paciente" */
+.buttonAlta-Paciente {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #3498db;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.buttonAlta-Paciente:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+

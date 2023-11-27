@@ -35,7 +35,7 @@ if (empty($_SESSION["nombre"])) {
         </li>
         
         </ul>
-        <h2>¡ Bienvenid@, -<?php echo $_SESSION['nombre'];?>-!</h2>
+        <h2>¡ Bienvenid@, <?php echo $_SESSION['nombre'];?>!</h2>
         <div class="burger" >
           <div class="line1"></div>
           <div class="line2"></div>
@@ -51,7 +51,7 @@ if (empty($_SESSION["nombre"])) {
             <h1>Contenido de Ayuda y Soporte</h1>
             <h2>¿Tienes alguna duda? ¡No te preocupes!</h2>
             <h3>En este tutorial abarcamos todas las preguntas frecuentes que nos han hecho.</h3>
-            <h4>Si las dudas persisten, no dudes en contactarnosen nuestro apartado "dudas y comentarios" en nuestra pagina principal.</h4>
+            <h4>Si las dudas persisten, no dudes en contactarnos en nuestro apartado "dudas y comentarios" en nuestra página principal.</h4>
             <img src="/odontosaurioApp/PaginaWeb/img/velociraptor.png" alt="" class="imagen-ayuda">
 
         </div>
@@ -77,7 +77,7 @@ if (empty($_SESSION["nombre"])) {
         <li>Nombre:
         <?php echo $_SESSION['nombre'];?>
         </li>
-        <li>especialidad:
+        <li>Especialidad:
        <span><?php echo $_SESSION['espec'];?></span> 
         </li>
         <li>
@@ -166,7 +166,7 @@ if (empty($_SESSION["nombre"])) {
 <div id="cuadroResultados" class="cuadro-adicional" style="display: none;">
     <span class="cerrar" onclick="cerrarCuadro('cuadroResultados')">X</span>
     <!-- Contenido del modal -->
-    <h2>Resultados de la Búsqueda</h2>
+    <h2>Resultados de la búsqueda</h2>
     <div id="resultados"></div>
 </div>
 <!--Fin Cuadro blanco  busqueda -->
@@ -188,18 +188,18 @@ if (empty($_SESSION["nombre"])) {
 <div id="cuadroPacientes" class="cuadro-adicional cuadro-pacientes">
     <span class="cerrar" onclick="cerrarCuadro('cuadroPacientes')">X</span>
     <!-- Contenido del cuadro blanco adicional para Pacientes -->
-    <h2>Información de Pacientes</h2>
+    <h2>Información de pacientes</h2>
     <button class="boton-alta" onclick="mostrarCuadro('altaPaciente')">Dar de alta paciente</button>
-    <input type="button" class="boton-alta" value="Actuliza registros de la tabla"  onclick="location.reload()"></input>
+    <input type="button" class="boton-alta" value="Actualizar tabla"  onclick="location.reload()"></input>
 
     <table border="1">
         <tr>
              <!--<th>ID<th>-->
-            <th>Nombre Paciente</th>
+            <th>Nombre del paciente</th>
             <th>Expediente</th>
             <th>Citas</th>
-            <th>Agregar Expediente</th>
-            <th>Accion</th>
+            <th>Agregar expediente</th>
+            <th>Acción</th>
             
             
             <!-- Puedes agregar más encabezados según tus necesidades -->
@@ -241,16 +241,13 @@ if (empty($_SESSION["nombre"])) {
            require('AltaPaciente.php');
             ?>
                 <!-- Campos del formulario (nombre, CURP, etc.) -->
-                <input class="controller" type="text" id="nombre" name="nombre" placeholder = "nombre completo" required>
-                <input class="controller" type="text" id="curpp" name="curp" placeholder="curp"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Solo Puedes Utilizar Letras y Numeros"required>
-                <input class="controller" type="text" id="telefono" name="telefono" maxlength="10" placeholder="telefono" required>
-                <input class="controller" type="password" id="contraseña" name="pasw" placeholder="contraseña" required>
-                <input class="controller" type="text" id="nacionalidad" name="nacionalidad" placeholder="nacionalidad" required>
-                <input class="controller" type="tel" id="edad" name="edad" maxlength="3" placeholder="edad" required>
+                <input class="controller" type="text" id="nombre" name="nombre" placeholder = "Nombre completo" required>
+                <input class="controller" type="text" id="curpp" name="curp" placeholder="CURP"  minlength="18" maxlength="18" pattern="[A-Za-z0-9]*" title="Sólo puedes utilizar letras y números"required>
+                <input class="controller" type="text" id="telefono" name="telefono" maxlength="10" placeholder="Teléfono" required>
+                <input class="controller" type="password" id="contraseña" name="pasw" placeholder="Contraseña" required>
+                <input class="controller" type="text" id="nacionalidad" name="nacionalidad" placeholder="Nacionalidad" required>
+                <input class="controller" type="tel" id="edad" name="edad" maxlength="3" placeholder="Edad" required>
                 
-                <!-- Otros campos del formulario... -->
-    
-                <!-- Botón para enviar el formulario -->
                 <input class="buttonAlta-Paciente" type="submit" value="Agregar Paciente" name="RegistraPaciente">
             </form>
         </div>

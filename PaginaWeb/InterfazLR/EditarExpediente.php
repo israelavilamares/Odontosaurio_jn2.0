@@ -20,7 +20,7 @@ if (isset($_POST['editarExpediente'])) {
                 //Esto es importante para prevenir ataques de inyección SQL, ya que asegura que los datos del usuario se manejen de manera segura.
                     if ($stmt->execute()) {                               
                         
-                        echo '<div class="mensaje-correcto">edicion exitoso</div>';
+                        echo '<div class="mensaje-correcto">¡Edición exitosa!</div>';
                         sleep(1);
                         // Registro exitoso                                                               
                         header("Location: interfazPaciente.php");

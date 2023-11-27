@@ -20,11 +20,11 @@ if ($id !== null) {
             <label  >Puesto: </label>
             <input type="text" name = "puesto" value="<?php echo $resultado[3]; ?>"required>
             <div class="linea-negra"></div>
-            <label>contraseña: </label>
+            <label>Contraseña: </label>
             <input name = "pasw"  type="password" required>
-            <label >edad: </label>
+            <label >Edad: </label>
             <input name = "edad" value="<?php echo $resultado[4]; ?>"required>
-            <label >Telefono: </label>
+            <label >Número de teléfono: </label>
             <input name = "tel" value="<?php echo $resultado[5]; ?>"required>
             
             <div class="linea-negra"></div>

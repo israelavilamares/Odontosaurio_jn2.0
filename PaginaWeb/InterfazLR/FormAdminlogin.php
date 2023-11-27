@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-<head><title >inicio de sesion</title>
+<head><title >Inicio de sesión</title>
  <link rel="stylesheet" type="text/css" href="../css/styleLoginAndRegister.css">
 <meta name="viewport" content="width=device-width, user-scalable=no,
 initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
@@ -16,15 +16,15 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
             require "Adminlogin.php";
         ?>
             
-                <input class="controls" type="text" name="curp" placeholder="ingresa tu nombre" required>
+                <input class="controls" type="text" name="curp" placeholder="Ingresa tu nombre completo" required>
            
             
-                <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña" required>
+                <input class="controls" type="password" name="pass" placeholder="Ingresa tu contraseña" required>
             
             
                 <input class="button" type="submit" name="ingresar">
             <br>
-            <p><a href="../index.html">Volver a Pagina Principal</a></b>
+            <p><a href="../index.html">Volver a la página principal</a></b>
 
         </form>
     </div>

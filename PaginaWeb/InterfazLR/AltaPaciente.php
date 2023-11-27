@@ -22,17 +22,17 @@ if (isset($_POST['RegistraPaciente'])) {
      {
          //mensaje error
          echo '<script>';
-         echo '    swal("Error!", "ya esta registrado ese Nombre. Intentelo de Nuevo con otro Nombre!", "error");';
+         echo '    swal("¡Error!", "Ya está registrado ese nombre. Intentelo de Nuevo con otro Nombre, ¡Rawr!", "error");';
          echo '</script>';
          
      }elseif($resultDoc->num_rows > 0 ){
         echo '<script>';
-        echo '    swal("Error!", "ya esta registrado ese Nombre. Intentelo de Nuevo con otro Nombre!", "error");';
+        echo '    swal("¡Error!", "Ya está registrado ese nombre. Intentelo de Nuevo con otro Nombre, ¡Rawr!", "error");';
         echo '</script>';
      }elseif( $resultPac->num_rows > 0 )
     {
         echo '<script>';
-        echo '    swal("INFORMACION!", "El Registro ya esta en la Tabla Actulizado!", "success");';
+        echo '    swal("¡DINO-INFORMACIÓN! ¡Rawr!", "El registro ya está actualizado en la tabla!", "success");';
         echo '</script>';
     }else{
 
@@ -56,7 +56,7 @@ if (isset($_POST['RegistraPaciente'])) {
                         // Registro exitoso                                                               
    
                         echo '<script>';
-                        echo '    swal("Registrado!", "You clicked the button!", "success");';
+                        echo '    swal("¡Registrad@!", "¡Rawr!", "success");';
                         //echo 'setTimeout("document.location.reload()",5000);';
                         echo '</script>';
                       

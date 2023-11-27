@@ -10,7 +10,7 @@ if (empty($_SESSION["nombre"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IEwedge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinica Odontosaurio</title>
+    <title>Clínica Odontosaurio</title>
     <link rel="stylesheet" type="text/css" href="../css/styleInterfazPaciente.css">
     <link rel="shortcut icon" href="../img/icono.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@96.3,710;100,300;100,400;100,700;100,800&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@ if (empty($_SESSION["nombre"])) {
         </li>
         
         </ul>
-        <h2>¡ Bienvenid@ ! <span><?php echo $_SESSION['nombre']; ?></span> </h2>
+        <h2>¡ Bienvenid@, <span><?php echo $_SESSION['nombre']; ?>!</span> </h2>
         <div class="burger" >
           <div class="line1"></div>
           <div class="line2"></div>
@@ -47,10 +47,10 @@ if (empty($_SESSION["nombre"])) {
         <div class="popup-content">
             <span class="close" onclick="cerrarPopup('ayudaPopup')">&times;</span>
             <!-- Contenido de tu popup para Ayuda y Soporte -->
-            <h1>Contenido de Ayuda y Soporte</h1>
+            <h1>Contenido de ayuda y soporte</h1>
             <h2>¿Tienes alguna duda? ¡No te preocupes!</h2>
             <h3>En este tutorial abarcamos todas las preguntas frecuentes que nos han hecho.</h3>
-            <h4>Si las dudas persisten, no dudes en contactarnosen nuestro apartado "dudas y comentarios" en nuestra pagina principal.</h4>
+            <h4>Si las dudas persisten, no dudes en contactarnosen nuestro apartado "dudas y comentarios" en nuestra página principal.</h4>
             <img src="../img/velociraptor.png" alt="" class="imagen-ayuda">
         </div>
     </div>
@@ -67,7 +67,7 @@ if (empty($_SESSION["nombre"])) {
     <img src="/odontosaurioApp/PaginaWeb/img/tag.png" alt="" class="imagen-tag">
     <section class="textos-user">
       <h1>MI CUENTA</h1>
-      <h2>Conectado</h2>
+      <h2>Conectad@</h2>
       <img src="/odontosaurioApp/PaginaWeb/img/user.png" alt="" class="imagen-user">
     </section>
   </div>
@@ -82,12 +82,12 @@ if (empty($_SESSION["nombre"])) {
            require "conecta.php";
            require('EditarPaciente.php');
            ?>
-            <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span><input class="controls" type="text" name="nombre_edit" placeholder="ingresa tu Nombre completo" maxlength="50" required></li>
-            <li>Edad: <span><?php echo $_SESSION['edad'];?><span><input class="controls" type="tel" name="edad_edit" placeholder="ingresa tu edad" minlength="1" maxlength="3" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
-            <li>CURP: <span><?php echo $_SESSION['curp'];?><span><input class="controls" type="text" name="curp_edit" value= <?php echo $_SESSION['curp']?> disabled> </li>
-            <li>Número de celular: <span><?php echo $_SESSION['tel'];?><span><input class="controls" type="tel" name="telefono" placeholder="ingresa tu Telefono" minlength="10" maxlength="10" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
-            <li>Nacionalidad: <span><?php echo $_SESSION['nacionalidad'];?><span><input class="controls" type="text" name="nacionalidad_edit" placeholder="ingresa tu Nacionalidad" maxlength="50" required>
-            <input class="button" type="submit" name="editar" onclick="recargarPagina()"></li>
+            <li>Nombre: <span><?php echo $_SESSION['nombre']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<input class="controls" type="text" name="nombre_edit" placeholder="Editar nombre completo" maxlength="50" required></li>
+            <li>Edad: <span><?php echo $_SESSION['edad'];?><span>&nbsp;&nbsp;&nbsp;&nbsp;<input class="controls" type="tel" name="edad_edit" placeholder="Editar edad" minlength="1" maxlength="3" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
+            <li>CURP: <span><?php echo $_SESSION['curp'];?><span>&nbsp;&nbsp;&nbsp;&nbsp;<input class="controls" type="text" name="curp_edit" value= <?php echo $_SESSION['curp']?> disabled> </li>
+            <li>Número de celular: <span><?php echo $_SESSION['tel'];?><span>&nbsp;&nbsp;&nbsp;&nbsp;<input class="controls" type="tel" name="telefono" placeholder="Editar número de teléfono" minlength="10" maxlength="10" pattern="[0-9]*" title="Solo puedes Poner Numeros" required></li>
+            <li>Nacionalidad: <span><?php echo $_SESSION['nacionalidad'];?><span>&nbsp;&nbsp;&nbsp;&nbsp;<input class="controls" type="text" name="nacionalidad_edit" placeholder="Editar nacionalidad" maxlength="50" required>&nbsp;&nbsp;
+            <input class="button custom-button" type="submit" name="editar" onclick="recargarPagina()"></li>
             </form>
         </ul>
     </section>
@@ -182,23 +182,6 @@ if (empty($_SESSION["nombre"])) {
 
 
 <!-- popup agendar citas-->
-<!DOCTYPE html>
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  var select = '';
-  for (i=9;i<=19;i++){
-    select += '<option val=' + i + '>' + i + ':00</option>';
-    select += '<option val=' + i + '>' + i + ':30</option>';
-  }
-  $('#hora').html(select);
-});
-</script>
-</head>
-<body>
-
 <div id="popup-agendar" style="display: none; position: fixed; width: 80%; max-width: 600px; height: 80%; max-height: 400px; overflow: auto; background-color: white; z-index: 1000; border: 1px solid black; padding: 20px;">
     <form id="form-agendar" method="post" action="agendar.php">
         <div>
@@ -216,10 +199,7 @@ $(document).ready(function(){
             ?>
             </select> <br><br><br>
             Selecciona un dia:    <input type="date" name="fecha" id="fecha" min="2023-12-01" max="2024-06-30">         
-            Selecciona una hora:  
-            <select name="hora" id="hora">
-            </select>
-            <br><br><br>
+            Selecciona una hora:    <input type="time" name="hora" id="hora" min="09:00" max="19:00" required> <br><br><br>
             Selecciona un doctor: 
             <select name="doctor" id="doctor">
             <?php
@@ -240,38 +220,6 @@ $(document).ready(function(){
         </div>
     </form>
     <div id="mensaje-exito" style="display: none;">Cita agendada con éxito.</div>
-    <div id="mensaje-error" style="display: none; color: red;"></div> <!-- Nuevo div para mostrar mensajes de error -->
-</div>
-
-</body>
-</html>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    // ...
-    $("#form-agendar").on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            url: 'agendar.php',
-            type: 'post',
-            data: $(this).serialize(),
-            success: function(response){
-                if (response === "Cita agendada con éxito.") {
-                    // Si la cita se agendó con éxito, muestra el mensaje de éxito
-                    $("#mensaje-exito").show().text(response);
-                    $("#mensaje-error").hide();
-                } else {
-                    // Si hubo un error, muestra el mensaje de error
-                    $("#mensaje-error").show().text(response);
-                    $("#mensaje-exito").hide();
-                }
-            }
-        });
-    });
-});
-</script>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -346,11 +294,9 @@ if ($recuperado) {
     <form method="post">
         <ul>
             <li>Padecimientos actuales: <span><?php echo $recuperado["padecimientos_actuales"]; ?></span></li>
-            <li>Ultimo examen dental: <span><?php echo $recuperado["ultimo_examen_dental"]; ?></span></li>
+            <li>Último examen dental: <span><?php echo $recuperado["ultimo_examen_dental"]; ?></span></li>
             <li>Antecedentes médicos: <span><?php echo $recuperado["antecedentes_medicos"]; ?></span></li>
-            <li>Doctor a cargo: <span><?php echo $recuperado["doctor_a_cargo"]; ?></span></li>
-            <!-- Añade un elemento de lista para la imagen -->
-            <li>Imagen: <img width="100" src="data:image/jpg;base64,<?php echo base64_encode($recuperado["archivo"]); ?>"></li>
+            <li>Doctor/a a cargo: <span><?php echo $recuperado["doctor_a_cargo"]; ?></span></li>
         </ul>
     </form>
     <?php
@@ -365,20 +311,11 @@ if ($recuperado) {
 
 
 
-
-
-
-
-
-
-
-
-
 <div class="cuadro-blancoimajenes">
 <img src="/odontosaurioApp/PaginaWeb/img/boton.png" alt="" class="imagen-boton3">
     <section class="textos-imajenes">
         <h1>Multimedia</h1>
-        <h2 id="mostrar-popup-imagen">Subir imajen</h2>
+        <h2 id="mostrar-popup-imagen">Subir imagen</h2>
     </section>
 </div>    
 
@@ -387,29 +324,8 @@ if ($recuperado) {
     <div>
         <span id="cerrar-popup-imagen">X</span>
         Selecciona tu archivo: <br>
-        <form name="forma01" action="upload.php" enctype="multipart/form-data" method="POST">
-        
-        <br>
-        <b style="color: #FBFDFB ;font-size: 20px;">Introduzca los datos:</b>
-        <table  style="text-align:left;margin-left: 30%;">
-            <tr>
-                <td><label>Nombre:</label></td>
-                <td><input id="campo1" type="text" class="campo" name="descripcion" placeholder="Escribe nombre" required></td>
-            </tr>
-
-            <tr>
-                <td><label for="imgen_alfa">Imagen(600px x 200px):</label></td>
-                <td><input type="file" id="archivo" name="archivo" required></td>
-            </tr>
-            <tr>
-                <td colspan="2" >
-                    <input style="margin-left: 100px;"class="btnEnviar" onclick="return recibe();" type="submit" value="Enviar">
-                    <div style="color:#ff1c42;margin-left: 65px;font-weight: bold;"id="mensajeEnviar"></div>
-                </td>
-            </tr>
-            
-        </table >
-    </form>
+        <input type="file" name="archivos" id="archivos" accept=".jpg,.jpeg,.png"> <br><br><br>
+        <input type="submit" value="Guardar">
         <!-- Contenido del popup para subir imagen -->
     </div>
 </div>

@@ -9,17 +9,17 @@ initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
 <body>
     <div class="form-login">
 
-        <h5>Iniciar sesion</h5>
+        <h5>Iniciar sesión</h5>
         <form action="" method="post">
         <?php 
             require "conecta.php";
             require "Pacientelogin.php";
         ?>
             
-                <input class="controls" type="text" name="curp" placeholder="ingresa tu curp" required>
+                <input class="controls" type="text" name="curp" placeholder="Ingresa tu CURP" required>
            
             
-                <input class="controls" type="password" name="pass" placeholder="ingresa tu contraseña" required>
+                <input class="controls" type="password" name="pass" placeholder="Ingresa tu contraseña" required>
             
             
                 <input class="button" type="submit" name="ingresar">

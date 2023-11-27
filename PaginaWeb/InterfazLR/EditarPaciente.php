@@ -28,7 +28,7 @@ if (isset($_POST['editar'])) {
         $_SESSION['tel'] = $tel;
         $_SESSION['nacionalidad'] = $nac;
 
-        echo '<div class="mensaje-correcto">Edición exitosa</div>';
+        echo '<div class="mensaje-correcto">¡Edición exitosa! ¡Rawr!</div>';
         // Redirige al formulario de inicio de sesión
         header("Location: interfazPaciente.php");
         // Es buena práctica terminar el script después de una redirección
